@@ -1,0 +1,1178 @@
+@article{goldberg14_word2_explain,
+  author =       {Goldberg, Yoav and Levy, Omer},
+  title =        {Word2vec Explained: Deriving Mikolov Et Al.'s
+                  Negative-Sampling Word-Embedding Method},
+  journal =      {CoRR},
+  year =         2014,
+  url =          {http://arxiv.org/abs/1402.3722v1},
+  abstract =     {The word2vec software of Tomas Mikolov and colleagues (https://code.google.com/p/word2vec/ ) has gained a lot of traction lately, and provides state-of-the-art word embeddings. The learning models behind the software are described in two research papers. We found the description of the models in these papers to be somewhat cryptic and hard to follow. While the motivations and presentation may be obvious to the neural-networks language-modeling crowd, we had to struggle quite a bit to figure out the rationale behind the equations.  This note is an attempt to explain equation (4) (negative sampling) in "Distributed Representations of Words and Phrases and their Compositionality" by Tomas Mikolov, Ilya Sutskever, Kai Chen, Greg Corrado and Jeffrey Dean.},
+  archivePrefix ={arXiv},
+  eprint =       {1402.3722v1},
+  primaryClass = {cs.CL},
+}
+@unpublished{jurafsky21_speec,
+  author          = {Jurafsky, Dan and Martin, James H.},
+  title           = {Speech and language processing : an introduction to natural
+  language processing, computational linguistics, and speech recognition},
+  year            = 2021,
+  note            = {Draft of third edition of the book.},
+  url             = {https://web.stanford.edu/~jurafsky/slp3/}
+}
+@article{hinton1984distributed,
+  title={Distributed representations},
+  author={Hinton, Geoffrey E},
+  year={1984},
+  publisher={Carnegie Mellon University}
+}
+@article{bengio-2003-a-neural-prob-lang-model,
+  author = {Bengio, Yoshua and Ducharme, R\'{e}jean and Vincent, Pascal and Janvin, Christian},
+  title = {A Neural Probabilistic Language Model},
+  year = 2003,
+  issue_date = {3/1/2003},
+  publisher = {JMLR.org},
+  volume = 3,
+  number = {null},
+  issn = {1532-4435},
+  abstract = {A goal of statistical language modeling is to learn the joint probability function of sequences of words in a language. This is intrinsically difficult because of the curse of dimensionality: a word sequence on which the model will be tested is likely to be different from all the word sequences seen during training. Traditional but very successful approaches based on n-grams obtain generalization by concatenating very short overlapping sequences seen in the training set. We propose to fight the curse of dimensionality by learning a distributed representation for words which allows each training sentence to inform the model about an exponential number of semantically neighboring sentences. The model learns simultaneously (1) a distributed representation for each word along with (2) the probability function for word sequences, expressed in terms of these representations. Generalization is obtained because a sequence of words that has never been seen before gets high probability if it is made of words that are similar (in the sense of having a nearby representation) to words forming an already seen sentence. Training such large models (with millions of parameters) within a reasonable time is itself a significant challenge. We report on experiments using neural networks for the probability function, showing on two text corpora that the proposed approach significantly improves on state-of-the-art n-gram models, and that the proposed approach allows to take advantage of longer contexts.},
+  journal = {J. Mach. Learn. Res.},
+  month = mar,
+  pages = {1137–1155},
+  numpages = 19
+}
+@Article{miller_1990_intro_to_wordnet,
+  author          = {Miller, George A. and Beckwith, Richard and Fellbaum, Christiane and Gross, Derek and Miller, Katherine J.},
+  title           = {Introduction to WordNet: An On-line Lexical Database*},
+  year            = 1990,
+  volume          = 3,
+  number          = 4,
+  pages           = {235–244},
+  issn            = {1477-4577},
+  doi             = {10.1093/ijl/3.4.235},
+  url             = {http://dx.doi.org/10.1093/ijl/3.4.235},
+  journal         = {International Journal of Lexicography},
+  publisher       = {Oxford University Press (OUP)}
+}
+@article{mikolov13_effic_estim_word_repres_vector_space,
+  author          = {Mikolov, Tomas and Chen, Kai and Corrado, Greg and Dean, Jeffrey},
+  title           = {Efficient Estimation of Word Representations in Vector Space},
+  journal         = {CoRR},
+  year            = 2013,
+  url             = {http://arxiv.org/abs/1301.3781v3},
+  abstract        = {We propose two novel model architectures for computing continuous vector representations of words from very large data sets. The quality of these representations is measured in a word similarity task, and the results are compared to the previously best performing techniques based on different types of neural networks. We observe large improvements in accuracy at much lower computational cost, i.e. it takes less than a day to learn high quality word vectors from a 1.6 billion words data set. Furthermore, we show that these vectors provide state-of-the-art performance on our test set for measuring syntactic and semantic similarities.},
+  archivePrefix   = {arXiv},
+  eprint          = {1301.3781v3},
+  primaryClass    = {cs.CL},
+}
+@inproceedings{pennington2014glove,
+  author = {Jeffrey Pennington and Richard Socher and Christopher D. Manning},
+  booktitle = {Empirical Methods in Natural Language Processing (EMNLP)},
+  title = {GloVe: Global Vectors for Word Representation},
+  year = 2014,
+  pages = {1532--1543},
+  url = {http://www.aclweb.org/anthology/D14-1162},
+}
+@inproceedings{firth_1957_a_syn_of_lin,
+  title={A Synopsis of Linguistic Theory, 1930-1955},
+  publisher = {Longman},
+  series = {Studies in Linguistic Analysis, Philological},
+  author={J. Firth},
+  year={1957}
+}
+@article{mikolov13_distr_repres_words_phras_their_compos,
+  author          = {Mikolov, Tomas and Sutskever, Ilya and Chen, Kai and Corrado, Greg and Dean, Jeffrey},
+  title           = {Distributed Representations of Words and Phrases and Their Compositionality},
+  journal         = {CoRR},
+  year            = 2013,
+  url             = {http://arxiv.org/abs/1310.4546v1},
+  abstract        = {The recently introduced continuous Skip-gram model is an efficient method for learning high-quality distributed vector representations that capture a large number of precise syntactic and semantic word relationships. In this paper we present several extensions that improve both the quality of the vectors and the training speed. By subsampling of the frequent words we obtain significant speedup and also learn more regular word representations. We also describe a simple alternative to the hierarchical softmax called negative sampling. An inherent limitation of word representations is their indifference to word order and their inability to represent idiomatic phrases. For example, the meanings of "Canada" and "Air" cannot be easily combined to obtain "Air Canada". Motivated by this example, we present a simple method for finding phrases in text, and show that learning good vector representations for millions of phrases is possible.},
+  archivePrefix   = {arXiv},
+  eprint          = {1310.4546},
+  primaryClass    = {cs.CL},
+}
+@Book{mackay03_infor,
+  author          = {MacKay, David},
+  title           = {Information theory, inference, and learning algorithms},
+  year            = 2003,
+  publisher       = {Cambridge University Press},
+  address         = {Cambridge, UK New York},
+  isbn            = 0521642981,
+}
+@Article{harris_1954_distrib_struct,
+  author       = {Harris, Zellig S.},
+  title	       = {Distributional Structure},
+  year	       = 1954,
+  volume       = 10,
+  number       = {2-3},
+  month	       = {Aug},
+  pages	       = {146–162},
+  issn	       = {2373-5112},
+  doi	       = {10.1080/00437956.1954.11659520},
+  url	       = {http://dx.doi.org/10.1080/00437956.1954.11659520},
+  journal      = {WORD},
+  publisher    = {Informa UK Limited}
+}
+@Book{osgood_57_the_meas_of_mean,
+  author =	 {Osgood, Charles},
+  title =	 {The measurement of meaning},
+  year =	 1957,
+  publisher =	 {University of Illinois Press},
+  address =	 {Urbana},
+  isbn =	 9780252745393,
+}
+@Article{egr_2015_explan_in_ling,
+  author       = {Egré, Paul},
+  title	       = {Explanation in Linguistics},
+  year	       = 2015,
+  volume       = 10,
+  number       = 7,
+  month	       = {Jul},
+  pages	       = {451–462},
+  issn	       = {1747-9991},
+  doi	       = {10.1111/phc3.12225},
+  url	       = {http://dx.doi.org/10.1111/phc3.12225},
+  journal      = {Philosophy Compass},
+  publisher    = {Wiley}
+}
+@Article{carstairs_1989_on_the_def_of,
+  author       = {Anna-Maria Di Sciullo and Edwin Williams},
+  title	       = {On the definition of word (Linguistic Inquiry Monographs 14)},
+  year	       = 1989,
+  volume       = 25,
+  number       = 1,
+  month	       = {Mar},
+  pages	       = {225–229},
+  issn	       = {1469-7742},
+  doi	       = {10.1017/s0022226700012184},
+  url	       = {http://dx.doi.org/10.1017/S0022226700012184},
+  journal      = {Journal of Linguistics},
+  publisher    = {Cambridge University Press (CUP)}
+}
+@inproceedings{gandon_longa_2020_math_diag,
+  TITLE = {{Mathematical Diagrams: A Kaplanian Account?}},
+  AUTHOR = {Gandon, S{\'e}bastien and Longa, Gianluca},
+  URL = {https://hal.archives-ouvertes.fr/hal-02997457},
+  BOOKTITLE = {{French Philosophy of Mathematics Workshop}},
+  ADDRESS = {Nancy, France},
+  YEAR = 2020,
+  MONTH = Nov,
+  HAL_ID = {hal-02997457},
+  HAL_VERSION = {v1},
+}
+@article{10.2307/41494926,
+ title = {The forgotten individual: diagrammatic reasoning in mathematics},
+ ISSN = {00397857, 15730964},
+ URL = {http://www.jstor.org/stable/41494926},
+ abstract = {Parallelism has been drawn between modes of representation and problem-sloving processes: Diagrams are more useful for brainstorming while symbolic representation is more welcomed in a formal proof. The paper gets to the root of this clear-cut dualistic picture and argues that the strength of diagrammatic reasoning in the brainstorming process does not have to be abandoned at the stage of proof, but instead should be appreciated and could be preserved in mathematical proofs.},
+ author = {Sun-Joo Shin},
+ journal = {Synthese},
+ number = 1,
+ pages = {149--168},
+ publisher = {Springer},
+ volume = 186,
+ year = 2012
+}
+@article{kaplan_1990_words,
+ ISSN = {03097013, 14678349},
+ URL = {http://www.jstor.org/stable/4106880},
+ author = {David Kaplan},
+ journal = {Proceedings of the Aristotelian Society, Supplementary Volumes},
+ pages = {93--119},
+ publisher = {[Aristotelian Society, Wiley]},
+ title = {Words},
+ volume = 64,
+ year = 1990
+}
+@article{meng19_spher_text_embed,
+  author =       {Meng, Yu and Huang, Jiaxin and Wang, Guangyuan and Zhang, Chao and Zhuang, Honglei and Kaplan, Lance and Han, Jiawei},
+  title =        {Spherical Text Embedding},
+  journal =      {CoRR},
+  year =         2019,
+  url =          {http://arxiv.org/abs/1911.01196v1},
+  abstract =     {Unsupervised text embedding has shown great power in a wide range of NLP tasks. While text embeddings are typically learned in the Euclidean space, directional similarity is often more effective in tasks such as word similarity and document clustering, which creates a gap between the training stage and usage stage of text embedding. To close this gap, we propose a spherical generative model based on which unsupervised word and paragraph embeddings are jointly learned. To learn text embeddings in the spherical space, we develop an efficient optimization algorithm with convergence guarantee based on Riemannian optimization. Our model enjoys high efficiency and achieves state-of-the-art performances on various text embedding tasks including word similarity and document clustering.},
+  archivePrefix ={arXiv},
+  eprint =       {1911.01196},
+  primaryClass = {cs.CL},
+}
+@article{ammar16_massiv_multil_word_embed,
+  author =       {Ammar, Waleed and Mulcaire, George and Tsvetkov, Yulia and Lample, Guillaume and Dyer, Chris and Smith, Noah A.},
+  title =        {Massively Multilingual Word Embeddings},
+  journal =      {CoRR},
+  year =         2016,
+  url =          {http://arxiv.org/abs/1602.01925v2},
+  abstract =     {We introduce new methods for estimating and evaluating embeddings of words in more than fifty languages in a single shared embedding space. Our estimation methods, multiCluster and multiCCA, use dictionaries and monolingual data; they do not require parallel data. Our new evaluation method, multiQVEC-CCA, is shown to correlate better than previous ones with two downstream tasks (text categorization and parsing). We also describe a web portal for evaluation that will facilitate further research in this area, along with open-source releases of all our methods.},
+  archivePrefix ={arXiv},
+  eprint =       {1602.01925},
+  primaryClass = {cs.CL},
+}
+@inproceedings{Mcdonald01testingthe,
+    author = {Scott Mcdonald and Michael Ramscar},
+    title = {Testing the distributional hypothesis: The influence of context on judgements of semantic similarity},
+    booktitle = {In Proceedings of the 23rd Annual Conference of the Cognitive Science Society},
+    year = 2001,
+    pages = {611--6},
+    abstract = {Distributional information has recently been implicated as playing an important role in several aspects of language ability. Learning the meaning of a word is thought to be dependent, at least in part, on exposure to the word in its linguistic contexts of use. In two experiments, we manipulated subjects ’ contextual experience with marginally familiar and nonce words. Results showed that similarity judgements involving these words were affected by the distributional properties of the contexts in which they were read. The accrual of contextual experience was simulated in a semantic space model, by successively adding larger amounts of experience in the form of item-in-context exemplars sampled from the British National Corpus. The experiments and the simulation}
+}
+@inproceedings{melamed_2002_measuringsemantic,
+    author = {I. Dan Melamed},
+    title = {Measuring Semantic Entropy},
+    booktitle = {Proceedings of the SIGLEX Workshop on Tagging Text with Lexical Semantics},
+    year = 2002,
+    pages = {41--46},
+    abstract = {Semantic entropy is a measure of semantic -mbiguity and uninformativeness. It is a graded lexical feature which may play a role anywhere lexical semantics plays a role. This paper presents a method for measuring semantic entropy using translational distributions of words in parallel text corpora. The measurement method is well-defined for all words, including function words, and even for punctuation.}
+}
+@ARTICLE{landauer_1997_a_solution,
+    author = {Thomas K Landauer and Susan T. Dutnais},
+    title = {A solution to Plato’s problem: The latent semantic analysis theory of acquisition, induction, and representation of knowledge},
+    abstract = {How do people know as much as they do with as little information as they get? The problem takes many forms; learning vocabulary from text is an especially dramatic and convenient case for research. A new general theory of acquired similarity and knowledge representation, latent semantic analysis (LSA), is presented and used to successfully simulate such learning and several other psycholinguistic phenomena. By inducing global knowledge indirectly from local co-occurrence data in a large body of representative text, LSA acquired knowledge about the full vocabulary of English at a comparable rate to schoolchildren. LSA uses no prior linguistic or perceptual similarity knowledge; it is based solely on a general mathematical learning method that achieves powerful inductive effects by extracting the right number of dimensions (e.g., 300) to represent objects and contexts. Relations to other theories, phenomena, and problems are sketched. },
+    journal = {PSYCHOLOGICAL REVIEW},
+    year = 1997,
+    volume = 104,
+    number = 2,
+    pages = {211--240}
+    
+}
+@inbook{riemer_2015_routledge,
+  title={The Routledge Handbook of Semantics},
+  author={Riemer, N.},
+  isbn=9781317412458,
+  series={Routledge Handbooks in Linguistics},
+  url={https://books.google.hu/books?id=GplGCgAAQBAJ},
+  year=2015,
+  chapter={3 - A History of Semantics},
+  publisher={Taylor \& Francis}
+}
+@book{whitney_1875_life,
+  title={The Life and Growth of Language},
+  author={Whitney, W.D.},
+  isbn=9780827428652,
+  lccn=55053028,
+  series={Internat. sci. series},
+  url={https://books.google.hu/books?id=WGkCAAAAQAAJ},
+  year=1875,
+  publisher={H. S. King}
+}
+@Article{meier_oeser_2019_meaning_in,
+  author       = {Meier-Oeser, Stephan},
+  title	       = {8 Meaning in pre-19th century thought},
+  year	       = 2019,
+  month	       = {Feb},
+  pages	       = {182–216},
+  doi	       = {10.1515/9783110368505-008},
+  url	       = {http://dx.doi.org/10.1515/9783110368505-008},
+  isbn	       = 9783110368505,
+  journal      = {Semantics - Foundations, History and Methods},
+  publisher    = {De Gruyter}
+}
+@Book{descombes14,
+  author =	 {Descombes, Vincent},
+  title =	 {The institutions of meaning : a defense of anthropological holism},
+  year =	 2014,
+  publisher =	 {Harvard University Press},
+  address =	 {Cambridge},
+  isbn =	 0674728785,
+}
+@article{smith19_contex_word_repres,
+  author =       {Smith, Noah A.},
+  title =        {Contextual Word Representations: a Contextual Introduction},
+  journal =      {CoRR},
+  year =         2019,
+  url =          {http://arxiv.org/abs/1902.06006v3},
+  abstract =     {This introduction aims to tell the story of how we put words into computers.  It is part of the story of the field of natural language processing (NLP), a branch of artificial intelligence. It targets a wide audience with a basic understanding of computer programming, but avoids a detailed mathematical treatment, and it does not present any algorithms. It also does not focus on any particular application of NLP such as translation, question answering, or information extraction. The ideas presented here were developed by many researchers over many decades, so the citations are not exhaustive but rather direct the reader to a handful of papers that are, in the author's view, seminal. After reading this document, you should have a general understanding of word vectors (also known as word embeddings): why they exist, what problems they solve, where they come from, how they have changed over time, and what some of the open questions about them are. Readers already familiar with word vectors are advised to skip to Section 5 for the discussion of the most recent advance, contextual word vectors.},
+  archivePrefix ={arXiv},
+  eprint =       {1902.06006v3},
+  primaryClass = {cs.CL},
+}
+@article{mikolov13_exploit_simil_among_languag_machin_trans,
+  author =       {Mikolov, Tomas and Le, Quoc V. and Sutskever, Ilya},
+  title =        {Exploiting Similarities Among Languages for Machine
+                  Translation},
+  journal =      {CoRR},
+  year =         2013,
+  url =          {http://arxiv.org/abs/1309.4168v1},
+  abstract =     {Dictionaries and phrase tables are the basis of modern statistical machine translation systems. This paper develops a method that can automate the process of generating and extending dictionaries and phrase tables. Our method can translate missing word and phrase entries by learning language structures based on large monolingual data and mapping between languages from small bilingual data. It uses distributed representation of words and learns a linear mapping between vector spaces of languages. Despite its simplicity, our method is surprisingly effective: we can achieve almost 90 \% precision@5 for translation of words between English and Spanish. This method makes little assumption about the languages, so it can be used to extend and refine dictionaries and translation tables for any language pairs.},
+  archivePrefix ={arXiv},
+  eprint =       {1309.4168v1},
+  primaryClass = {cs.CL},
+}
+@inproceedings{mikolov-etal-2013-linguistic,
+    title = "Linguistic Regularities in Continuous Space Word Representations",
+    author = "Mikolov, Tomas  and Yih, Wen-tau  and Zweig, Geoffrey",
+    booktitle = "Proceedings of the 2013 Conference of the North {A}merican Chapter of the Association for Computational Linguistics: Human Language Technologies",
+    month = jun,
+    year = "2013",
+    address = "Atlanta, Georgia",
+    publisher = "Association for Computational Linguistics",
+    url = "https://www.aclweb.org/anthology/N13-1090",
+    pages = "746--751",
+}
+@inproceedings{baroni-etal-2014-dont,
+    title = "Don{'}t count, predict! A systematic comparison of context-counting vs. context-predicting semantic vectors",
+    author = "Baroni, Marco  and
+      Dinu, Georgiana  and
+      Kruszewski, Germ{\'a}n",
+    booktitle = "Proceedings of the 52nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+    month = jun,
+    year = "2014",
+    address = "Baltimore, Maryland",
+    publisher = "Association for Computational Linguistics",
+    url = "https://www.aclweb.org/anthology/P14-1023",
+    doi = "10.3115/v1/P14-1023",
+    pages = "238--247",
+}
+@article{peters18_deep_contex_word_repres,
+  author =       {Peters, Matthew E. and Neumann, Mark and Iyyer,
+                  Mohit and Gardner, Matt and Clark, Christopher and
+                  Lee, Kenton and Zettlemoyer, Luke},
+  title =        {Deep Contextualized Word Representations},
+  journal =      {CoRR},
+  year =         2018,
+  url =          {http://arxiv.org/abs/1802.05365v2},
+  abstract =     {We introduce a new type of deep contextualized word
+                  representation that models both (1) complex
+                  characteristics of word use (e.g., syntax and
+                  semantics), and (2) how these uses vary across
+                  linguistic contexts (i.e., to model polysemy). Our
+                  word vectors are learned functions of the internal
+                  states of a deep bidirectional language model
+                  (biLM), which is pre-trained on a large text
+                  corpus. We show that these representations can be
+                  easily added to existing models and significantly
+                  improve the state of the art across six challenging
+                  NLP problems, including question answering, textual
+                  entailment and sentiment analysis. We also present
+                  an analysis showing that exposing the deep internals
+                  of the pre-trained network is crucial, allowing
+                  downstream models to mix different types of
+                  semi-supervision signals.},
+  archivePrefix ={arXiv},
+  eprint =       {1802.05365v2},
+  primaryClass = {cs.CL},
+}
+@inproceedings{levy-goldberg-2014-linguistic,
+    title = "Linguistic Regularities in Sparse and Explicit Word Representations",
+    author = "Levy, Omer  and
+      Goldberg, Yoav",
+    booktitle = "Proceedings of the Eighteenth Conference on Computational Natural Language Learning",
+    month = jun,
+    year = "2014",
+    address = "Ann Arbor, Michigan",
+    publisher = "Association for Computational Linguistics",
+    url = "https://www.aclweb.org/anthology/W14-1618",
+    doi = "10.3115/v1/W14-1618",
+    pages = "171--180",
+}
+@article{irsoy20_kōan,
+  author =       {{\.I}rsoy, Ozan and Benton, Adrian and Stratos,
+                  Karl},
+  title =        {Kōan: a Corrected Cbow Implementation},
+  journal =      {CoRR},
+  year =         2020,
+  url =          {http://arxiv.org/abs/2012.15332v1},
+  abstract =     {It is a common belief in the NLP community that
+                  continuous bag-of-words (CBOW) word embeddings tend
+                  to underperform skip-gram (SG) embeddings. We find
+                  that this belief is founded less on theoretical
+                  differences in their training objectives but more on
+                  faulty CBOW implementations in standard software
+                  libraries such as the official implementation
+                  word2vec.c and Gensim. We show that our correct
+                  implementation of CBOW yields word embeddings that
+                  are fully competitive with SG on various intrinsic
+                  and extrinsic tasks while being more than three
+                  times as fast to train. We release our
+                  implementation, k\=oan, at
+                  https://github.com/bloomberg/koan.},
+  archivePrefix ={arXiv},
+  eprint =       {2012.15332v1},
+  primaryClass = {cs.CL},
+}
+@inproceedings{mimno-thompson-2017-strange,
+    title = "The strange geometry of skip-gram with negative sampling",
+    author = "Mimno, David  and
+      Thompson, Laure",
+    booktitle = "Proceedings of the 2017 Conference on Empirical Methods in Natural Language Processing",
+    month = sep,
+    year = "2017",
+    address = "Copenhagen, Denmark",
+    publisher = "Association for Computational Linguistics",
+    url = "https://www.aclweb.org/anthology/D17-1308",
+    doi = "10.18653/v1/D17-1308",
+    pages = "2873--2878",
+    abstract = "Despite their ubiquity, word embeddings trained with skip-gram negative sampling (SGNS) remain poorly understood. We find that vector positions are not simply determined by semantic similarity, but rather occupy a narrow cone, diametrically opposed to the context vectors. We show that this geometric concentration depends on the ratio of positive to negative examples, and that it is neither theoretically nor empirically inherent in related embedding algorithms.",
+}
+@inproceedings{sterg-2017-distrib-neg-sampling,
+author = {Stergiou, Stergios and Straznickas, Zygimantas and Wu, Rolina and Tsioutsiouliklis, Kostas},
+title = {Distributed Negative Sampling for Word Embeddings},
+year = {2017},
+publisher = {AAAI Press},
+abstract = {Word2Vec recently popularized dense vector word representations as fixed-length features for machine learning algorithms and is in widespread use today. In this paper we investigate one of its core components, Negative Sampling, and propose efficient distributed algorithms that allow us to scale to vocabulary sizes of more than 1 billion unique words and corpus sizes of more than 1 trillion words.},
+booktitle = {Proceedings of the Thirty-First AAAI Conference on Artificial Intelligence},
+pages = {2569–2575},
+numpages = {7},
+location = {San Francisco, California, USA},
+series = {AAAI'17}
+}
+@inproceedings{salle-etal-2016-matrix,
+    title = "Matrix Factorization using Window Sampling and Negative Sampling for Improved Word Representations",
+    author = "Salle, Alexandre  and
+      Villavicencio, Aline  and
+      Idiart, Marco",
+    booktitle = "Proceedings of the 54th Annual Meeting of the Association for Computational Linguistics (Volume 2: Short Papers)",
+    month = aug,
+    year = "2016",
+    address = "Berlin, Germany",
+    publisher = "Association for Computational Linguistics",
+    url = "https://www.aclweb.org/anthology/P16-2068",
+    doi = "10.18653/v1/P16-2068",
+    pages = "419--424",
+}
+@inproceedings{salle-2018-incorporating,
+    title = "Incorporating Subword Information into Matrix Factorization Word Embeddings",
+    author = "Salle, Alexandre  and
+      Villavicencio, Aline",
+    booktitle = "Proceedings of the Second Workshop on Subword/Character {LE}vel Models",
+    month = jun,
+    year = "2018",
+    address = "New Orleans",
+    publisher = "Association for Computational Linguistics",
+    url = "https://www.aclweb.org/anthology/W18-1209",
+    doi = "10.18653/v1/W18-1209",
+    pages = "66--71",
+    abstract = "The positive effect of adding subword information to word embeddings has been demonstrated for predictive models. In this paper we investigate whether similar benefits can also be derived from incorporating subwords into counting models. We evaluate the impact of different types of subwords (n-grams and unsupervised morphemes), with results confirming the importance of subword information in learning representations of rare and out-of-vocabulary words.",
+}
+@article{salle16_enhan_lexvec_distr_word_repres,
+  author =       {Salle, Alexandre and Idiart, Marco and
+                  Villavicencio, Aline},
+  title =        {Enhancing the Lexvec Distributed Word Representation Model Using Positional Contexts and External Memory},
+  journal =      {CoRR},
+  year =         2016,
+  url =          {http://arxiv.org/abs/1606.01283v1},
+  abstract =     {In this paper we take a state-of-the-art model for distributed word representation that explicitly factorizes the positive pointwise mutual information (PPMI) matrix using window sampling and negative sampling and address two of its shortcomings. We improve syntactic performance by using positional contexts, and solve the need to store the PPMI matrix in memory by working on aggregate data in external memory. The effectiveness of both modifications is shown using word similarity and analogy tasks.},
+  archivePrefix ={arXiv},
+  eprint =       {1606.01283v1},
+  primaryClass = {cs.CL},
+}
+@article{bates-1995-models,
+ ISSN = {00278424},
+ URL = {http://www.jstor.org/stable/2368600},
+ abstract = {This paper surveys some of the fundamental problems in natural language (NL) understanding (syntax, semantics, pragmatics, and discourse) and the current approaches to solving them. Some recent developments in NL processing include increased emphasis on corpus-based rather than example- or intuition-based work, attempts to measure the coverage and effectiveness of NL systems, dealing with discourse and dialogue phenomena, and attempts to use both analytic and stochastic knowledge. Critical areas for the future include grammars that are appropriate to processing large amounts of real language; automatic (or at least semiautomatic) methods for deriving models of syntax, semantics, and pragmatics; self-adapting systems; and integration with speech processing. Of particular importance are techniques that can be tuned to such requirements as full versus partial understanding and spoken language versus text. Portability (the ease with which one can configure an NL system for a particular application) is one of the largest barriers to application of this technology.},
+ author = {Madeleine Bates},
+ journal = {Proceedings of the National Academy of Sciences of the United States of America},
+ number = {22},
+ pages = {9977--9982},
+ publisher = {National Academy of Sciences},
+ title = {Models of Natural Language Understanding},
+ volume = {92},
+ year = {1995}
+}
+@article{helge-1994-exploiting-struct,
+ title = {Exploiting Structural Similarities in Machine Translation},
+ abstract = {The central properties of an experimental system for machine translation, PONS, and the ideas behind them, are presented and motivated. PONS achieves a compromise between linguistic sophistication and efficiency by automatically exploiting structural similarities between source and target language in order to take "shortcuts" during the translation process. The system uses a PATR-type linguistic formalism to encode LFG-type grammatical descriptions and Situation Semantics-type semantic descriptions, and it is implemented in Medley Interlisp.},
+ ISSN = {00104817},
+ URL = {http://www.jstor.org/stable/30204589},
+ author = {Helge Dyvik},
+ journal = {Computers and the Humanities},
+ number = {4/5},
+ pages = {225--234},
+ publisher = {Springer},
+ volume = {28},
+ year = {1994}
+}
+@article{grohe20_word2_node2,
+  author =       {Grohe, Martin},
+  title =        {Word2vec, Node2vec, Graph2vec, X2vec: Towards a
+                  Theory of Vector Embeddings of Structured Data},
+  journal =      {CoRR},
+  year =         2020,
+  url =          {http://arxiv.org/abs/2003.12590v1},
+  abstract =     {Vector representations of graphs and relational
+                  structures, whether hand-crafted feature vectors or
+                  learned representations, enable us to apply standard
+                  data analysis and machine learning techniques to the
+                  structures. A wide range of methods for generating
+                  such embeddings have been studied in the machine
+                  learning and knowledge representation
+                  literature. However, vector embeddings have received
+                  relatively little attention from a theoretical point
+                  of view.  Starting with a survey of embedding
+                  techniques that have been used in practice, in this
+                  paper we propose two theoretical approaches that we
+                  see as central for understanding the foundations of
+                  vector embeddings. We draw connections between the
+                  various approaches and suggest directions for future
+                  research.},
+  archivePrefix ={arXiv},
+  eprint =       {2003.12590v1},
+  primaryClass = {cs.LG},
+}
+@inproceedings{khodak-etal-2017-automated,
+    title = "Automated {W}ord{N}et Construction Using Word Embeddings",
+    author = "Khodak, Mikhail  and
+      Risteski, Andrej  and
+      Fellbaum, Christiane  and
+      Arora, Sanjeev",
+    booktitle = "Proceedings of the 1st Workshop on Sense, Concept and Entity Representations and their Applications",
+    month = apr,
+    year = "2017",
+    address = "Valencia, Spain",
+    publisher = "Association for Computational Linguistics",
+    url = "https://www.aclweb.org/anthology/W17-1902",
+    doi = "10.18653/v1/W17-1902",
+    pages = "12--23",
+    abstract = "We present a fully unsupervised method for automated construction of WordNets based upon recent advances in distributional representations of sentences and word-senses combined with readily available machine translation tools. The approach requires very few linguistic resources and is thus extensible to multiple target languages. To evaluate our method we construct two 600-word testsets for word-to-synset matching in French and Russian using native speakers and evaluate the performance of our method along with several other recent approaches. Our method exceeds the best language-specific and multi-lingual automated WordNets in F-score for both languages. The databases we construct for French and Russian, both languages without large publicly available manually constructed WordNets, will be publicly released along with the testsets.",
+}
+@article{kozlowski19_geomet_cultur,
+  author =       {Austin C. Kozlowski and Matt Taddy and James
+                  A. Evans},
+  title =        {The Geometry of Culture: Analyzing the Meanings of Class Through Word Embeddings},
+  journal =      {American Sociological Review},
+  volume =       84,
+  number =       5,
+  pages =        {905-949},
+  year =         2019,
+  doi =          {10.1177/0003122419877135},
+  url =          {https://doi.org/10.1177/0003122419877135},
+}
+@Book{mcluhan_67_the_med_is_the,
+  author =	 {McLuhan, Marshall},
+  title =	 {The medium is the massage},
+  year =	 1967,
+  publisher =	 {Allen Lane, the Penguin Press},
+  address =	 {London},
+  isbn =	 {014103582X},
+}
+@Book{jowett10_dialog_plato,
+  author =	 {Jowett, Benjamin},
+  title =	 {Dialogues of Plato : Translated into English, with
+  Analyses and Introduction},
+  year =	 2010,
+  publisher =	 {Cambridge University Press},
+  address =	 {Cambridge},
+  isbn =	 9780511698057,
+}
+@inproceedings{turian-etal-2010-word,
+    title = "Word Representations: A Simple and General Method for Semi-Supervised Learning",
+    author = "Turian, Joseph  and
+      Ratinov, Lev-Arie  and
+      Bengio, Yoshua",
+    booktitle = "Proceedings of the 48th Annual Meeting of the Association for Computational Linguistics",
+    month = jul,
+    year = "2010",
+    address = "Uppsala, Sweden",
+    publisher = "Association for Computational Linguistics",
+    url = "https://www.aclweb.org/anthology/P10-1040",
+    pages = "384--394",
+}
+@article{dd9111b83eae4f7e94775f092b9c33e1,
+title = "Semantics and pragmatics: a historical review to the end of the twentieth century",
+abstract = "Semantics and pragmatics are defined in §1 and their respective histories examined in subsequent sections. §2 explains and gives the history of lexical semantics: the rise of componential analysis, fields and differential values, semantic primes and Natural Semantic Metalanguage, prototype and stereotype semantics. §3 examines the syntax-semantics interface: Katz{\textquoteright}s semantic theory, identifying selectional restrictions, generative semantics, conceptual semantics, the issue of thematic roles, semantics and pragmatics in a functional grammar, semantic frames and meaning in construction grammar. §4 explicates and gives the history of logic and linguistic meaning: arguing for the importance of truth conditions, the characteristics of formal semantics, the semantics and pragmatics of anaphora. §5 surveys additional aspects of pragmatics: indexicals, scripts, and conversational implicature. Finally, §6 offers a summary of the foregoing.",
+keywords = "lexical semantics, componential analysis, prototype semantics, stereotype semantics, Katz, generative semantics, conceptual semantics, frame semantics, truth conditional semantics, discourse representation theory, anaphora, indexicals, scripts, implicature",
+author = "Keith Allan",
+year = "2019",
+language = "English",
+volume = "15",
+pages = "81--116",
+journal = "Argumentum",
+issn = "1787-3606",
+publisher = "University of Debrecen/ Debreceni Egyetem, Debrecen University Press",
+}
+@Book{allan_2001_natur_lang_seman,
+  author =	 {Allan, Keith},
+  title =	 {Natural language semantics},
+  year =	 2001,
+  publisher =	 {Blackwell},
+  address =	 {Oxford, UK Malden, Mass},
+  isbn =	 9780631192978,
+}
+@inbook{harley_2006_englis,
+  author =	 {Harley, Heidi},
+  title =	 {English words : a linguistic introduction},
+  year =	 2006,
+  publisher =	 {Blackwell Pub},
+  address =	 {Malden, MA},
+  chapter =      {6 - Lexical semantics},
+  isbn =	 9780631230328,
+}
+@article{livingston_2004_mean_is_use_in,
+author = {Livingston, Paul},
+year = {2004},
+month = {01},
+pages = {34 - 67},
+title = {‘Meaning is Use’ in the Tractatus},
+volume = {27},
+journal = {Philosophical Investigations},
+doi = {10.1111/j.1467-9205.2004.00213.x}
+}
+@Article{quine_1951_main_trends,
+  author       = {Quine, W. V.},
+  title	       = {Main Trends in Recent Philosophy: Two Dogmas of
+                  Empiricism},
+  year	       = 1951,
+  volume       = 60,
+  number       = 1,
+  month	       = {Jan},
+  pages	       = 20,
+  issn	       = {0031-8108},
+  doi	       = {10.2307/2181906},
+  url	       = {http://dx.doi.org/10.2307/2181906},
+  journal      = {The Philosophical Review},
+  publisher    = {JSTOR}
+}
+@Book{wittgenstein53_philos,
+  author =	 {Wittgenstein, Ludwig},
+  title =	 {Philosophical investigations},
+  year =	 1953,
+  publisher =	 {B. Blackwell},
+  address =	 {Oxford},
+  isbn =	 0631146709,
+}
+@article{camacho-collados17_role_text_prepr_neural_networ_archit,
+  author =       {Camacho-Collados, Jose and Pilehvar, Mohammad Taher},
+  title =        {On the Role of Text Preprocessing in Neural Network Architectures: an Evaluation Study on Text Categorization and Sentiment Analysis},
+  journal =      {CoRR},
+  year =         2017,
+  url =          {http://arxiv.org/abs/1707.01780v2},
+  abstract =     {In this paper we investigate the impact of simple text preprocessing decisions (particularly tokenizing, lemmatizing, lowercasing and multiword grouping) on the performance of a state-of-the-art text classifier based on convolutional neural networks. Despite potentially affecting the final performance of any given model, this aspect has not received a substantial interest in the deep learning literature. We perform an extensive evaluation in standard benchmarks from text categorization and sentiment analysis. Our results show that a simple tokenization of the input text is often enough, but also highlight the importance of being consistent in the preprocessing of the evaluation set and the corpus used for training word embeddings.},
+  archivePrefix ={arXiv},
+  eprint =       {1707.01780v2},
+  primaryClass = {cs.CL},
+}
+@book{goodfellow-et-al-2016-deep-learning,
+    title={Deep Learning},
+    author={Ian Goodfellow and Yoshua Bengio and Aaron Courville},
+    publisher={MIT Press},
+    note={\url{http://www.deeplearningbook.org}},
+    year={2016}
+}
+@article{goldberg15_primer_neural_networ_model_natur_languag_proces,
+  author =       {Goldberg, Yoav},
+  title =        {A Primer on Neural Network Models for Natural
+                  Language Processing},
+  journal =      {CoRR},
+  year =         2015,
+  url =          {http://arxiv.org/abs/1510.00726v1},
+  abstract =     {Over the past few years, neural networks have
+                  re-emerged as powerful machine-learning models,
+                  yielding state-of-the-art results in fields such as
+                  image recognition and speech processing. More
+                  recently, neural network models started to be
+                  applied also to textual natural language signals,
+                  again with very promising results. This tutorial
+                  surveys neural network models from the perspective
+                  of natural language processing research, in an
+                  attempt to bring natural-language researchers up to
+                  speed with the neural techniques. The tutorial
+                  covers input encoding for natural language tasks,
+                  feed-forward networks, convolutional networks,
+                  recurrent networks and recursive networks, as well
+                  as the computation graph abstraction for automatic
+                  gradient computation.},
+  archivePrefix ={arXiv},
+  eprint =       {1510.00726v1},
+  primaryClass = {cs.CL},
+}
+@article{uysal_2014_the_impact_of_preprocessing,
+  author       = {Uysal, Alper Kursat and Gunal, Serkan},
+  title	       = {The impact of preprocessing on text classification},
+  year	       = 2014,
+  volume       = 50,
+  number       = 1,
+  month	       = {Jan},
+  pages	       = {104–112},
+  issn	       = {0306-4573},
+  doi	       = {10.1016/j.ipm.2013.08.006},
+  url	       = {http://dx.doi.org/10.1016/j.ipm.2013.08.006},
+  journal      = {Information Processing \& Management},
+  publisher    = {Elsevier BV}
+}
+@Book{dixon02_word,
+  author =	 {Dixon, Robert},
+  title =	 {Word : a cross-linguistic typology},
+  year =	 2002,
+  publisher =	 {Cambridge University Press},
+  address =	 {Cambridge},
+  isbn =	 {052104605X},
+}
+@inproceedings{bansal-etal-2014-tailoring,
+    title = "Tailoring Continuous Word Representations for Dependency Parsing",
+    author = "Bansal, Mohit  and
+      Gimpel, Kevin  and
+      Livescu, Karen",
+    booktitle = "Proceedings of the 52nd Annual Meeting of the Association for Computational Linguistics (Volume 2: Short Papers)",
+    month = jun,
+    year = "2014",
+    address = "Baltimore, Maryland",
+    publisher = "Association for Computational Linguistics",
+    url = "https://www.aclweb.org/anthology/P14-2131",
+    doi = "10.3115/v1/P14-2131",
+    pages = "809--815",
+}
+@Article{mirheidari_2018_detecting_signs_of_dementia,
+  author       = {Mirheidari, Bahman and Blackburn, Daniel and Walker,
+                  Traci and Venneri, Annalena and Reuber, Markus and
+                  Christensen, Heidi},
+  title	       = {Detecting Signs of Dementia Using Word Vector
+                  Representations},
+  year	       = 2018,
+  month	       = {Sep},
+  doi	       = {10.21437/interspeech.2018-1764},
+  url	       = {http://dx.doi.org/10.21437/interspeech.2018-1764},
+  journal      = {Interspeech 2018},
+  publisher    = {ISCA}
+}
+@INPROCEEDINGS{Koo08simplesemi-supervised,
+    author = {Terry Koo and Xavier Carreras and Michael Collins},
+    title = {Simple semi-supervised dependency parsing},
+    booktitle = {In Proc. ACL/HLT},
+    year = {2008}
+}
+@article{huang_2014_learning_repres,
+    author = {Huang, Fei and Ahuja, Arun and Downey, Doug and Yang, Yi and Guo, Yuhong and Yates, Alexander},
+    title = "{Learning Representations for Weakly Supervised Natural Language Processing Tasks}",
+    journal = {Computational Linguistics},
+    volume = {40},
+    number = {1},
+    pages = {85-120},
+    year = {2014},
+    month = {03},
+    abstract = "{Finding the right representations for words is critical for building accurate NLP systems when domain-specific labeled data for the task is scarce. This article investigates novel techniques for extracting features from n-gram models, Hidden Markov Models, and other statistical language models, including a novel Partial Lattice Markov Random Field model. Experiments on part-of-speech tagging and information extraction, among other tasks, indicate that features taken from statistical language models, in combination with more traditional features, outperform traditional representations alone, and that graphical model representations outperform n-gram models, especially on sparse and polysemous words.}",
+    issn = {0891-2017},
+    doi = {10.1162/COLI_a_00167},
+    url = {https://doi.org/10.1162/COLI\_a\_00167},
+    eprint = {https://direct.mit.edu/coli/article-pdf/40/1/85/1812800/coli\_a\_00167.pdf},
+}
+@inproceedings{ChoiChiuSon_amia16,
+ title = {Learning Low-Dimensional Representations of Medical Concepts},
+ abstract = {We show how to learn low-dimensional representations (embeddings) of a wide range of concepts in medicine, including diseases (e.g., ICD9 codes), medications, procedures, and laboratory tests. We expect that these embeddings will be useful across medical informatics for tasks such as cohort selection and patient summarization. These embeddings are learned using a technique called neural language modeling from the natural language processing community. However, rather than learning the embeddings solely from text, we show how to learn the embeddings from claims data, which is widely available both to providers and to payers. We also show that with a simple algorithmic adjustment, it is possible to learn medical concept embeddings in a privacy preserving manner from co-occurrence counts derived from clinical narratives. Finally, we establish a methodological framework, arising from standard medical ontologies such as UMLS, NDF-RT, and CCS, to further investigate the embeddings and precisely characterize their quantitative properties.},
+ author = {Youngduck Choi and Yi-I Chiu and David Sontag},
+ booktitle = {Proceedings of the AMIA Summit on Clinical Research Informatics (CRI)},
+ keywords = {Health care},
+ url_paper = {http://people.csail.mit.edu/dsontag/papers/ChoiChiuSontag_AMIA_CRI16.pdf},
+ year = {2016}
+}
+@inproceedings{Miller_2004_Name_Tagging,
+  title={Name Tagging with Word Clusters and Discriminative Training},
+  author = {Miller, Scott and Guinness, Jethran and Zamanian, Alex},
+  booktitle={HLT-NAACL},
+  year={2004},
+  month = {01},
+  pages = {337-342}
+}
+@article{landauer_1998_an_introduction_lsa,
+  author = {Landauer, Thomas K and Foltz, Peter W. and Laham, Darrell},
+  title = {An introduction to latent semantic analysis},
+  journal = {Discourse Processes},
+  volume = {25},
+  number = {2-3},
+  pages = {259-284},
+  year  = {1998},
+  publisher = {Routledge},
+  doi = {10.1080/01638539809545028},
+  URL = {https://doi.org/10.1080/01638539809545028},
+  eprint = {https://doi.org/10.1080/01638539809545028}
+}
+@inproceedings{gutiérrez_2018_a_systematic,
+  title =        {A Systematic Literature Review on Word Embeddings},
+  author =	 {Gutiérrez, Luis and Keith, Brian},
+  booktitle =	 {Trends and applications in software engineering :
+  proceedings of the 7th International Conference on Software Process
+  Improvement (CIMPS 2018)},
+  year =	 2018,
+  publisher =	 {Springer},
+  address =	 {Cham, Switzerland},
+  isbn =	 9783030011703,
+}
+@Article{liu-2018-visual-explor,
+  author       = {Liu, Shusen and Bremer, Peer-Timo and Thiagarajan,
+                  Jayaraman J. and Srikumar, Vivek and Wang, Bei and
+                  Livnat, Yarden and Pascucci, Valerio},
+  title	       = {Visual Exploration of Semantic Relationships in
+                  Neural Word Embeddings},
+  year	       = 2018,
+  volume       = 24,
+  number       = 1,
+  month	       = {Jan},
+  pages	       = {553–562},
+  issn	       = {2160-9306},
+  doi	       = {10.1109/tvcg.2017.2745141},
+  url	       = {http://dx.doi.org/10.1109/TVCG.2017.2745141},
+  journal      = {IEEE Transactions on Visualization and Computer
+                  Graphics},
+  publisher    = {Institute of Electrical and Electronics Engineers
+                  (IEEE)}
+}
+@article{lai-2015-how-gener-good-word-embed,
+  author       = {Siwei Lai AND Kang Liu AND Liheng Xu AND Jun Zhao},
+  title	       = {{How to Generate a Good Word Embedding?}},
+  year	       = 2015,
+  archiveprefix= {arXiv},
+  eprint       = {1507.05523v1},
+  primaryclass = {cs.CL}
+}
+@inproceedings{mnih-2007-three-new-graphical-models,
+author = {Mnih, Andriy and Hinton, Geoffrey},
+title = {Three New Graphical Models for Statistical Language Modelling},
+year = {2007},
+isbn = {9781595937933},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/1273496.1273577},
+doi = {10.1145/1273496.1273577},
+abstract = {The supremacy of n-gram models in statistical language modelling has recently been challenged by parametric models that use distributed representations to counteract the difficulties caused by data sparsity. We propose three new probabilistic language models that define the distribution of the next word in a sequence given several preceding words by using distributed representations of those words. We show how real-valued distributed representations for words can be learned at the same time as learning a large set of stochastic binary hidden features that are used to predict the distributed representation of the next word from previous distributed representations. Adding connections from the previous states of the binary hidden features improves performance as does adding direct connections between the real-valued distributed representations. One of our models significantly outperforms the very best n-gram models.},
+booktitle = {Proceedings of the 24th International Conference on Machine Learning},
+pages = {641–648},
+numpages = {8},
+location = {Corvalis, Oregon, USA},
+series = {ICML '07}
+}
+@inproceedings{kusnerb-2015-from-word-emb-to-doc-dists,
+  title = {From Word Embeddings To Document Distances},
+  author = {Kusner, Matt and Sun, Yu and Kolkin, Nicholas and Weinberger, Kilian},
+  booktitle = {Proceedings of the 32nd International Conference on Machine Learning},
+  pages = {957--966},
+  year = {2015},
+  editor = {Bach, Francis and Blei, David}, volume = {37},
+  series = {Proceedings of Machine Learning Research},
+  address = {Lille, France},
+  month = {07--09 Jul},
+  publisher = {PMLR},
+  pdf = {http://proceedings.mlr.press/v37/kusnerb15.pdf},
+  url = { http://proceedings.mlr.press/v37/kusnerb15.html },
+  abstract = {We present the Word Mover’s Distance (WMD), a novel distance function between text documents. Our work is based on recent results in word embeddings that learn semantically meaningful representations for words from local co-occurrences in sentences. The WMD distance measures the dissimilarity between two text documents as the minimum amount of distance that the embedded words of one document need to "travel" to reach the embedded words of another document. We show that this distance metric can be cast as an instance of the Earth Mover’s Distance, a well studied transportation problem for which several highly efficient solvers have been developed. Our metric has no hyperparameters and is straight-forward to implement. Further, we demonstrate on eight real world document classification data sets, in comparison with seven state-of-the-art baselines, that the WMD metric leads to unprecedented low k-nearest neighbor document classification error rates.}
+} 
+@article{deerwester-1990-indexing-by-lsa,
+  author = {Deerwester, Scott and Dumais, Susan T. and Furnas, George W. and Landauer, Thomas K. and Harshman, Richard},
+  title = {Indexing by latent semantic analysis},
+  journal = {Journal of the American Society for Information Science},
+  volume = {41},
+  number = {6},
+  pages = {391-407},
+  doi = {https://doi.org/10.1002/(SICI)1097-4571(199009)41:6<391::AID-ASI1>3.0.CO;2-9},
+  url = {https://asistdl.onlinelibrary.wiley.com/doi/abs/10.1002/%28SICI%291097-4571%28199009%2941%3A6%3C391%3A%3AAID-ASI1%3E3.0.CO%3B2-9},
+  eprint = {https://asistdl.onlinelibrary.wiley.com/doi/pdf/10.1002/%28SICI%291097-4571%28199009%2941%3A6%3C391%3A%3AAID-ASI1%3E3.0.CO%3B2-9},
+  abstract = {Abstract A new method for automatic indexing and retrieval is described. The approach is to take advantage of implicit higher-order structure in the association of terms with documents (“semantic structure”) in order to improve the detection of relevant documents on the basis of terms found in queries. The particular technique used is singular-value decomposition, in which a large term by document matrix is decomposed into a set of ca. 100 orthogonal factors from which the original matrix can be approximated by linear combination. Documents are represented by ca. 100 item vectors of factor weights. Queries are represented as pseudo-document vectors formed from weighted combinations of terms, and documents with supra-threshold cosine values are returned. Initial tests find this completely automatic method for retrieval to be promising. © 1990 John Wiley \& Sons, Inc.},
+  year = {1990}
+}
+@article{wang-2018-a-comparison,
+  author       = {Wang, Yanshan and Liu, Sijia and Afzal, Naveed and Rastegar-Mojarad, Majid and Wang, Liwei and Shen, Feichen and Kingsbury, Paul and Liu, Hongfang},
+  title	       = {A comparison of word embeddings for the biomedical natural language processing},
+  year	       = 2018,
+  volume       = 87,
+  month	       = {Nov},
+  pages	       = {12–20},
+  issn	       = {1532-0464},
+  doi	       = {10.1016/j.jbi.2018.09.008},
+  url	       = {http://dx.doi.org/10.1016/j.jbi.2018.09.008},
+  journal      = {Journal of Biomedical Informatics},
+  publisher    = {Elsevier BV}
+}
+@article{salton_1988_term_weighting_approaches,
+  author       = {Salton, Gerard and Buckley, Christopher},
+  title	       = {Term-weighting approaches in automatic text
+                  retrieval},
+  year	       = 1988,
+  volume       = 24,
+  number       = 5,
+  month	       = {Jan},
+  pages	       = {513–523},
+  issn	       = {0306-4573},
+  doi	       = {10.1016/0306-4573(88)90021-0},
+  url	       = {http://dx.doi.org/10.1016/0306-4573(88)90021-0},
+  journal      = {Information Processing \& Management},
+  publisher    = {Elsevier BV}
+}
+@article{luhn_1957_a_statistical_approach,
+  author       = {Luhn, H. P.},
+  title	       = {A Statistical Approach to Mechanized Encoding and
+                  Searching of Literary Information},
+  year	       = 1957,
+  volume       = 1,
+  number       = 4,
+  month	       = {Oct},
+  pages	       = {309–317},
+  issn	       = {0018-8646},
+  doi	       = {10.1147/rd.14.0309},
+  url	       = {http://dx.doi.org/10.1147/rd.14.0309},
+  journal      = {IBM Journal of Research and Development},
+  publisher    = {IBM}
+}
+@article{maron-1960-on-relevance,
+  author = {Maron, M. E. and Kuhns, J. L.},
+  title = {On Relevance, Probabilistic Indexing and Information Retrieval},
+  year = {1960},
+  issue_date = {July 1960},
+  publisher = {Association for Computing Machinery},
+  address = {New York, NY, USA},
+  volume = {7},
+  number = {3},
+  issn = {0004-5411},
+  url = {https://doi.org/10.1145/321033.321035},
+  doi = {10.1145/321033.321035},
+  abstract = {This paper reports on a novel technique for literature indexing and searching in a mechanized library system. The notion of relevance is taken as the key concept in the theory of information retrieval and a comparative concept of relevance is explicated in terms of the theory of probability. The resulting technique called “Probabilistic Indexing,” allows a computing machine, given a request for information, to make a statistical inference and derive a number (called the “relevance number”) for each document, which is a measure of the probability that the document will satisfy the given request. The result of a search is an ordered list of those documents which satisfy the request ranked according to their probable relevance.The paper goes on to show that whereas in a conventional library system the cross-referencing (“see” and “see also”) is based solely on the “semantical closeness” between index terms, statistical measures of closeness between index terms can be defined and computed. Thus, given an arbitrary request consisting of one (or many) index term(s), a machine can elaborate on it to increase the probability of selecting relevant documents that would not otherwise have been selected.Finally, the paper suggests an interpretation of the whole library problem as one where the request is considered as a clue on the basis of which the library system makes a concatenated statistical inference in order to provide as an output an ordered list of those documents which most probably satisfy the information needs of the user.},
+  journal = {J. ACM},
+  month = jul,
+  pages = {216–244},
+  numpages = {29}
+}
+@article{robertson_1976_relevance_weighting,
+  author       = {Robertson, S. E. and Jones, K. Sparck},
+  title	       = {Relevance weighting of search terms},
+  year	       = 1976,
+  volume       = 27,
+  number       = 3,
+  month	       = {May},
+  pages	       = {129–146},
+  issn	       = {1097-4571},
+  doi	       = {10.1002/asi.4630270302},
+  url	       = {http://dx.doi.org/10.1002/asi.4630270302},
+  journal      = {Journal of the American Society for Information
+                  Science},
+  publisher    = {Wiley}
+}
+@inproceedings{dumais-1988-using-lsa-to-improve,
+  author = {Dumais, S. T. and Furnas, G. W. and Landauer, T. K. and Deerwester, S. and Harshman, R.},
+  title = {Using Latent Semantic Analysis to Improve Access to Textual Information},
+  year = {1988},
+  isbn = {0201142376},
+  publisher = {Association for Computing Machinery},
+  address = {New York, NY, USA},
+  url = {https://doi.org/10.1145/57167.57214},
+  doi = {10.1145/57167.57214},
+  abstract = {This paper describes a new approach for dealing with the vocabulary problem in human-computer interaction. Most approaches to retrieving textual materials depend on a lexical match between words in users' requests and those in or assigned to database objects. Because of the tremendous diversity in the words people use to describe the same object, lexical matching methods are necessarily incomplete and imprecise [5]. The latent semantic indexing approach tries to overcome these problems by automatically organizing text objects into a semantic structure more appropriate for matching user requests. This is done by taking advantage of implicit higher-order structure in the association of terms with text objects. The particular technique used is singular-value decomposition, in which a large term by text-object matrix is decomposed into a set of about 50 to 150 orthogonal factors from which the original matrix can be approximated by linear combination. Terms and objects are represented by 50 to 150 dimensional vectors and matched against user queries in this “semantic” space. Initial tests find this completely automatic method widely applicable and a promising way to improve users' access to many kinds of textual materials, or to objects and services for which textual descriptions are available.},
+  booktitle = {Proceedings of the SIGCHI Conference on Human Factors in Computing Systems},
+  pages = {281–285},
+  numpages = {5},
+  location = {Washington, D.C., USA},
+  series = {CHI '88}
+}
+@ARTICLE{brown-1990-class-based-ngram,
+    author = {Peter F. Brown and Vincent J. Della Pietra and Peter V. deSouza and Jenifer C. Lai and Robert L. Mercer},
+    title = {Class-Based N-Gram Models of Natural Language},
+    journal = {Computational Linguistics},
+    year = {1990},
+    volume = {18},
+    pages = {18--4}
+}
+@article{thompson-2008-looking-back,
+title = {Looking back: On relevance, probabilistic indexing and information retrieval},
+journal = {Information Processing \& Management},
+volume = {44},
+number = {2},
+pages = {963-970},
+year = {2008},
+note = {Evaluating Exploratory Search Systems Digital Libraries in the Context of Users’ Broader Activities},
+issn = {0306-4573},
+doi = {https://doi.org/10.1016/j.ipm.2007.10.002},
+url = {https://www.sciencedirect.com/science/article/pii/S0306457307002087},
+author = {Paul Thompson},
+keywords = {Probabilistic information retrieval},
+abstract = {Forty-eight years ago Maron and Kuhns published their paper, “On Relevance, Probabilistic Indexing and Information Retrieval” (1960). This was the first paper to present a probabilistic approach to information retrieval, and perhaps the first paper on ranked retrieval. Although it is one of the most widely cited papers in the field of information retrieval, many researchers today may not be familiar with its influence. This paper describes the Maron and Kuhns article and the influence that it has had on the field of information retrieval.}
+}
+@article{turney10-from-frequen-to-meanin,
+  author =       {P. D. Turney and P. Pantel},
+  title =        {From Frequency To Meaning: Vector Space Models of
+                  Semantics},
+  journal =      {Journal of Artificial Intelligence Research},
+  volume =       37,
+  number =       {nil},
+  pages =        {141-188},
+  year =         2010,
+  doi =          {10.1613/jair.2934},
+  url =          {https://doi.org/10.1613/jair.2934},
+}
+@article{baroni-2010-distributional-memory,
+  title={Distributional Memory: A General Framework for Corpus-Based Semantics},
+  author={Marco Baroni and A. Lenci},
+  journal={Computational Linguistics},
+  year={2010},
+  volume={36},
+  pages={673-721}
+}
+@article{levy-2015-improving-distributional-similarity,
+  title={Improving Distributional Similarity with Lessons Learned from Word Embeddings},
+  author={Omer Levy and Y. Goldberg and Ido Dagan},
+  journal={Transactions of the Association for Computational Linguistics},
+  year={2015},
+  volume={3},
+  pages={211-225}
+}
+@inproceedings{stratos-2015-model-based-word,
+  title={Model-based Word Embeddings from Decompositions of Count Matrices},
+  author={K. Stratos and Michael Collins and Daniel J. Hsu},
+  booktitle={ACL},
+  year={2015}
+}
+@inproceedings{levy-2014-neural-WE-as,
+author = {Levy, Omer and Goldberg, Yoav},
+title = {Neural Word Embedding as Implicit Matrix Factorization},
+year = {2014},
+publisher = {MIT Press},
+address = {Cambridge, MA, USA},
+abstract = {We analyze skip-gram with negative-sampling (SGNS), a word embedding method introduced by Mikolov et al., and show that it is implicitly factorizing a word-context matrix, whose cells are the pointwise mutual information (PMI) of the respective word and context pairs, shifted by a global constant. We find that another embedding method, NCE, is implicitly factorizing a similar matrix, where each cell is the (shifted) log conditional probability of a word given its context. We show that using a sparse Shifted Positive PMI word-context matrix to represent words improves results on two word similarity tasks and one of two analogy tasks. When dense low-dimensional vectors are preferred, exact factorization with SVD can achieve solutions that are at least as good as SGNS's solutions for word similarity tasks. On analogy questions SGNS remains superior to SVD. We conjecture that this stems from the weighted nature of SGNS's factorization.},
+booktitle = {Proceedings of the 27th International Conference on Neural Information Processing Systems - Volume 2},
+pages = {2177–2185},
+numpages = {9},
+location = {Montreal, Canada},
+series = {NIPS'14}
+}
+@inproceedings{collobert-2008-a-unified-architecture,
+author = {Collobert, Ronan and Weston, Jason},
+title = {A Unified Architecture for Natural Language Processing: Deep Neural Networks with Multitask Learning},
+year = {2008},
+isbn = {9781605582054},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/1390156.1390177},
+doi = {10.1145/1390156.1390177},
+abstract = {We describe a single convolutional neural network architecture that, given a sentence, outputs a host of language processing predictions: part-of-speech tags, chunks, named entity tags, semantic roles, semantically similar words and the likelihood that the sentence makes sense (grammatically and semantically) using a language model. The entire network is trained jointly on all these tasks using weight-sharing, an instance of multitask learning. All the tasks use labeled data except the language model which is learnt from unlabeled text and represents a novel form of semi-supervised learning for the shared tasks. We show how both multitask learning and semi-supervised learning improve the generalization of the shared tasks, resulting in state-of-the-art-performance.},
+booktitle = {Proceedings of the 25th International Conference on Machine Learning},
+pages = {160–167},
+numpages = {8},
+location = {Helsinki, Finland},
+series = {ICML '08}
+}
+@inproceedings{mnih-2013-NCE,
+author = {Mnih, Andriy and Kavukcuoglu, Koray},
+title = {Learning Word Embeddings Efficiently with Noise-Contrastive Estimation},
+year = {2013},
+publisher = {Curran Associates Inc.},
+address = {Red Hook, NY, USA},
+abstract = {Continuous-valued word embeddings learned by neural language models have recently been shown to capture semantic and syntactic information about words very well, setting performance records on several word similarity tasks. The best results are obtained by learning high-dimensional embeddings from very large quantities of data, which makes scalability of the training method a critical factor.We propose a simple and scalable new approach to learning word embeddings based on training log-bilinear models with noise-contrastive estimation. Our approach is simpler, faster, and produces better results than the current state-of-the-art method. We achieve results comparable to the best ones reported, which were obtained on a cluster, using four times less data and more than an order of magnitude less computing time. We also investigate several model types and find that the embeddings learned by the simpler models perform at least as well as those learned by the more complex ones.},
+booktitle = {Proceedings of the 26th International Conference on Neural Information Processing Systems - Volume 2},
+pages = {2265–2273},
+numpages = {9},
+location = {Lake Tahoe, Nevada},
+series = {NIPS'13}
+}
+@article{church-hanks-1990-word,
+    title = {Word Association Norms, Mutual Information, and Lexicography},
+    author = {Church, Kenneth Ward  and
+      Hanks, Patrick},
+    journal = {Computational Linguistics},
+    volume = {16},
+    number = {1},
+    year = {1990},
+    url = {https://www.aclweb.org/anthology/J90-1003},
+    pages = {22--29},
+}
+@inproceedings{morin-2005-hierarchical-probabilistic,
+    author = {Frederic Morin and Yoshua Bengio},
+    title = {Hierarchical probabilistic neural network language model},
+    booktitle = {AISTATS’05},
+    year = {2005},
+    pages = {246--252},
+}
+@article{miller-1991-contextual-correlates,
+  author = {Miller, George A. and Charles, Walter G.},
+  title = {Contextual correlates of semantic similarity},
+  journal = {Language and Cognitive Processes},
+  volume = {6},
+  number = {1},
+  pages = {1-28},
+  year  = {1991},
+  publisher = {Routledge},
+  doi = {10.1080/01690969108406936},
+  URL = {https://doi.org/10.1080/01690969108406936},
+  eprint = {https://doi.org/10.1080/01690969108406936},
+  abstract = { Abstract The relationship between semantic and contextual similarity is investigated for pairs of nouns that vary from high to low semantic similarity. Semantic similarity is estimated by subjective ratings; contextual similarity is estimated by the method of sorting sentential contexts. The results show an inverse linear relationship between similarity of meaning and the discriminability of contexts. This relation, is obtained for two separate corpora of sentence contexts. It is concluded that, on average, for words in the same language drawn from the same syntactic and semantic categories, the more often two words can be substituted into the same contexts the more similar in meaning they are judged to be.}
+}
+@article{bolukbasi16_man_is_to_comput_progr,
+  author =       {Bolukbasi, Tolga and Chang, Kai-Wei and Zou, James and Saligrama, Venkatesh and Kalai, Adam},
+  title =        {Man Is To Computer Programmer As Woman Is To Homemaker? Debiasing Word Embeddings},
+  journal =      {CoRR},
+  year =         2016,
+  url =          {http://arxiv.org/abs/1607.06520v1},
+  abstract =     {The blind application of machine learning runs the risk of amplifying biases present in data. Such a danger is facing us with word embedding, a popular framework to represent text data as vectors which has been used in many machine learning and natural language processing tasks. We show that even word embeddings trained on Google News articles exhibit female/male gender stereotypes to a disturbing extent. This raises concerns because their widespread use, as we describe, often tends to amplify these biases.  Geometrically, gender bias is first shown to be captured by a direction in the word embedding. Second, gender neutral words are shown to be linearly separable from gender definition words in the word embedding. Using these properties, we provide a methodology for modifying an embedding to remove gender stereotypes, such as the association between between the words receptionist and female, while maintaining desired associations such as between the words queen and female. We define metrics to quantify both direct and indirect gender biases in embeddings, and develop algorithms to "debias" the embedding. Using crowd-worker evaluation as well as standard benchmarks, we empirically demonstrate that our algorithms significantly reduce gender bias in embeddings while preserving the its useful properties such as the ability to cluster related concepts and to solve analogy tasks. The resulting embeddings can be used in applications without amplifying gender bias.},
+  archivePrefix ={arXiv},
+  eprint =       {1607.06520v1},
+  primaryClass = {cs.CL},
+}
+@article{garg-2018-word-embeddings-quantify,
+	author = {Garg, Nikhil and Schiebinger, Londa and Jurafsky, Dan and Zou, James},
+	title = {Word embeddings quantify 100 years of gender and ethnic stereotypes},
+	volume = {115},
+	number = {16},
+	pages = {E3635--E3644},
+	year = {2018},
+	doi = {10.1073/pnas.1720347115},
+	publisher = {National Academy of Sciences},
+	abstract = {Word embeddings are a popular machine-learning method that represents each English word by a vector, such that the geometry between these vectors captures semantic relations between the corresponding words. We demonstrate that word embeddings can be used as a powerful tool to quantify historical trends and social change. As specific applications, we develop metrics based on word embeddings to characterize how gender stereotypes and attitudes toward ethnic minorities in the United States evolved during the 20th and 21st centuries starting from 1910. Our framework opens up a fruitful intersection between machine learning and quantitative social science.Word embeddings are a powerful machine-learning framework that represents each English word by a vector. The geometric relationship between these vectors captures meaningful semantic relationships between the corresponding words. In this paper, we develop a framework to demonstrate how the temporal dynamics of the embedding helps to quantify changes in stereotypes and attitudes toward women and ethnic minorities in the 20th and 21st centuries in the United States. We integrate word embeddings trained on 100 y of text data with the US Census to show that changes in the embedding track closely with demographic and occupation shifts over time. The embedding captures societal shifts{\textemdash}e.g., the women{\textquoteright}s movement in the 1960s and Asian immigration into the United States{\textemdash}and also illuminates how specific adjectives and occupations became more closely associated with certain populations over time. Our framework for temporal analysis of word embedding opens up a fruitful intersection between machine learning and quantitative social science.},
+	issn = {0027-8424},
+	URL = {https://www.pnas.org/content/115/16/E3635},
+	eprint = {https://www.pnas.org/content/115/16/E3635.full.pdf},
+	journal = {Proceedings of the National Academy of Sciences}
+}
+@article{caliskan17_seman_deriv_autom_from_languag,
+  author =       {Aylin Caliskan and Joanna J. Bryson and Arvind
+                  Narayanan},
+  title =        {Semantics Derived Automatically From Language
+                  Corpora Contain Human-Like Biases},
+  journal =      {Science},
+  volume =       356,
+  number =       6334,
+  pages =        {183-186},
+  year =         2017,
+  doi =          {10.1126/science.aal4230},
+  url =          {https://doi.org/10.1126/science.aal4230},
+}
+@InProceedings{wild-2007-investigating-unstructured-texts-with-lsa,
+author="Wild, Fridolin
+and Stahl, Christina",
+editor="Decker, Reinhold
+and Lenz, Hans -J.",
+title="Investigating Unstructured Texts with Latent Semantic Analysis",
+booktitle="Advances in Data Analysis",
+year="2007",
+publisher="Springer Berlin Heidelberg",
+address="Berlin, Heidelberg",
+pages="383--390",
+abstract="Latent semantic analysis (LSA) is an algorithm applied to approximate the meaning of texts, thereby exposing semantic structure to computation. LSA combines the classical vector-space model --- well known in computational linguistics --- with a singular value decomposition (SVD), a two-mode factor analysis. Thus, bag-of-words representations of texts can be mapped into a modified vector space that is assumed to reflect semantic structure. In this contribution the authors describe the lsa package for the statistical language and environment R and illustrate its proper use through examples from the areas of automated essay scoring and knowledge representation.",
+isbn="978-3-540-70981-7"
+}
+@inproceedings{grbovic-2018-real-time-personalization,
+author = {Grbovic, Mihajlo and Cheng, Haibin},
+title = {Real-Time Personalization Using Embeddings for Search Ranking at Airbnb},
+year = {2018},
+isbn = {9781450355520},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3219819.3219885},
+doi = {10.1145/3219819.3219885},
+abstract = {Search Ranking and Recommendations are fundamental problems of crucial interest to major Internet companies, including web search engines, content publishing websites and marketplaces. However, despite sharing some common characteristics a one-size-fits-all solution does not exist in this space. Given a large difference in content that needs to be ranked, personalized and recommended, each marketplace has a somewhat unique challenge. Correspondingly, at Airbnb, a short-term rental marketplace, search and recommendation problems are quite unique, being a two-sided marketplace in which one needs to optimize for host and guest preferences, in a world where a user rarely consumes the same item twice and one listing can accept only one guest for a certain set of dates. In this paper we describe Listing and User Embedding techniques we developed and deployed for purposes of Real-time Personalization in Search Ranking and Similar Listing Recommendations, two channels that drive 99\% of conversions. The embedding models were specifically tailored for Airbnb marketplace, and are able to capture guest's short-term and long-term interests, delivering effective home listing recommendations. We conducted rigorous offline testing of the embedding models, followed by successful online tests before fully deploying them into production.},
+booktitle = {Proceedings of the 24th ACM SIGKDD International Conference on Knowledge Discovery \& Data Mining},
+pages = {311–320},
+numpages = {10},
+keywords = {personalization, user modeling, search ranking},
+location = {London, United Kingdom},
+series = {KDD '18}
+}
+@inproceedings{wang-2018-billion-scale-commodity-embedding,
+author = {Wang, Jizhe and Huang, Pipei and Zhao, Huan and Zhang, Zhibo and Zhao, Binqiang and Lee, Dik Lun},
+title = {Billion-Scale Commodity Embedding for E-Commerce Recommendation in Alibaba},
+year = {2018},
+isbn = {9781450355520},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3219819.3219869},
+doi = {10.1145/3219819.3219869},
+abstract = {Recommender systems (RSs) have been the most important technology for increasing the business in Taobao, the largest online consumer-to-consumer (C2C) platform in China. There are three major challenges facing RS in Taobao: scalability, sparsity and cold start. In this paper, we present our technical solutions to address these three challenges. The methods are based on a well-known graph embedding framework. We first construct an item graph from users' behavior history, and learn the embeddings of all items in the graph. The item embeddings are employed to compute pairwise similarities between all items, which are then used in the recommendation process. To alleviate the sparsity and cold start problems, side information is incorporated into the graph embedding framework. We propose two aggregation methods to integrate the embeddings of items and the corresponding side information. Experimental results from offline experiments show that methods incorporating side information are superior to those that do not. Further, we describe the platform upon which the embedding methods are deployed and the workflow to process the billion-scale data in Taobao. Using A/B test, we show that the online Click-Through-Rates (CTRs) are improved comparing to the previous collaborative filtering based methods widely used in Taobao, further demonstrating the effectiveness and feasibility of our proposed methods in Taobao's live production environment.},
+booktitle = {Proceedings of the 24th ACM SIGKDD International Conference on Knowledge Discovery \&; Data Mining},
+pages = {839–848},
+numpages = {10},
+keywords = {recommendation system, collaborative filtering, graph embedding, e-commerce recommendation},
+location = {London, United Kingdom},
+series = {KDD '18}
+}
+@inproceedings{chamberlain17_custom_lifet_value_predic_using_embed,
+  author =       {Benjamin Paul Chamberlain and Ângelo Cardoso and
+                  C.H. Bryan Liu and Roberto Pagliari and Marc Peter
+                  Deisenroth},
+  title =        {Customer Lifetime Value Prediction Using Embeddings},
+  booktitle =    {Proceedings of the 23rd ACM SIGKDD International
+                  Conference on Knowledge Discovery and Data Mining},
+  year =         2017,
+  pages =        {nil},
+  doi =          {10.1145/3097983.3098123},
+  url =          {https://doi.org/10.1145/3097983.3098123},
+  month =        8,
+}

@@ -1,0 +1,37 @@
+% Main body of text follows
+\chapter*{Introduction}
+\addcontentsline{toc}{chapter}{Introduction}
+Word embeddings are numerical representations of words with the property that qualitative semantic observations like ``the word \emph{car} is more similar to the word \emph{bicycle} than to the word \emph{think}'' are encoded by the differences in each word's representation. Words are represented as points in a high dimensional `semantic space' with relative positions corresponding to the `relatedness' of the given words. In this way, the statement above could be restated as follows:
+
+\[d\big(\texttt{CAR},\,\texttt{BICYCLE}\big)>d\big(\texttt{CAR},\,\texttt{THINK}\big)\]
+
+where $d$ is a distance function, and $\texttt{ABC}$ is the embedding of the word \emph{abc}.
+
+All methods for generating word embeddings apply some form of the *distributional hypothesis*: that assertion that words which appear in similar contexts have similar meanings. This hypothesis was famously summarised by J.R. Firth in the statement;
+
+\begin{quote}
+  \emph{``You will know a word by the company it keeps''}
+\end{quote}
+
+The first techniques for producing embeddings were developed in the field of information retrieval (IR) and are based on word-context frequency matricies. These approaches are now referred to as count models, in contrast to more recent methods for producing word embeddings using neural networks which are referred to as predict models.
+
+In the first chapter we discuss the object of representation: words, then in the second chapter we discuss the methods of representation: first count models and then predict models, and finally in the last chapter we discuss practical considerations before concluding with suggested further reading.
+
+%% Previous draft:
+%% ==============
+%%
+%% In this section we will give an informal overview of the key concepts relating to word embeddings. Beginning in \autoref{chp:pre-proc} definitions will be given in precise mathematical terms, but here the focus is on describing the bigger picture in less technical language, and relating each concept to its history and application.
+%% 
+%% \section{What are word embeddings?}
+%% 
+%% A word-embedding is a special type of word-vector, and word vectors are just lists of numbers used to represent words. In this context `word' refers to \glspl{orthographic-word} in particular i.e. what occurs between spaces in a body of written text.
+%% 
+%% Word embeddings differ from word vectors in their length and composition. Word vectors are longer (higher dimension) and contain more zeros (\gls{sparse}), while word embeddings are shorter (lower dimension) and contain predominantly non-zero values (\gls{dense}).
+%% 
+%% other types of word vectors:
+%% wordnet:~\cite{miller_1990_intro_to_wordnet}
+%% glove:~\cite{pennington2014glove}
+%% 
+%% to read:
+%% contextual word representations: word embeddings overview->~\cite{smith19_contex_word_repres}
+%% speech and language processing book:~\cite{jurafsky21_speec}

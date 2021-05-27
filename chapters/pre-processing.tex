@@ -1,0 +1,61 @@
+\chapter{Pre-Processing}\label{chp:pre-proc}
+\section{Defining Words}
+The concept of `a word' is not well defined.
+
+The two tasks: counting the number of words in a document, and counting the number of words in a persons vocabulary, require applying two different meanings of the term `word'. The difference between these two senses is illustrated by the different methods used to count words in the sentence below:
+\begin{align}
+\underset{1}{\texttt{\vphantom{g}Let's }} \underset{2}{\texttt{\vphantom{g}start }} \underset{3}{\texttt{\vphantom{g}at }} \underset{4}{\texttt{\vphantom{g}the }} \underset{5}{\texttt{\vphantom{g}very }} \underset{6}{\texttt{\vphantom{g}beginning, }} \underset{7}{\texttt{\vphantom{g}a }} \underset{8}{\texttt{\vphantom{g}very }} \underset{9}{\texttt{\vphantom{g}good }} \underset{10}{\texttt{\vphantom{g}place }} \underset{11}{\texttt{\vphantom{g}to }} \underset{12}{\texttt{\vphantom{g}start.}}\\[9pt]
+\underset{1}{\texttt{\vphantom{g}Let's }} \underset{2}{\texttt{\vphantom{g}start }} \underset{3}{\texttt{\vphantom{g}at }} \underset{4}{\texttt{\vphantom{g}the }} \underset{5}{\texttt{\vphantom{g}very }} \underset{6}{\texttt{\vphantom{g}beginning, }} \underset{7}{\texttt{\vphantom{g}a }} \underset{-}{\texttt{\vphantom{g}very }} \underset{8}{\texttt{\vphantom{g}good }} \underset{9}{\texttt{\vphantom{g}place }} \underset{10}{\texttt{\vphantom{g}to }} \underset{-}{\texttt{\vphantom{g}start.}}
+\end{align}
+In the first case each word-occurrence is counted, regardless of whether another instance of the same word has already occurred. In the second case the duplicate instances of the words ``very'' and ``start'' are not counted towards the total, i.e. only unique words are counted towards the total. These methods, though different, still both refer to `word' in the sense meaning `orthographic word', i.e. ``what occurs between spaces''. The word `word' can also refer to `grammatical words' which is the sense used in the statement ``look, looks, looking, \& looked are all forms of the same word'', or even to speech, as in the phrases ``it's my word against yours'' and ``can I have a word with you?''.
+
+The examples used to illustrate these last two meanings were adapted from the introductory chapter of \textit{Word: A Cross-Linguistic Typology}, a book whose sole topic is the discussion of how `word' should be defined, with a focus on a different language in each chapter. The form of the book is itself revealing; what can be considered `a word' and indeed the usefulness of applying such a concept, is very much a function of which language is being discussed.
+
+To understand and apply the word embedding algorithms described in this report it is only necessary to distinguish between the two meanings of `word' in the orthographic sense enumerated in the counting example above. We will call the first thing being counted a `word token', and the second thing being counted a `word type'.
+
+That is because these algorithms operate on words as they appear in orthography, which 
+
+%That it is not necessary to consider further nuances of the term `word' is because these algorithms operate on words as orthographic units, i.e. as sequences of characters between spaces. The four word phrase ``I am going to'' cannot then be compared to the informal contraction ``Imma'' because only single orthographic units can be compared to other single orthographic units. This is not a major limitation for many use cases but it should be appreciated that by operating on language in its un-annotated orthographic form, the results will necessarily reflect the idiosyncrasies of the processed language's orthography. In simpler terms: `words' may be easy to spot in writing, but that doesn't mean they have any reliable features or common relation to their meaning within a phrase or sentence, and word embeddings should not be treated as refering to anything more concrete than this either.
+
+With that in mind, we give our first definition:
+
+\begin{definition}
+  An \textbf{Orthography}, \(\mathscr{O}\) is any countable set of symbols.
+\end{definition}
+
+%% note: yes, it has to be a finite set of symbols, because otherwise no words would end up falling in the same boxes.. but if you added a metric space on top of this and changed 'word type' for 'word class' with a fuzzy sense of membership then you could define word embeddings for continuous phenomena
+
+\begin{example}\label{ex:orth1}
+  \begin{equation}
+    \mathscr{O}=\{\mathrm{a},\mathrm{b},\mathrm{c},\mathrm{\_}\}\quad\text{is an orthography}
+  \end{equation}
+\end{example}
+
+Note that while the orthography \(\mathscr{O}\) will in general\footnote{In this report we will prefer to describe the processes and objects being discussed in general mathematical terms rather than domain specific ones, however, since the application of these methods is predominatly within the single field of natural language processing, relevant examples and considerations relating to NLP will be given throughout.} be some subset of the set letters you could type with your keyboard, this is just for convenience and the symbols could in fact be anything. In example 1 we have used an orthography with the underscore symbol ``\(\mathrm{\_}\)'' because it will be useful to have a visible analog to the ``\(\texttt{ }\)'' character, or `space'.
+
+\begin{definition}
+  Given an orthography \(\mathscr{O}\), a \textbf{document}, \(D\) using \(\mathscr{O}\) is any finite sequence of symbols \(s_1,s_2,s_3,...,s_n\), for \(s_i\in \mathscr{O}\).
+\end{definition}
+
+\begin{example}
+  \begin{equation}
+    D=``\mathrm{baba\_aba\_abc}"\ \text{is a document using the orthography $\mathscr{O}$ from \autoref{ex:orth1}}
+  \end{equation}
+\end{example}
+
+
+\begin{definition}
+  Given an input sequence \(D\), a \textbf{tokeniser} is a function \(\tau:D\to T\) where \(T\) is an ordered sequence of 
+\end{definition}
+
+\begin{definition}
+  A \textbf{word-token} is any sequence of symbols  tokenisation 
+\end{definition}
+
+Remarking on the applicability of `word' as tool for cross-linguistic analysis Dixon \& Aikhenvald note ```word' as a unit of language was developed for the familiar languages of Europe which by-and-large have a synthetic structure''.
+
+The term \textbf{synthetic} describes a language's morphological type, i.e., how words in that language can be decomposed into smaller parts called morphemes. For example, in English the word ``decomposed'' can be broken up into the three morphemes ``de-compos(e)-ed'', with the two affixes ``de'' and ``ed'' changing the meaning of the root word ``compose''. Languages which mostly do not allow the composing of morphemes into more complex words are said to be \textbf{analytic}, or isolating. Although English is grouped with synthetic languages , i.e. ``I read a really good book last month'' and also more synthetic morphology like in the words ``nationalisation'' and ``dehumidifier''.
+
+Which is to say that the concept of the word as a natural and convenient unit of language makes the most sense for languages which are not too synthetic (polysynthetic) nor too anylytic (the opposite of analytic).
+
+For the purpose of discussing the methods of word embeddings it is not necessary or desirable to 

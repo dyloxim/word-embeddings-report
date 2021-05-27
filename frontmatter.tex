@@ -1,0 +1,71 @@
+% general
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\usepackage{titlesec}
+\usepackage{subfigure,epsfig,amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{graphicx}
+
+% references
+\usepackage{hyperref, cleveref}
+
+% Bibliography
+\usepackage[
+backend=biber,
+style=alphabetic,
+]{biblatex}
+\addbibresource{refs.bib}
+
+% glossary functions
+\usepackage[toc]{glossaries}
+% uncomment to make glossary words bold
+% \renewcommand*{\glstextformat}[1]{\textbf{#1}}
+
+% theorem environments
+\usepackage{amsthm, thmtools}
+
+% for embedding svg figures made with inkscape
+\usepackage{svg}
+
+%% subsubsections
+\setcounter{secnumdepth}{4} % how many sectioning levels to assign numbers to
+\setcounter{tocdepth}{4}    % how many sectioning levels to show in ToC
+\newcounter{subsubsection}[subsection]
+
+% theorem evironments
+\declaretheoremstyle[
+  spaceabove=6pt, spacebelow=6pt,
+  headfont=\normalfont\itshape,
+  notefont=\mdseries, notebraces={(}{)},
+  bodyfont=\normalfont,
+  postheadspace=1em
+]{example}
+\declaretheorem[name=Definition,
+  style=definition,
+  numberwithin=section,
+  refname={definition,definitions},
+  Refname={Definition,Definitions}]{definition}
+\declaretheorem[name=Note,
+  style=definition,
+  numberwithin=section,
+  refname={note,notes},
+  Refname={Note,Notes}]{note}
+\declaretheorem[name=Example,
+  style=example,
+  numberwithin=section,
+  refname={example,examples},
+  Refname={Example,Examples}]{example}
+
+%% document info
+\title{Word Embeddings}
+\author{Joel Strouts}
+\department{Mathematics}
+\date{2021}
+\degree{Mathematics BSc}
+\date{2021}
+
+% unused
+\dedication{-}
+\epigraph{-}

@@ -1,0 +1,150 @@
+\ifglsentryexists{dense}{}%
+{%
+\gls@defglossaryentry{dense}%
+{%
+name={sparse},%
+sort={sparse},%
+type={main},%
+first={sparse},%
+firstplural={sparses},%
+text={sparse},%
+plural={sparses},%
+description={(vector) containing few to none zero-entries},%
+descriptionplural={(vector) containing few to none zero-entries},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{word-embedding}{}%
+{%
+\gls@defglossaryentry{word-embedding}%
+{%
+name={word embedding},%
+sort={word embedding},%
+type={main},%
+first={word embedding},%
+firstplural={word embeddings},%
+text={word embedding},%
+plural={word embeddings},%
+description={A \gls {dense} word vector},%
+descriptionplural={A \gls {dense} word vector},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{word-vector}{}%
+{%
+\gls@defglossaryentry{word-vector}%
+{%
+name={word vector},%
+sort={word vector},%
+type={main},%
+first={word vector},%
+firstplural={word vectors},%
+text={word vector},%
+plural={word vectors},%
+description={A list of numbers representing a word type},%
+descriptionplural={A list of numbers representing a word type},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{orthographic-word}{}%
+{%
+\gls@defglossaryentry{orthographic-word}%
+{%
+name={orthographic word},%
+sort={orthographic word},%
+type={main},%
+first={orthographic word},%
+firstplural={orthographic words},%
+text={orthographic word},%
+plural={orthographic words},%
+description={The inscribed form of a word},%
+descriptionplural={The inscribed form of a word},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{sparse}{}%
+{%
+\gls@defglossaryentry{sparse}%
+{%
+name={sparse},%
+sort={sparse},%
+type={main},%
+first={sparse},%
+firstplural={sparses},%
+text={sparse},%
+plural={sparses},%
+description={(vector) containing many zero-entries},%
+descriptionplural={(vector) containing many zero-entries},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
