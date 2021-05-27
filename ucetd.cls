@@ -13,70 +13,70 @@
 
 % Declare a super class and pass it remaining unprocessed arguments
 \newcommand{\etdSuperClass}[2]{
-	\DeclareOption*{\PassOptionsToClass{\CurrentOption}{#1}}
-	\ProcessOptions\relax
-	\LoadClass[#2]{#1}
+  \DeclareOption*{\PassOptionsToClass{\CurrentOption}{#1}}
+  \ProcessOptions\relax
+  \LoadClass[#2]{#1}
 }
 
 % Default copyright text
 \newcommand{\etdCopyrightText}{
-	\null\vfill
-	\centerline{Copyright \copyright\ \number\year\ by \@author}
-	\centerline{All Rights Reserved}
-	\vskip 15pt\relax
+  \null\vfill
+  \centerline{Copyright \copyright\ \number\year\ by \@author}
+  \centerline{All Rights Reserved}
+  \vskip 15pt\relax
 }
 
 % Preliminary sections following the table of contents and preceding the body are front matter
 \newcommand{\etdFrontMatter}[1]{
-	\chapter*{#1}
-	\addcontentsline{toc}{chapter}{#1}
+  \chapter*{#1}
+  \addcontentsline{toc}{chapter}{#1}
 }
 
 % Special front matter that appears before the table of contents
 \newcommand{\etdPreTOCMatter}[1]{
-	\chapter*{}
-	\thispagestyle{empty}
-	\begin{center}
-		#1
-	\end{center}
+  \chapter*{}
+  \thispagestyle{empty}
+  \begin{center}
+    #1
+  \end{center}
 }
 
 % Starts the main matter of the document
 \newcommand{\etdMainMatter}{
-	\clearpage
-	% Switch to arabic numbers on pages
-	\pagenumbering{arabic}
+  \clearpage
+  % Switch to arabic numbers on pages
+  \pagenumbering{arabic}
 }
 
 % Commands to follow the title page
 \newcommand{\etdPostTitle}{
-	% Setup page numbering
-	\pagenumbering{roman}
-	\addtocounter{page}{1}
+  % Setup page numbering
+  \pagenumbering{roman}
+  \addtocounter{page}{1}
 }
 
 % UC ETD title page format
 \newcommand{\etdTitlePage} {
-	\begin{titlepage}
-		\begin{center}
-			\rule{0in}{0.55in} % Artificial extra [old=0.95in] margin. Why not vspace?
-			THE UNIVERSITY OF YORK\\
-			\vspace{0.8in}
-			\MakeUppercase{\@title}\\
-			\vspace{0.8in}
-			A DISSERTATION SUBMITTED TO\\
-			THE DEPARTMENT OF \MakeUppercase{\@department}\\
-			IN CANDIDACY FOR THE DEGREE OF\\
-			\MakeUppercase{\@degree}\\
-			\vspace{0.8in}
-			BY\\
-			\MakeUppercase{\@author}\\
-			\vspace{0.8in}
-			YORK, UK\\
-			\MakeUppercase{\@date}
-			\vspace*{0.45in}
-		\end{center}
-	\end{titlepage}
+  \begin{titlepage}
+    \begin{center}
+      \rule{0in}{0.55in} % Artificial extra [old=0.95in] margin. Why not vspace?
+      THE UNIVERSITY OF YORK\\
+      \vspace{0.8in}
+      \MakeUppercase{\@title}\\
+      \vspace{0.8in}
+      A DISSERTATION SUBMITTED TO\\
+      THE DEPARTMENT OF \MakeUppercase{\@department}\\
+      IN CANDIDACY FOR THE DEGREE OF\\
+      \MakeUppercase{\@degree}\\
+      \vspace{0.8in}
+      BY\\
+      \MakeUppercase{\@author}\\
+      \vspace{0.8in}
+      YORK, UK\\
+      \MakeUppercase{\@date}
+      \vspace*{0.45in}
+    \end{center}
+  \end{titlepage}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -192,12 +192,11 @@
 % Bibliography
 % Change ft2,master,refs below to point to your library.bib files
 \newcommand{\makebibliography}{
-	\newpage
-	\addcontentsline{toc}{chapter}{References}
-	\begin{singlespace}
-		\bibliography{ft2,master,refs}
-		\bibliographystyle{plain}
-	\end{singlespace}
+  \newpage
+  \addcontentsline{toc}{chapter}{References}
+  \begin{singlespace}
+    \printbibliography
+  \end{singlespace}
 }
 
 %
@@ -214,8 +213,8 @@
 
 % Output title page
 \renewcommand{\maketitle}{
-	\etdTitlePage
-	\etdPostTitle
+  \etdTitlePage
+  \etdPostTitle
 }
 
 % You MUST call this command where the title would normally be emitted if you omit the title page
@@ -235,85 +234,85 @@
 % Chapter/Section formatting
 \renewcommand{\@makechapterhead}[1]{{
 
-        \setlength{\topmargin}{0.5in}  	% really 1.5in, added by bph
-                                      			% to meet OAP standards
-        \normalfont\large\bfseries
-        \begin{center}
-        \etdChapterStyle{\@chapapp{ \thechapter}}  %  CHAPTER # or APPENDIX
-        
-        
-        \etdChapterStyle{#1}                       %     TITLE OF CHAPTER
-        \end{center}
-        \setlength{\topmargin}{0in}   % back to 1in
+    \setlength{\topmargin}{0.5in}  	% really 1.5in, added by bph
+    % to meet OAP standards
+    \normalfont\large\bfseries
+    \begin{center}
+      \etdChapterStyle{\@chapapp{ \thechapter}}  %  CHAPTER # or APPENDIX
+      
+      
+      \etdChapterStyle{#1}                       %     TITLE OF CHAPTER
+    \end{center}
+    \setlength{\topmargin}{0in}   % back to 1in
 
 }}
 \renewcommand{\@makeschapterhead}[1]{{  
-        \setlength{\topmargin}{0.5in}   % really 1.5in, added by bph
-                                        % to meet OAP standards
-        \normalfont\large\bfseries
-        \begin{center}
-        \etdChapterHeadFormat{#1}                       %     TITLE OF CHAPTER
-        \end{center}
-        \setlength{\topmargin}{0in}   % back to 1in
+    \setlength{\topmargin}{0.5in}   % really 1.5in, added by bph
+    % to meet OAP standards
+    \normalfont\large\bfseries
+    \begin{center}
+      \etdChapterHeadFormat{#1}                       %     TITLE OF CHAPTER
+    \end{center}
+    \setlength{\topmargin}{0in}   % back to 1in
 }}
 \renewcommand\section{\@startsection {section}{1}{\z@}%
-                                {-3.5ex \@plus -1ex \@minus -.2ex}%
-                                {2.3ex \@plus.2ex}%
-                                {\normalfont\large\bfseries\centering}}
+  {-3.5ex \@plus -1ex \@minus -.2ex}%
+  {2.3ex \@plus.2ex}%
+  {\normalfont\large\bfseries\centering}}
 \renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
-                                {-3.25ex\@plus -1ex \@minus -.2ex}%
-                                {1.5ex \@plus .2ex}%
-                                {\normalfont\large\itshape\centering}}
+  {-3.25ex\@plus -1ex \@minus -.2ex}%
+  {1.5ex \@plus .2ex}%
+  {\normalfont\large\itshape\centering}}
 \renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
-                                {-3.25ex\@plus -1ex \@minus -.2ex}%
-                                {1.5ex \@plus .2ex}%
-                                {\normalfont\large}}
+  {-3.25ex\@plus -1ex \@minus -.2ex}%
+  {1.5ex \@plus .2ex}%
+  {\normalfont\large\itshape\centering}}
 \renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
-                                {3.25ex \@plus1ex \@minus.2ex}%
-                                {-1em}%
-                                {\normalfont\normalsize\bfseries}}
+  {3.25ex \@plus1ex \@minus.2ex}%
+  {-1em}%
+  {\normalfont\large\itshape\centering}}
 \renewcommand\subparagraph{\@startsection{subparagraph}{5}{\parindent}%
-                                {3.25ex \@plus1ex \@minus .2ex}%
-                                {-1em}%
-                                {\normalfont\normalsize\itshape}}
+  {3.25ex \@plus1ex \@minus .2ex}%
+  {-1em}%
+  {\normalfont\normalsize\itshape}}
 
 \renewcommand*\l@part[2]{%
   \ifnum \c@tocdepth >\m@ne
-    \addpenalty{-\@highpenalty}%
-    \vskip 1.0em \@plus\p@
-    \setlength\@tempdima{1.5em}%
-    \begingroup
-      \parindent \z@ \rightskip \@pnumwidth
-      \parfillskip -\@pnumwidth
-      \leavevmode
-      \advance\leftskip\@tempdima
-      \hskip -\leftskip
-      {\bf \etdChapterHeadFormat{#1}}\nobreak
-      \hfil \nobreak\hb@xt@\@pnumwidth{\hss}\par
-      \penalty\@highpenalty
-    \endgroup
-  \fi}
+  \addpenalty{-\@highpenalty}%
+  \vskip 1.0em \@plus\p@
+  \setlength\@tempdima{1.5em}%
+  \begingroup
+  \parindent \z@ \rightskip \@pnumwidth
+  \parfillskip -\@pnumwidth
+  \leavevmode
+  \advance\leftskip\@tempdima
+  \hskip -\leftskip
+         {\bf \etdChapterHeadFormat{#1}}\nobreak
+         \hfil \nobreak\hb@xt@\@pnumwidth{\hss}\par
+         \penalty\@highpenalty
+         \endgroup
+         \fi}
 
 
 \renewcommand*\l@chapter[2]{%
   \ifnum \c@tocdepth >\m@ne
-    \addpenalty{-\@highpenalty}%
-    \vskip 1.0em \@plus\p@
-    \setlength\@tempdima{1.5em}%
-    \begingroup
-      \parindent \z@ \rightskip \@pnumwidth
-      \parfillskip -\@pnumwidth
-      \leavevmode
-      \advance\leftskip\@tempdima
-      \hskip -\leftskip
-      \etdChapterHeadFormat{#1}\nobreak
-% CCW: The following 3 lines add dots to the chapter TOC listings
-      \leaders\hbox{$\m@th
-        \mkern \@dotsep mu\hbox{.}\mkern \@dotsep
-        mu$}\hfill
-      \hfil \nobreak\hb@xt@\@pnumwidth{\hss #2}\par
-      \penalty\@highpenalty
-    \endgroup
+  \addpenalty{-\@highpenalty}%
+  \vskip 1.0em \@plus\p@
+  \setlength\@tempdima{1.5em}%
+  \begingroup
+  \parindent \z@ \rightskip \@pnumwidth
+  \parfillskip -\@pnumwidth
+  \leavevmode
+  \advance\leftskip\@tempdima
+  \hskip -\leftskip
+  \etdChapterHeadFormat{#1}\nobreak
+  % CCW: The following 3 lines add dots to the chapter TOC listings
+  \leaders\hbox{$\m@th
+    \mkern \@dotsep mu\hbox{.}\mkern \@dotsep
+    mu$}\hfill
+  \hfil \nobreak\hb@xt@\@pnumwidth{\hss #2}\par
+  \penalty\@highpenalty
+  \endgroup
   \fi}
 
 % Add "CHAPTER"/"APPENDIX" headings to TOC before first of each.
@@ -329,7 +328,7 @@
   \fi%
   \old@chapter[{#1}]{#2}}
 \fi
- 
+
 % Change names of table of contents and bibliography
 
 \renewcommand{\contentsname}{Table of Contents}

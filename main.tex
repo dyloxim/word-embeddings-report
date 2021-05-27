@@ -1,73 +1,35 @@
-% ---- ETD Document Class and Useful Packages ---- %
 \documentclass{ucetd}
-\usepackage{subfigure,epsfig,amsfonts}
-\usepackage{natbib}
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{amsthm}
 
-\theoremstyle{definition}\newtheorem{definition}{Definition}
+\include{frontmatter}
 
-%% Use these commands to set biographic information for the title page:
-\title{Word Embeddings}
-\author{Joel Strouts}
-\department{Mathematics}
-\date{2021}
-\degree{Mathematics BSc}
-\date{2021}
-
-\dedication{Dedication Text}
-\epigraph{Epigraph Text}
+\include{glossary}
 
 \begin{document}
-%% Basic setup commands
-% If you don't want a title page comment out the next line and uncomment the line after it:
+
 \maketitle
-%\omittitle
 
-% These lines can be commented out to disable the copyright/dedication/epigraph pages
-%\makecopyright
-%\makededication
-%\makeepigraph
-
-
-%% Make the various tables of contents
 \tableofcontents
-%\listoffigures
-%\listoftables
-
-%\acknowledgments
-% Enter Acknowledgements here
 
 \abstract
-In this project we describe two widely used methods for generating numerical vector representations of word-tokens from a training text corpus. In the first section discuss the context of the problem within natural language processing and semantics, define the terminology that will be used throughout the project, and give some concrete examples of outputs and applications of these methods.
+
+In this report we attempt to provide a complete introduction to the core theories of word embeddings (numerical vector representations of words as they appear in text) sufficient to enable further reading of more advanced topics. This introduction covers briefly the linguistic context, theoretical development, most impactful implementations, and practical considerations of application of word embedding methods. In the first section we discuss the nature of the words, in the second we describe the cross disciplinary events which lead to development the key mathematical techniques for producing embeddings and explain their operation, and finally we discuss practical considerations of these algorithm's applications. As the primary relevance of these methods within research is their practical application we take a broader contextual approach opposed to a purely mathematical one and focus on the developments and methods most influential in the sphere of application. We assume familiarity with core mathematics at an undergraduate level as prerequisite for our descriptions of the selected implementation methods but otherwise assume no prior knowledge of the subject area.
 
 \mainmatter
-% Main body of text follows
 
-\chapter{Preliminaries}
-\section{Defining Words}
-The concept of 'a word' is not well defined.
+\include{chapters/introduction}
+\include{chapters/1-words}
+\include{chapters/2-word-representations}
+\include{chapters/3-application}
+\include{chapters/4-further-reading}
 
-The two tasks: counting the number of words in a document, and counting the number of words in a persons vocabulary, require applying two different meanings of the term 'word'. The difference between these two senses is illustrated by the different methods of counting words in the sentence below:
-\begin{align}
-\underset{1}{\texttt{\vphantom{g}Let's }} \underset{2}{\texttt{\vphantom{g}start }} \underset{3}{\texttt{\vphantom{g}at }} \underset{4}{\texttt{\vphantom{g}the }} \underset{5}{\texttt{\vphantom{g}very }} \underset{6}{\texttt{\vphantom{g}beginning, }} \underset{7}{\texttt{\vphantom{g}a }} \underset{8}{\texttt{\vphantom{g}very }} \underset{9}{\texttt{\vphantom{g}good }} \underset{10}{\texttt{\vphantom{g}place }} \underset{11}{\texttt{\vphantom{g}to }} \underset{12}{\texttt{\vphantom{g}start.}}\\[9pt]
-\underset{1}{\texttt{\vphantom{g}Let's }} \underset{2}{\texttt{\vphantom{g}start }} \underset{3}{\texttt{\vphantom{g}at }} \underset{4}{\texttt{\vphantom{g}the }} \underset{5}{\texttt{\vphantom{g}very }} \underset{6}{\texttt{\vphantom{g}beginning, }} \underset{7}{\texttt{\vphantom{g}a }} \underset{-}{\texttt{\vphantom{g}very }} \underset{8}{\texttt{\vphantom{g}good }} \underset{9}{\texttt{\vphantom{g}place }} \underset{10}{\texttt{\vphantom{g}to }} \underset{-}{\texttt{\vphantom{g}start.}}
-\end{align}
-In the first case each word-occurrence is counted, regardless of whether another instance of the same word has already occurred. In the second case the duplicate instances of the words ``very'' and ``start'' are not counted towards the total, i.e. only unique words are counted towards the total. These different methods are however both examples of using the term 'word' to refer to 'orthographic words', i.e. ``what occurs between spaces''. The word 'word' could also refer to 'grammatical words' which is the sense used in the statement ``look, looks, looking, \& looked are all forms of the same word'', or even to speech, as in the phrases ``it's my word against yours'' and ``can I have a word with you?''.
+%% \include{chapters/a-brief-history}
+%% \include{chapters/using-word-embeddings}
+%% \include{chapters/further-developments}
 
-The examples used to illustrate these last two meanings were adapted from the introductory chapter of \textit{Word: A typological framework}, a book whose sole topic is the discussion of how 'word' should be defined.
+%% \include{chapters/pre-processing}
 
-\begin{definition}
-  A \textbf{word-token} is 
-\end{definitoin}
-
-% Format a LaTeX bibliography
+\printglossary
 \makebibliography
-
-% Figures and tables, if you decide to leave them to the end
-%\input{figure}
-%\input{table}
 
 \end{document}
 
