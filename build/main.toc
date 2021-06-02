@@ -1,6 +1,6 @@
 \boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Abstract}{iii}{chapter*.2}%
+\contentsline {chapter}{Abstract}{ii}{chapter*.1}%
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{Introduction}{1}{chapter*.3}%
 \defcounter {refsection}{0}\relax 
@@ -14,18 +14,42 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {2}Word Representations}{7}{chapter.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.1}Count Models}{8}{section.2.1}%
+\contentsline {section}{\numberline {2.1}Preliminaries}{7}{section.2.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.1.1}History}{8}{subsection.2.1.1}%
+\contentsline {section}{\numberline {2.2}Count Models}{11}{section.2.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.1.2}Preliminaries}{9}{subsection.2.1.2}%
+\contentsline {section}{\numberline {2.3}Count Models}{12}{section.2.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {3}Application}{11}{chapter.3}%
+\contentsline {subsection}{\numberline {2.3.1}History}{12}{subsection.2.3.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.1}Preprocessing}{11}{section.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Term-Document \& Term-Term Matricies}{13}{subsection.2.3.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.2}Hyper-parameters}{11}{section.3.2}%
+\contentsline {subsection}{\numberline {2.3.3}Term Weighting}{14}{subsection.2.3.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.3}Bias}{11}{section.3.3}%
+\contentsline {subsection}{\numberline {2.3.4}Smoothing}{14}{subsection.2.3.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Further Reading}{12}{chapter*.4}%
+\contentsline {subsection}{\numberline {2.3.5}Singular Value Decomposition}{14}{subsection.2.3.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.4}Predict Models}{14}{section.2.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.4.1}Early Developments}{14}{subsection.2.4.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.4.2}$\texttt {word2vec}$: Skip-Gram with Negative Sampling}{14}{subsection.2.4.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.4.3}$\texttt {word2vec}$: Continuous Bag of Words}{14}{subsection.2.4.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.5}Measuring Similarity}{14}{section.2.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.6}Comparison}{14}{section.2.6}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.7}Other Approaches}{14}{section.2.7}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {3}Application}{15}{chapter.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.1}Preprocessing}{15}{section.3.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.2}Hyper-parameters}{15}{section.3.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.3}Bias}{15}{section.3.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Further Reading}{16}{chapter*.4}%
