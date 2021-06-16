@@ -1,0 +1,10 @@
+**/*.aux
+./code/dialogues/*.txt
+**/_region_.*
+**/*.log
+**/TAGS
+**/.DS_Store
+auto/**
+**/#**
+log/**
+**/auto/**

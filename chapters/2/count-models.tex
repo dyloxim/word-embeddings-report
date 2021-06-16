@@ -1,0 +1,41 @@
+\section{Count Models}
+The embedding algorithms discussed in this report represent the confluence of two key ideas: first that the meaning of a word corresponds with the contexts in which it occurs, and second that the meaning of a word can be represented by a vector of numerical values.
+
+This first idea is called the \textbf{distributional hypothesis}, was ``widespread in linguistic theory in the 1950s'' Jurafsky (2021), with key contributions to its conception contributed by Joos (1950) \emph{Description of Language Design}, Harris (1954) \emph{Distributional Structure}, and Firth (1957) \emph{A synopsis of linguistic theory 1930-1955}.
+
+\begin{quote}
+To illustrate the distributional hypothesis, consider for example the possible meanings of ``bank'' discussed above in relation to polysemy: \emph{bank} as in the organisation, and \emph{bank} as in riverside. The first sense of the word is identified with neighboring word contexts like: account, manager, desk, etc. whereas the second sense is distinguished by context words like: river, grassy, marsh.
+\end{quote}
+
+The way these distributional relationships are inferred by analysis of a \textbf{corpus} (a collection of reference texts) and synthesised in vector form differ according to the embedding algorithm used. The `count models' developed in the 1960s and refined thereafter were the first to apply the distributional hypothesis to create word vectors, and remained the state of the art until a series of papers published by Milokov et al (2013) presented efficient methods for generating word vectors using neural networks, along with a standard software implementation $\texttt{word2vec}$ which then became ubiquitous.
+
+We will discuss count models first as they lay the contextual foundation for the innovations of the later predict models.
+\subsection{History}
+The adoption of distributional perspectives within linguistic spheres in the 1950s coincided with an emerging interest in mechanical and computational methods for document indexing and information retrieval (IR); this purpose was one of the first applications considered for modern computers. The question of quantifying document `aboutness' and relatedness suggested, as viewed through the right mathematical lens, a notion of a `document space' populated by `document vectors' where relatedness could be quantified by a distance function on the space. From this the notion word vectors naturally followed. We summarise some key events in this lineage below.
+
+In 1948 two chemists and leading advocates of punched cards, James W. Perry and G. Malcolm Dyson, petitioned IBM head, Thomas Watson, Sr to invest in research \& development on ``mechanical solutions for scientists’ specific information problems'', who selected Hans Peter Luhn for the task [cite: Rieder, B 2020].
+
+This appointment resulted in ``a remarkable series of papers'' [cite: salton 1987] published by Luhn between 1957 \& 1959, in particular: \emph{A Statistical Approach to Mechanized Encoding and Searching of Literary Information}, Luhn (1957). The concepts discussed in this paper were prescient of future developments in the mechanical processing of documents but details of computation are omitted.
+
+Maron \& Kuhns (1960) provided details of a potential approach to the computation of such a system in the influential \emph{On relevance, Probabilistic Indexing and Information Retrieval.} published around the same time. Crucially, the paper suggests the use of conditional probabilities to compute `closeness of index terms'. This was an application of distributional thinking to quantify word similarity, but it did not specify a vector-space conception of the problem.
+
+This final piece was supplied by Paul Switzer in \emph{Vector Images in Document Retrieval} (1964), which references Maron \& Kuhn's paper and elaborates by suggesting the construction of a `term-term association matrix' based on co-occurence frequencies producing an `index term vector space' in which documents are then located. It is the first paper to suggest that document similarity could be determined by projecting index terms and documents into a vector space.
+
+
+Details of the resulting model and the most widely adopted refinements are the focus of this section.
+
+\subsection{Term-Document \& Term-Term Matricies}
+
+\begin{definition}[Document Word Occurences]
+  The number of times a word-token $w$ occurs in a tokenized document $W_d$ is given by $\operatorname{count}(w,W_d)$.
+\end{definition}
+
+\begin{definition}[Term Document Matrix]
+  A term-document matrix $X$, (for corpus $C$ and tokenizer $T$) has columns corresponding to each corpus document, and rows corresponding to each word in the corpus vocabulary (hence having dimensions $\#V(C)\times \#C$). The matrix entry 
+\end{definition}
+
+\subsection{Term Weighting}
+
+\subsection{Smoothing}
+
+\subsection{Singular Value Decomposition}

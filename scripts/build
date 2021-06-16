@@ -3,16 +3,19 @@
 # clean build directory
 rm /Users/Joel/docs/project2/build/main.*
 
-# build commands
+# generate figures
+# nim c -r --verbosity:0 ./code/svg_generate.nim
+python3 ./code/make-figures.py
 
+# build commands
 xelatex --shell-escape \\nonstopmode \\input main.tex
 # pdflatex --shell-escape \\nonstopmode \\input main.tex
 # makeindex -s main.ist -o main.gls main.glo
 # echo "\@istfilename{main.ist}" >> main.aux
 # makeglossaries main
+# rm -Rf `biber --cache`
 biber main
 xelatex --shell-escape \\nonstopmode \\input main.tex
 xelatex --shell-escape \\nonstopmode \\input main.tex
 
-# move output to build dir
-mv *.ilg *.ind *.glg *.glo *.gls *.glsdefs *.ist *.log *.out *.toc *.aux *.pdf *.bcf *.blg *.bbl *.run.xml ./build
+ mv *.spl *.log *.out *.toc *.aux *.bcf *.blg *.bbl *.run.xml ./log

@@ -1,0 +1,14 @@
+\section{Features of Written Language}
+While the linguistic \& philosophical discussion of `word' informs the theory of computational linguistics, in our context the question of ``what is a word?'' is realised as a question of text-preprocessing. It is assumed that the input to the embedding process is a written text and it is the task of text preprocessing to extract `words' from that text. The implementation used is more motivated by the application requirements \& task performance than linguistic theory.
+
+Embedding algorithms are not discriminatory about what you classify as `a word' in their input (in fact they can be applied to forms of structured data other than just language, as we will discuss in the final section of this report) and the decision about how to make these divisions will depend on the task at hand. If the intended application of the embeddings is within the field of chemistry, then a compound name like $\texttt{(NH4)2SO4}$ should absolutely be treated as a word, while in other contexts it is possible that such an irregular form may be discounted without negative consequences. The input material impacts these decisions too; text in newspapers has a narrower scope of common word-like forms than a medium like tweets, and text preprocessing decisions should reflect this.
+
+The process of extracting word-units from a text is called \textbf{tokenization} and the resulting units are called \textbf{word-tokens}. Word tokens with the same form (like \emph{red} and \emph{red}) are said to be instances of same \textclass{word-class} (or word-type). For example, the sentence;
+
+\begin{quote}
+  \emph{The limits of my language means the limits of my world} - Wittgenstein, 1922
+\end{quote}
+
+Contains 11 word-tokens, and 7 word-classes (assuming the sentence is tokenized by identifying word boundaries at both ends and each blank space).
+
+A detailed discussion of tokenization \& text preprocessing in general is beyond the scope of this report but some practical considerations can be found in \autoref{practical considerations chapter}

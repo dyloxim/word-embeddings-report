@@ -48,34 +48,27 @@
   \pagenumbering{arabic}
 }
 
-% Commands to follow the title page
-\newcommand{\etdPostTitle}{
-  % Setup page numbering
-  \pagenumbering{roman}
-  \addtocounter{page}{1}
-}
-
 % UC ETD title page format
 \newcommand{\etdTitlePage} {
   \begin{titlepage}
-    \begin{center}
-      \rule{0in}{0.55in} % Artificial extra [old=0.95in] margin. Why not vspace?
-      THE UNIVERSITY OF YORK\\
-      \vspace{0.8in}
-      \MakeUppercase{\@title}\\
-      \vspace{0.8in}
-      A DISSERTATION SUBMITTED TO\\
-      THE DEPARTMENT OF \MakeUppercase{\@department}\\
-      IN CANDIDACY FOR THE DEGREE OF\\
-      \MakeUppercase{\@degree}\\
-      \vspace{0.8in}
-      BY\\
-      \MakeUppercase{\@author}\\
-      \vspace{0.8in}
-      YORK, UK\\
-      \MakeUppercase{\@date}
-      \vspace*{0.45in}
-    \end{center}
+  {\centering
+    {\scshape\LARGE \@institution \par}
+    \vspace{0.3cm}
+    {\scshape\Large Final year project\par}
+    \vspace{1.5cm}
+    {\huge\bfseries \@title\par}
+    \vspace{1.5cm}
+    {\Large\itshape \@author\par}
+    \vfill
+    supervised by\par
+    Dr.~Ben \textsc{Powell}
+
+    \vspace{0.5cm}\textbf{Abstract}\par}
+  \noindent\raisebox{.5ex}{\rule{\linewidth}{.4pt}}\par
+  \@abstract\par
+  \noindent\raisebox{.5ex}{\rule{\linewidth}{.4pt}}\par
+  \vfill
+  {\centering\large \today\par}
   \end{titlepage}
 }
 
@@ -94,7 +87,7 @@
 %%
 
 % Default font point size
-\newcommand{\etdDefaultPointSize}{12pt}
+\newcommand{\etdDefaultPointSize}{10pt}
 
 % Default line spacing
 %\newcommand{\etdDefaultSpacing}{\setstretch{1.37}}
@@ -195,7 +188,9 @@
   \newpage
   \addcontentsline{toc}{chapter}{References}
   \begin{singlespace}
-    \printbibliography
+    \begin{multicols}{2}[\printbibheading]
+      \printbibliography[heading=none]
+    \end{multicols}
   \end{singlespace}
 }
 
@@ -210,15 +205,13 @@
 \newcommand{\division}[1]{\gdef\@division{#1}}
 \newcommand{\degree}[1]{\gdef\@degree{#1}}
 \renewcommand{\date}[1]{\gdef\@date{#1}}
+\renewcommand{\abstract}[1]{\gdef\@abstract{#1}}
+\renewcommand{\institution}[1]{\gdef\@institution{#1}}
 
 % Output title page
 \renewcommand{\maketitle}{
   \etdTitlePage
-  \etdPostTitle
 }
-
-% You MUST call this command where the title would normally be emitted if you omit the title page
-\newcommand{\omittitle}{\etdPostTitle}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -233,9 +226,7 @@
 
 % Chapter/Section formatting
 \renewcommand{\@makechapterhead}[1]{{
-
-    \setlength{\topmargin}{0.5in}  	% really 1.5in, added by bph
-    % to meet OAP standards
+    \setlength\topskip{0cm}
     \normalfont\large\bfseries
     \begin{center}
       \etdChapterStyle{\@chapapp{ \thechapter}}  %  CHAPTER # or APPENDIX
@@ -243,17 +234,15 @@
       
       \etdChapterStyle{#1}                       %     TITLE OF CHAPTER
     \end{center}
-    \setlength{\topmargin}{0in}   % back to 1in
-
+    \setlength\topskip{2cm}
 }}
 \renewcommand{\@makeschapterhead}[1]{{  
-    \setlength{\topmargin}{0.5in}   % really 1.5in, added by bph
-    % to meet OAP standards
+    \setlength\topskip{0cm}
     \normalfont\large\bfseries
     \begin{center}
       \etdChapterHeadFormat{#1}                       %     TITLE OF CHAPTER
     \end{center}
-    \setlength{\topmargin}{0in}   % back to 1in
+    \setlength\topskip{2cm}
 }}
 \renewcommand\section{\@startsection {section}{1}{\z@}%
   {-3.5ex \@plus -1ex \@minus -.2ex}%
@@ -340,7 +329,7 @@
 %%\setlength{\evensidemargin}{-0.325in}  % really 1.5in
 %\setlength{\oddsidemargin}{0.in}
 %\setlength{\evensidemargin}{0.in}
-%%\setlength{\textwidth}{6.875in}
+%\setlength{\textwidth}{6.875in}
 %\setlength{\textwidth}{6.5in}
 %%\setlength{\topmargin}{0.in}   % really 1in
 %\setlength{\headheight}{-0.375in}
@@ -353,28 +342,28 @@
 %% Completely re-doing margins --mvz
 %%%%%%
 
-% Main text box is the width/height of the paper minus 2in
-\setlength{\textwidth}{6.5in}
-\setlength{\textheight}{8.75in} % + footskip (0.25) = 9.00in
-
-% Only the left and top margins can be defined
-% 1in is added to given values
-\setlength{\topmargin}{0.0in}
-\setlength{\evensidemargin}{0.0in}
-\setlength{\oddsidemargin}{0.0in}
-
-% The top margin is also affected by the headhight and headsep
-\setlength{\headheight}{0.0in}
-\setlength{\headsep}{0.0in}
-
-% The bottom margin is also affected by the footskip
-% i.e. the length of the page has the following markers:
-% top of text at 1.00in, bottom of text at 9.75in,
-% page number at 10.00in, bottom of page at 11.00in
-\setlength{\footskip}{0.25in}
-
-% Making sure absolutely nothing passes the right margin
-\setlength{\hfuzz}{0.0pt}
+%%%%  % Main text box is the width/height of the paper minus 2in
+%%%%  \setlength{\textwidth}{5.75in}
+%%%%  \setlength{\textheight}{9.00in} % + footskip (0.25) = 9.00in
+%%%%  
+%%%%  % Only the left and top margins can be defined
+%%%%  % 1in is added to given values
+%%%%  \setlength{\topmargin}{-0.2in}
+%%%%  \setlength{\evensidemargin}{0.0in}
+%%%%  \setlength{\oddsidemargin}{0.4in}
+%%%%  
+%%%%  % The top margin is also affected by the headhight and headsep
+%%%%  \setlength{\headheight}{0.0in}
+%%%%  \setlength{\headsep}{0.0in}
+%%%%  
+%%%%  % The bottom margin is also affected by the footskip
+%%%%  % i.e. the length of the page has the following markers:
+%%%%  % top of text at 1.00in, bottom of text at 9.75in,
+%%%%  % page number at 10.00in, bottom of page at 11.00in
+%%%%  \setlength{\footskip}{0.5in}
+%%%%  
+%%%%  % Making sure absolutely nothing passes the right margin
+%%%%  \setlength{\hfuzz}{0.0pt}
 
 % Changing where the page numbers go on pages that aren't the first
 % page of a chapter.
@@ -422,3 +411,4 @@
     \oldlistoffigures 
   \end{singlespace}
 }
+

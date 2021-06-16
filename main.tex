@@ -1,35 +1,91 @@
+%%% Local Variables:
+%%% TeX-engine: xelatex
 \documentclass{ucetd}
 
 \include{frontmatter}
 
-\include{glossary}
+\institution{University of York}
+\title{Word Embeddings}
+\author{Joel Strouts}
+\date{2021}
+\abstract{
+In this report we attempt to provide a complete introduction to the core theories of word embeddings (numerical vector representations of words as they appear in text) sufficient to enable further reading of more advanced topics. This introduction covers briefly the linguistic context, theoretical development, most impactful implementations, and practical considerations of application of word embedding methods. In the first section we discuss the nature of the words, in the second we describe the cross disciplinary events which lead to development the key mathematical techniques for producing embeddings and explain their operation, and finally we discuss practical considerations of these algorithm's applications. As the primary relevance of these methods within research is their practical application we take a broader contextual approach opposed to a purely mathematical one and focus on the developments and methods most influential in the sphere of application. We assume familiarity with core mathematics at an undergraduate level as prerequisite for our descriptions of the selected implementation methods but otherwise assume no prior knowledge of the subject.}
 
 \begin{document}
 
 \maketitle
 
+\pagenumbering{roman}
+
 \tableofcontents
+\addcontentsline{toc}{chapter}{Introduction}
+\chapter*{Introduction}
+\sectionmark{INTRODUCTION}
+\markright{INTRODUCTION}
 
-\abstract
+Word embeddings are numerical representations of words which are derived from the patterns of word usage observed in a body of example text. These representations take the form of position vectors belonging to a \textit{Word Space}, defined by \textcite{shutze-1993-word-space} in the following terms:
 
-In this report we attempt to provide a complete introduction to the core theories of word embeddings (numerical vector representations of words as they appear in text) sufficient to enable further reading of more advanced topics. This introduction covers briefly the linguistic context, theoretical development, most impactful implementations, and practical considerations of application of word embedding methods. In the first section we discuss the nature of the words, in the second we describe the cross disciplinary events which lead to development the key mathematical techniques for producing embeddings and explain their operation, and finally we discuss practical considerations of these algorithm's applications. As the primary relevance of these methods within research is their practical application we take a broader contextual approach opposed to a purely mathematical one and focus on the developments and methods most influential in the sphere of application. We assume familiarity with core mathematics at an undergraduate level as prerequisite for our descriptions of the selected implementation methods but otherwise assume no prior knowledge of the subject area.
+\begin{itquote}
+  ``[The word space model] \emph{uses feature vectors to represent words, but the features cannot be interpreted on their own. Vector similarity is the only information present in Word Space: semantically related words are close, unrelated words are distant}.''
+\end{itquote} 
 
-\mainmatter
+\autoref{fig:imagined-word-vectors} illustrates this principal with five example words identified by the five feature vectors in \autoref{}. In the field of machine learning a feature vector is ``a list of features describing an instance''\smartcite{provost-1998-glossary}
 
-\include{chapters/introduction}
+\begin{wrapfigure}{R}{0.5\textwidth}
+  \centering
+  \begin{tikzpicture}[scale=1.7]
+    \draw[<->, very thick] (-2,0) -- (2,0);
+    \draw[<->, very thick] (0,-2) -- (0,2);
+    %%\draw[steps=.25cm,gray,very thin] (-4,-4) grid (4,4);
+    \node at (0.63,1.50) {frog};
+    \node at (1.3,1.25) {newt};
+    \node at (-1.55,0.35) {apple};
+    \node at (-1.13,-0.30) {orange};
+    \node at (0.7,-0.75) {window};
+  \end{tikzpicture}
+  \caption{An example word space: One way arranging the words \emph{apple, orange, triangle, frog \& newt} in two dimensional space so that semantically related words are closer together}
+\end{wrapfigure}\label{fig:imagined-word-vectors}
+
+
+\begin{figure}[ht]
+ \centering
+ \includesvg[width=0.9 \columnwidth]{figures/python/wiki_vecs.svg}
+ \caption{actual word embedding}
+ \label{fig:uk-keyboard}
+\end{figure}
+Nam dui ligula, fringilla a, euismod sodales, sollicitudin vel, wisi. Morbi 
+auctor lorem non justo. Nam lacus libero, pretium at, lobortis vitae, 
+ultricies et, tellus. Donec aliquet, tortor sed accumsan bibendum, erat 
+ligula aliquet magna, vitae ornare odio metus a mi. Morbi ac orci et nisl 
+hendrerit mollis. Suspendisse ut massa. Cras nec ante. Pellentesque a nulla. 
+Cum sociis natoque penatibus et magnis dis parturient montes, nascetur 
+ridiculus mus. Aliquam tincidunt urna. Nulla ullamcorper vestibulum turpis. 
+Pellentesque cursus luctus mauris.
+
+Nam dui ligula, fringilla a, euismod sodales, sollicitudin vel, wisi. Morbi 
+auctor lorem non justo. Nam lacus libero, pretium at, lobortis vitae, 
+ultricies et, tellus. Donec aliquet, tortor sed accumsan bibendum, erat 
+ligula aliquet magna, vitae ornare odio metus a mi. Morbi ac orci et nisl 
+hendrerit mollis. Suspendisse ut massa. Cras nec ante. Pellentesque a nulla. 
+Cum sociis natoque penatibus et magnis dis parturient montes, nascetur 
+ridiculus mus. Aliquam tincidunt urna. Nulla ullamcorper vestibulum turpis. 
+Pellentesque cursus luctus mauris.
+
+\begin{quote}
+  \emph{``You will know a word by the company it keeps''}
+\end{quote}
+
+The first techniques for producing embeddings were developed in the field of information retrieval (IR) and are based on word-context frequency matricies. These approaches are now referred to as count models, in contrast to more recent methods for producing word embeddings using neural networks which are referred to as predict models.
+
+In the first chapter we discuss the object of representation: words, then in the second chapter we discuss the methods of representation: first count models and then predict models, and finally in the last chapter we discuss practical considerations before concluding with suggested further reading. 
+
+\mainmatter{
 \include{chapters/1-words}
 \include{chapters/2-word-representations}
 \include{chapters/3-application}
 \include{chapters/4-further-reading}
+}
 
-%% \include{chapters/a-brief-history}
-%% \include{chapters/using-word-embeddings}
-%% \include{chapters/further-developments}
-
-%% \include{chapters/pre-processing}
-
-\printglossary
 \makebibliography
 
 \end{document}
-

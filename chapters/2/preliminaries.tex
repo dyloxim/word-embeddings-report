@@ -1,0 +1,163 @@
+\section{Preliminaries}
+We begin by defining terms already encountered in mathematical terms.
+
+\begin{definition}[Orthography]\label{def:orthography}
+  An orthography is a finite set of symbols.
+\end{definition}
+
+\begin{example}\label{ex:orthographies}
+  The sets:
+  \begin{align}
+    &\mathscr{O}_L=\{c\mid\text{$c$ is a symbol that can be copied and pasted the pdf of this report}\}\label{eq:orth-doc}\\
+    &\mathscr{O}_P=\{c\mid\text{$c$ is the inscription of a regular polygon with eight sides or less}\}\label{eq:orth-shape}\\
+    &\mathscr{O}_K=\{c\mid\text{$c$ is a typable character marked on \autoref{fig:uk-keyboard}}\}\label{eq:orth-keyboard}
+  \end{align}
+  are all examples of orthographies.
+\end{example}
+\vspace{6pt}
+
+\begin{figure}[ht]
+ \centering
+ \includesvg[width=0.9 \columnwidth]{figures/inkscape/uk-keyboard.svg}
+ \caption{A standard uk keyboard layout}
+ \label{fig:uk-keyboard}
+\end{figure}
+
+Note, the term `orthography' in linguistics refers to the conventions of written language in general and is distinct from the use of `an orthography' we use here.
+
+\begin{definition}[Document]
+  A document $d$ is a finite sequence $c_0,c_1,\dots,c_n$ ($c\in\mathscr{O}$), where $\mathscr{O}$ is an orthography.
+\end{definition}
+
+\begin{example}[This Report]\label{ex:doc-report}
+    The sequence of symbols obtained by copy pasting this entire report into a text editor (ordered by starting with the cursor at the top of the file and moving the cursor with the arrow keys one position to the right at a time -including newlines) is a document using the orthography \ref{eq:orth-doc}.
+\end{example}
+\vspace{6pt}
+
+\begin{example}[Shapes Document]\label{ex:doc-shapes}
+    The sequence of shapes: \emph{$\triangle\triangle\square\triangle\triangle\pentagon$} is a document using the orthograpy \ref{eq:orth-shape}.
+\end{example}
+\vspace{6pt}
+
+\begin{example}[Plato Documents]\label{ex:doc-plato}
+    Any of the works of Plato available at the \href{https://www.gutenberg.org/ebooks/author/93}{Project Gutenberg} website, copied and pasted from their plain text formats and using the same procedure described above, are documents using the orthography \ref{eq:orth-keyboard}.
+\end{example}
+
+\begin{definition}[Word-Token]
+  A word token $w$ has the same attributes as a document; it is a finite sequence $c_0,c_1,\dots,c_n$ ($c\in\mathscr{O}$), where $\mathscr{O}$ is an orthography. We only refer to sequences of symbols as word tokens when they are the output of a tokenizer, however.
+\end{definition}
+
+\begin{definition}[Tokenizer]
+   A tokenizer $T$ is a function that maps a document to a sequence of word tokens; $T(d)=w_1,w_2,\dots,w_n$. The output is refered to as the 'tokenized' form of the document. We use the shorthand $W_d$ to refer to the tokenized document $T(d)$ when it is clear which tokenization has been used.\footnote{Here we consider tokenization in an abstract sense essentially saying ``A tokenizer is a function that extracts tokens''. A practical discussion of tokenization and text-preprocessing is found in \autoref{sec:preprocessing}}.
+\end{definition}
+
+\begin{example}[This Report Tokenized]\label{ex:doc-report-t}
+  The document from \autoref{ex:doc-report} if tokenized by treating everything occuring between two spaces (or between a space and the start or end of a line) yields a sequence of word tokens beginning \emph{``THE'' ``UNIVERSITY'' ``OF''}.
+\end{example}
+\vspace{6pt}
+
+\begin{example}[Shapes Document Tokenized]\label{ex:doc-shapes-t}
+  The document from \autoref{ex:doc-shapes} if tokenized using the function:
+  \begin{align*}
+    &T(d):\quad \texttt{Group repeated symbols in the sequence $d$ into word-tokens}\\
+    &\hphantom{T(d):\ }\texttt{(in the order of occurrence).}
+  \end{align*}
+  produces the output: \emph{``$\triangle$ $\triangle$'', ``$\square$'', ``$\triangle$ $\triangle$'', ``$\pentagon$''}
+\end{example}
+\vspace{6pt}
+
+\begin{example}[Simple Text Tokenizer]\label{ex:t-simple}
+  Given a document $d$ using the orthography $\mathscr{O}_K$ from \autoref{ex:orthographies} apply the following algorithm:
+  \begin{algorithm}
+    \caption{Simple Text Tokenizer}
+    \SetKwData{Tokens}{tokens}
+    \SetKwData{NextToken}{next\_token}
+    \SetKwData{Doc}{document}
+    \SetKwData{Char}{character}
+    \SetKwFunction{Append}{append}
+    \SetKwFunction{List}{list}
+    \SetKwFunction{ToLower}{convert\_to\_lowercase}
+    \SetKwInOut{Input}{input}\SetKwInOut{Output}{output}
+
+    \Input{A list of characters: \Doc}
+    \Output{A list of word tokens: \Tokens}
+    \BlankLine
+
+    \Tokens $\leftarrow$ \List{}\;
+    \NextToken $\leftarrow$ \List{}\;
+    \For{\Char in \Doc}{
+      \uIf{\Char is alphanumeric}{
+        \NextToken$\leftarrow$ \Append{\NextToken, \Char}\;
+      }
+      \ElseIf{character is a space or a newline}{
+        \If{\NextToken is not empty}{
+          \NextToken$\leftarrow$\ToLower{\NextToken}\;
+          \Tokens$\leftarrow$ \Append{\Tokens, \NextToken}\;
+          \NextToken$\leftarrow$ \List{}\;
+        }
+      }
+    }
+  \end{algorithm}
+\end{example}
+
+\begin{definition}[Corpus]
+  A corpus $C$ is a finite set of documents $\{d_1, d_2,\dots,d_n\}$.
+\end{definition}
+
+\begin{example}[Plato Corpus]\label{ex:corp-plato}
+  All the of Plato works referred to in \autoref{ex:doc-plato}, if converted to documents using the same procedure described there, considered together form a corpus of documents. We will refer to this corpus as $C_p$.
+\end{example}
+
+\begin{definition}[Vocabulary]
+  The vocabulary of a tokenized document $W_d$ is the set of unique word tokens in the tokenization of that document; $V(W_d)=\{w\mid w\in\, \text{the sequence $W_d$}\}$. The vocabulary of a corpus is the union of the vocabularies of each document in that corpus; $V(C)=V(d_1)\cup V(d_2)\cup \dots\cup V(d_n)$.
+\end{definition}
+
+\begin{example}[Shapes Document Vocabulary]
+  Using the same tokenization as before, the document from \autoref{ex:doc-shapes} has the vocabulary:
+  \begin{align*}
+    &V(\text{\emph{``$\triangle$ $\triangle$'', ``$\square$'', ``$\triangle$ $\triangle$'', ``$\pentagon$''}})\\
+    &\quad=\{\text{\emph{``$\triangle$ $\triangle$''}},\, \text{\emph{``$\square$''}},\, \text{\emph{``$\pentagon$''}}\}
+    \end{align*}
+\end{example}
+\vspace{6pt}
+
+\begin{definition}[$\#$ Operator]
+  The $\#$ symbol is used to denote the number of elements of the object it precedes. Before sequences it counts the number of elements in the sequence: $\#W_d=n$ (for $W_d=w_1,\dots,w_n$) \footnote{This is like the 'word count' feature many text editors provide}. Before sets it is a shorthand for the size of that set: $\#V(d)=|V(d)|=\text{the number of words in the vocabulary $V(d)$}$. Before a corpus it counts the number of documents in that corpus.
+\end{definition}
+
+\begin{example}[Shapes Document Sizes]
+  The word count of the tokenized shapes document $$W_d=\text{\emph{``$\triangle$ $\triangle$'', ``$\square$'', ``$\triangle$ $\triangle$'', ``$\pentagon$''}}$$ is $\#W_d=4$ and the vocabulary size is $\#V(W_d)=3$.
+\end{example}
+\vspace{6pt}
+
+\begin{example}[Plato Document Sizes]
+  Word token counts and vocabulary sizes for a selection Plato documents from~\ref{ex:doc-plato}, tokenized using the simple method: \footnote{the code used to create these examples and others examples on the same corpus is available in the appendix} have 
+  \vspace{6pt}
+  \begin{table}[h]
+    \centering
+    \begin{tabular}{c r r r r r r}
+      \toprule
+      \multicolumn{1}{c}{Attribute$\quad$} &
+      \multicolumn{6}{c}{Document ($d$)} \\
+
+      \cmidrule(lr){2-7}
+      &
+      $\texttt{laws}$ &
+      $\texttt{republic}$ &
+      $\texttt{cratylus}$ &
+      $\texttt{meno}$ &
+      $\texttt{apology}$ &
+      $\texttt{crito}$ \\
+      \midrule
+      $\#W_d$ & 140,406 & 118,283 & 23,883 & 12,716 & 11,392 & 5,332\\
+      $\#V(W_d)$ & 8100 & 8,105 & 2,963 & 1,493 & 1,789 & 1,030\\
+      \bottomrule
+    \end{tabular}
+    \caption{Number of Word Tokens \& Vocabulary Sizes of a selection of Documents in the Plato Corpus (\autoref{ex:corp-plato})}
+  \end{table}
+\end{example}
+\vspace{6pt}
+
+\begin{example}[Plato Corpus Size]
+  The complete Plato corpus (\ref{ex:corp-plato}) consists of 25 documents and, each tokenized the same way as before, has the word count $\sum_{d\in C_P}\#W_d=670,936$ and the vocabulary size $\#V(C_P)=19,432$.
+\end{example}
