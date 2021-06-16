@@ -1,3 +1,4 @@
+*.aux
 **/*.aux
 ./code/dialogues/*.txt
 **/_region_.*
