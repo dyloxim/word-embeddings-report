@@ -9,20 +9,37 @@
 \usepackage{wrapfig}
 \usepackage{graphicx}
 \usepackage{tikz,pgf}
-\usepackage{float}
 \usepackage{booktabs}
 \usepackage{wasysym}
 \usepackage{multicol}
 \usepackage[linesnumbered,lined,boxed,commentsnumbered]{algorithm2e}
+\usepackage{capt-of}
+\usepackage{caption}
+\usepackage{float}
 \usepackage[
   top=0.9in,
   bottom=0.8in,
   includeheadfoot,
-  headsep=0.2in,
   left=1.35in,
   textwidth=5.9in,
-  headheight=0.0in]{geometry}% http://ctan.org/pkg/geometry
-\titlespacing{\chapter}{0pt}{-80pt}{1cm}% <-- CHANGE DONE HERE!!
+  headheight=17pt]{geometry}% http://ctan.org/pkg/geometry
+\setlength{\intextsep}{1.5em}
+\setlength{\abovedisplayskip}{-1.5em}
+\setlength{\belowdisplayskip}{-1.5em}
+\setlength{\abovedisplayshortskip}{-1.0em}
+\setlength{\belowdisplayshortskip}{-1.0em}
+\setlength{\belowcaptionskip}{-0.5em}
+
+% for embedding svg figures made with inkscape
+\usepackage{svg}
+% frames
+\usepackage{framed}
+
+\makeatletter
+\newcommand\notsotiny{\@setfontsize\notsotiny\@vipt\@viipt}
+\makeatother
+
+\titlespacing{\chapter}{0pt}{-80pt}{1cm}
 
 % theorem environments
 \usepackage{amsthm, thmtools}
@@ -30,7 +47,6 @@
 % headers
 \usepackage{fancyhdr}
 \pagestyle{fancy}
-\fancyhf{}
 \fancyhead[L]{\rightmark}
 \fancyhead[R]{\thepage}
 \renewcommand{\headrulewidth}{0pt}
@@ -41,23 +57,59 @@
 \newcounter{subsubsection}[subsection]
 
 % references
-\usepackage{hyperref, cleveref}
+\usepackage[colorlinks = true,%
+linkcolor = black,%
+urlcolor  = black,%
+citecolor = black,%
+anchorcolor = black]{hyperref}
+\usepackage{cleveref}
 
 % Bibliography
 \usepackage[
-    backend=biber,
-    style=authoryear,
-    sortlocale=en_GB,
-    url=false, 
-    doi=true,
-    eprint=false
-]{biblatex}
+    backend    =      biber,%
+    style      = authoryear,%
+    sortlocale =      en_GB,%
+    url        =      false,% 
+    doi        =       true,%
+    eprint     =      false]{biblatex}
 \addbibresource{refs.bib}
 
 % glossary functions
 % \usepackage[toc]{glossaries}
 % uncomment to make glossary words bold
 % \renewcommand*{\glstextformat}[1]{\textbf{#1}}
+
+\newfontfamily\quotefont[ligatures=TeX]{Optima}
+\DeclareTextFontCommand{\textquotefont}{\normalfont\quotefont}
+\newcommand{\authorquote}[2]{
+\begin{center}\begin{quote}
+\parbox{0.4cm}{\Large{``}}{\small{\textquotefont{{#1}}}}$\ $\parbox{0.4cm}{\Large{''}} \vspace{-0.8em}\flushright{#2}
+\end{quote}\end{center}
+\vspace{-0.4em}
+}
+\newcommand{\basicquote}[1]{
+\begin{center}\begin{quote}
+\parbox{0.4cm}{\Large{``}}{\small{\textquotefont{{#1}}}}$\ $\parbox{0.4cm}{\Large{''}}
+\end{quote}\end{center}
+}
+
+\usepackage[framemethod=TikZ]{mdframed}
+\usetikzlibrary{calc}
+
+\makeatletter
+\newrobustcmd*\mdf@tikzbox@tfl@spare[1]{%three or four borders
+    \clip(0,0)rectangle(\mdfboundingboxwidth,\mdfboundingboxheight);%
+    \begin{scope}[mdfcorners]%
+       \clip[preaction=mdfouterline]%
+            [postaction=mdfbackground]%
+            [postaction=mdfinnerline]#1;%
+    \end{scope}%
+    \path[mdfmiddleline,mdfcorners] ($(O|-P)-(0,0.25cm)$)--(O|-P)--(P)--($(P)-(0,0.25cm)$);
+    \path[mdfmiddleline,mdfcorners] ($(P|-O)+(0,0.25cm)$)--(P|-O)--(O)--($(O)+(0,0.25cm)$);
+  }%
+\newrobustcmd*\changelinestyle{\let\mdf@tikzbox@tfl\mdf@tikzbox@tfl@spare}
+\makeatother
+
 
 % theorem styles
  \declaretheoremstyle[headfont=\sffamily\bfseries,%
@@ -70,36 +122,51 @@
  postfoothook=\end{leftbar},%
  ]{customDefinition}
 \declaretheoremstyle[
-  spaceabove=6pt, spacebelow=6pt,
-  headfont=\normalfont\itshape,
+  spaceabove=2pt, spacebelow=5pt,
+  headfont=\normalfont,
+  postheadspace=1.4em,
   notefont=\mdseries, notebraces={(}{)},
   bodyfont=\normalfont,
-  postheadspace=1em
 ]{example}
 
 % theorem environments
 \declaretheorem[name=Definition,
-  style=customDefinition,
-  numberwithin=section,
-  refname={definition,definitions},
-  Refname={Definition,Definitions}]{definition}
+style=customDefinition,
+numberwithin=section,
+refname={definition,definitions},
+Refname={Definition,Definitions}]{definition}
 \declaretheorem[name=Note,
-  style=definition,
-  numberwithin=section,
-  refname={note,notes},
-  Refname={Note,Notes}]{note}
+style=definition,
+numberwithin=section,
+refname={note,notes},
+Refname={Note,Notes}]{note}
 \declaretheorem[name=Example,
-  style=example,
-  numberwithin=section,
-  refname={example,examples},
-  Refname={Example,Examples}]{example}
+style=example,
+numberwithin=section,
+refname={example,examples},
+Refname={Example,Examples}]{example}
+\declaretheorem[name=Example,
+style=example,
+numbered=yes,
+refname={example,examples},
+Refname={Example,Examples}]{example*}
+\definecolor{mygrey}{rgb}{0.15, 0.15, 0.15}
+\surroundwithmdframed[settings=\changelinestyle,%
+middlelinecolor=mygrey,%
+roundcorner=0.7pt,%
+middlelinewidth=0.7pt,%
+skipabove=10pt,%
+splittopskip=10pt%
+]{example}
+\surroundwithmdframed[settings=\changelinestyle,%
+middlelinecolor=mygrey,%
+roundcorner=0.7pt,%
+middlelinewidth=0.7pt,%
+skipabove=10pt,%
+splittopskip=10pt%
+]{example*}
 
-% for embedding svg figures made with inkscape
-\usepackage{svg}
 
-% frames
-\usepackage[svgnames]{xcolor}
-\usepackage{framed}
 \renewenvironment{leftbar}{%
   \def\FrameCommand{{\vrule width 3pt} \hspace{10pt}}%
   \MakeFramed {\advance\hsize-\width \FrameRestore}}%

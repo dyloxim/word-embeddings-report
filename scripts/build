@@ -1,7 +1,7 @@
 #!/usr/local/bin/bash
 
 # clean build directory
-rm /Users/Joel/docs/project2/build/main.*
+rm /Users/Joel/docs/project2/log/*
 
 # generate figures
 # nim c -r --verbosity:0 ./code/svg_generate.nim

@@ -51,24 +51,25 @@
 % UC ETD title page format
 \newcommand{\etdTitlePage} {
   \begin{titlepage}
-  {\centering
-    {\scshape\LARGE \@institution \par}
-    \vspace{0.3cm}
-    {\scshape\Large Final year project\par}
-    \vspace{1.5cm}
-    {\huge\bfseries \@title\par}
-    \vspace{1.5cm}
-    {\Large\itshape \@author\par}
-    \vfill
-    supervised by\par
-    Dr.~Ben \textsc{Powell}
+    \begin{minipage}{\textwidth}
+      {\centering
+        {\scshape\LARGE \@institution \par}
+        \vspace{0.3cm}
+        {\scshape\Large Final year project\par}
+        \vspace{1.5cm}
+        {\huge\bfseries \@title\par}
+        \vspace{1.5cm}
+        {\Large\itshape \@author\par}
+        \vfill
+        supervised by\par
+        Dr.~Ben \textsc{Powell}
 
-    \vspace{0.5cm}\textbf{Abstract}\par}
-  \noindent\raisebox{.5ex}{\rule{\linewidth}{.4pt}}\par
-  \@abstract\par
-  \noindent\raisebox{.5ex}{\rule{\linewidth}{.4pt}}\par
-  \vfill
-  {\centering\large \today\par}
+        \vspace{0.5cm}\textbf{Abstract}\par}
+      \noindent\raisebox{.5ex}{\rule{\linewidth}{.4pt}}\par
+      \@abstract\par
+      \noindent\raisebox{.5ex}{\rule{\linewidth}{.4pt}}\par
+      {\centering \today\par}
+    \end{minipage}  
   \end{titlepage}
 }
 

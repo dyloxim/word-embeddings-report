@@ -8,7 +8,8 @@
 \title{Word Embeddings}
 \author{Joel Strouts}
 \date{2021}
-\abstract{
+\abstract{\noindent
+  %% TODO: rewrite
 In this report we attempt to provide a complete introduction to the core theories of word embeddings (numerical vector representations of words as they appear in text) sufficient to enable further reading of more advanced topics. This introduction covers briefly the linguistic context, theoretical development, most impactful implementations, and practical considerations of application of word embedding methods. In the first section we discuss the nature of the words, in the second we describe the cross disciplinary events which lead to development the key mathematical techniques for producing embeddings and explain their operation, and finally we discuss practical considerations of these algorithm's applications. As the primary relevance of these methods within research is their practical application we take a broader contextual approach opposed to a purely mathematical one and focus on the developments and methods most influential in the sphere of application. We assume familiarity with core mathematics at an undergraduate level as prerequisite for our descriptions of the selected implementation methods but otherwise assume no prior knowledge of the subject.}
 
 \begin{document}
@@ -18,72 +19,105 @@ In this report we attempt to provide a complete introduction to the core theorie
 \pagenumbering{roman}
 
 \tableofcontents
-\addcontentsline{toc}{chapter}{Introduction}
 \chapter*{Introduction}
+\addcontentsline{toc}{chapter}{Introduction}
 \sectionmark{INTRODUCTION}
 \markright{INTRODUCTION}
+\section*{What are word embeddings?}
+\addcontentsline{toc}{section}{What are word embeddings?}
+Word embeddings are numerical representations of words which are derived from the patterns of word usage observed in a body of example text. These representations take the form of position vectors within a \textit{Word Space}. \textcite{shutze-1993-word-space} summarises the key properties of the resulting \textit{Word Space Model} as follows:
 
-Word embeddings are numerical representations of words which are derived from the patterns of word usage observed in a body of example text. These representations take the form of position vectors belonging to a \textit{Word Space}, defined by \textcite{shutze-1993-word-space} in the following terms:
-
-\begin{itquote}
-  ``[The word space model] \emph{uses feature vectors to represent words, but the features cannot be interpreted on their own. Vector similarity is the only information present in Word Space: semantically related words are close, unrelated words are distant}.''
-\end{itquote} 
-
-\autoref{fig:imagined-word-vectors} illustrates this principal with five example words identified by the five feature vectors in \autoref{}. In the field of machine learning a feature vector is ``a list of features describing an instance''\smartcite{provost-1998-glossary}
-
-\begin{wrapfigure}{R}{0.5\textwidth}
+\basicquote{\noindent
+  [The Word Space Model] uses feature vectors to represent words, but the features cannot be interpreted on their own. Vector similarity is the only information present in Word Space: semantically related words are close, unrelated words are distant.}{}
+\begin{example*}[Illustrative Word Space]\label{ex:2d-word-space}
+\noindent
+The word space in \autoref{fig:2d-wvs} illustrates both components of this definition; first that related words are closer in space than less related words (the words \textit{apple} and \textit{orange} are closer in space than \textit{apple} and \textit{bicycle}), and second that the individual axis of variation are not meaningful if considered in isolation from one another (there is no trait like `size'  which the $x$ or $y$ value for a word is a description of).
+\begin{figure}[H]
   \centering
-  \begin{tikzpicture}[scale=1.7]
+  \begin{minipage}[t]{.4\textwidth}
+    \centering
+    \vspace{0.4em}
+  \begin{tikzpicture}[scale=1.4]
     \draw[<->, very thick] (-2,0) -- (2,0);
     \draw[<->, very thick] (0,-2) -- (0,2);
     %%\draw[steps=.25cm,gray,very thin] (-4,-4) grid (4,4);
-    \node at (0.63,1.50) {frog};
-    \node at (1.3,1.25) {newt};
     \node at (-1.55,0.35) {apple};
     \node at (-1.13,-0.30) {orange};
-    \node at (0.7,-0.75) {window};
+    \node at (0.63,1.50) {frog};
+    \node at (1.3,1.25) {newt};
+    \node at (0.7,-0.75) {bicycle};
   \end{tikzpicture}
-  \caption{An example word space: One way arranging the words \emph{apple, orange, triangle, frog \& newt} in two dimensional space so that semantically related words are closer together}
-\end{wrapfigure}\label{fig:imagined-word-vectors}
-
-
-\begin{figure}[ht]
- \centering
- \includesvg[width=0.9 \columnwidth]{figures/python/wiki_vecs.svg}
- \caption{actual word embedding}
- \label{fig:uk-keyboard}
+  \caption{A two dimensional word space encoding semantic information about the five words; \emph{apple, orange, frog, newt \& bicycle}}\label{fig:2d-wvs}
+  \end{minipage}\hspace{4em}
+  \begin{minipage}[t]{.4\textwidth}
+    \centering
+    \vspace{0.5em}
+    \begin{tabular}{c r r}
+      \toprule
+      \multicolumn{1}{c}{\raisebox{-9pt}[0pt][0pt]{word}\phantom{\quad}} & \multicolumn{2}{c}{features} \\
+      \cmidrule(lr){2-3}
+      \quad\quad & $x$ & $y$ \\
+      \midrule
+      apple   & -1.55 &  0.35 \\
+      orange  & -1.13 & -0.3  \\
+      bicycle &  0.7  & -0.75 \\
+      frog    &  0.63 &  1.5  \\
+      newt    &  1.3  &  1.25 \\
+      \bottomrule
+    \end{tabular}
+    \vspace{0.5em}
+    \captionof{table}{Feature vectors representing the words in \autoref{fig:2d-wvs}}\label{tab:2d-wvs}
+  \end{minipage}
 \end{figure}
-Nam dui ligula, fringilla a, euismod sodales, sollicitudin vel, wisi. Morbi 
-auctor lorem non justo. Nam lacus libero, pretium at, lobortis vitae, 
-ultricies et, tellus. Donec aliquet, tortor sed accumsan bibendum, erat 
-ligula aliquet magna, vitae ornare odio metus a mi. Morbi ac orci et nisl 
-hendrerit mollis. Suspendisse ut massa. Cras nec ante. Pellentesque a nulla. 
-Cum sociis natoque penatibus et magnis dis parturient montes, nascetur 
-ridiculus mus. Aliquam tincidunt urna. Nulla ullamcorper vestibulum turpis. 
-Pellentesque cursus luctus mauris.
+\vspace{0.0em}
+\end{example*}
 
-Nam dui ligula, fringilla a, euismod sodales, sollicitudin vel, wisi. Morbi 
-auctor lorem non justo. Nam lacus libero, pretium at, lobortis vitae, 
-ultricies et, tellus. Donec aliquet, tortor sed accumsan bibendum, erat 
-ligula aliquet magna, vitae ornare odio metus a mi. Morbi ac orci et nisl 
-hendrerit mollis. Suspendisse ut massa. Cras nec ante. Pellentesque a nulla. 
-Cum sociis natoque penatibus et magnis dis parturient montes, nascetur 
-ridiculus mus. Aliquam tincidunt urna. Nulla ullamcorper vestibulum turpis. 
-Pellentesque cursus luctus mauris.
+Unlike those in \autoref{ex:2d-word-space} however, word embedding vectors are typically \emph{high-dimensional}; it is common for the dimension of a word space to be in the order of tens or hundreds. In an exemplary pre-trained word-embedding model\footnote{Provided by \textcite{pennington2014glove}. Model available for download at \href{https://nlp.stanford.edu/projects/glove/}{(GloVe project website)}}, the word orange (represented by the vector $\langle -1.55, 0.35\rangle$ in the above example) is represented by the 50-dimensional vector:
+\begin{align*}
+  &\text{orange}\mapsto\\
+  \text{\small{$\langle$}}
+  &\texttt{\scriptsize ~-0.42783~,~~0.43089~,~-0.50351~,~~0.5776~~,~~0.097786,~~0.2608~~,~-0.68767~,~-0.31936~,~-0.25337~,~-0.37255~,}\\
+  &\texttt{\scriptsize ~-0.045907,~-0.53688~,~~0.97511~,~-0.44595~,~-0.50414~,~-0.086751,~-1.0645~~,~~0.36625~,~-0.52428~,~-1.3413~~,}\\
+  &\texttt{\scriptsize ~-0.2391~~,~-0.58808~,~~0.56378~,~-0.062501,~-1.7429~~,~-0.88077~,~-0.27933~,~~1.4705~~,~~0.50436~,~-0.69174~,}\\
+  &\texttt{\scriptsize ~~2.0018~~,~~0.26663~,~-0.85679~,~-0.18893~,~-0.021125,~-0.055118,~-0.50337~,~-0.67157~,~~0.55502~,~-0.8009~~,}\\
+  &\texttt{\scriptsize ~~0.10695~,~~0.1459~~,~-0.55588~,~-0.64971~,~~0.22046~,~~0.67415~,~-0.45119~,~-1.1462~~,~~0.16348~,~-0.62946~}
+  \text{\small{$\rangle$}}
+\end{align*}\label{fig:orange-vec}
+These high-dimensional vectors produced by typical word embedding algorithms cannot be plotten on an $x,y$ graph like in \autoref{fig:2d-wvs}.
 
-\begin{quote}
-  \emph{``You will know a word by the company it keeps''}
-\end{quote}
+\begin{figure}[!ht]
+  \captionsetup{width=.95\linewidth}
+ \centering
+ \includesvg[width=0.95\linewidth]{figures/python/wiki_vecs.svg}
+ \caption{A visualisation of the embeddings of 14 words from a pre-trained 50-dimensional \emph{GloVe} model (trained on wikipedia articles and newswire text)}
+ \centering
+\end{figure}\label{fig:wiki-vecs}
+The focus of this report is the description of various \emph{word embedding algorithms}: processes which take a collection of language usage examples (like the collection of all english-language wikipedia articles) and \emph{automatically} i.e., without any human supervision, produce word embeddings like those in \autoref{fig:wiki-vecs}. The key idea leveraged (with differing exact formulations) by these algorithms to produce word embeddings is that of \emph{the distributional hypthesis}, summarised by \textcite{firth-1957-a-syn-of-lin} as \emph{``You will know a word by the company it keeps''}, that words which appear in more similar contexts have more similar meanings. 
 
-The first techniques for producing embeddings were developed in the field of information retrieval (IR) and are based on word-context frequency matricies. These approaches are now referred to as count models, in contrast to more recent methods for producing word embeddings using neural networks which are referred to as predict models.
+\section*{What are word embeddings used for?}
+\addcontentsline{toc}{section}{What are word embeddings used for?}
 
-In the first chapter we discuss the object of representation: words, then in the second chapter we discuss the methods of representation: first count models and then predict models, and finally in the last chapter we discuss practical considerations before concluding with suggested further reading. 
+
+\section*{Report Content \& Structure}
+\addcontentsline{toc}{section}{Report Structure}
+%% TODO: state key references (turney.. mikolov etc.)
+In \autoref{chap:words} we discuss the key linguistic concepts which inform embedding-algorithm design: how we define `word', what is meant by `semantic relatedness' \& core concepts from distributional semantics. In \autoref{chap:generating} we discuss the particulars of generating embeddings from a training corpus -first looking at `count models' then `predict models'. Finally, in \autoref{chap:practical} we address practial considerations for the application of these methods: text preprocessing, model tuning \& consideration of bias.
+
+%% -------------------------- %%
+%%        MAIN MATTER         %%
+%% -------------------------- %%
 
 \mainmatter{
+
 \include{chapters/1-words}
-\include{chapters/2-word-representations}
-\include{chapters/3-application}
-\include{chapters/4-further-reading}
+\include{chapters/2-generating}
+\include{chapters/3-practical}
+
+\chapter*{Conclusion}
+\addcontentsline{toc}{chapter}{Conclusion}
+
+\chapter*{Further Reading}
+\addcontentsline{toc}{chapter}{Further Reading}
 }
 
 \makebibliography

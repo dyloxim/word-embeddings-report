@@ -1,6 +1,59 @@
-\chapter{Words}
-To make use of either word embedding algorithms and their outputs for some practical means an understanding of related linguistic concepts is not necessarily needed, however, we consider a grounding in these terms illuminating context for a more reasoned application and understanding of these methods. In particular, understanding these concepts is key to understanding some of the shortcomings of the models discussed in this report and the modifications made by later models to address those.
+\chapter{Words}\label{chap:words}
+In some situations, a theoretical understanding of linguistic concepts is not necessarily required, however, we consider a grounding in these contepts illuminating context more reasoned application.
 
-\input{chapters/1/units-of-meaning.tex}
-\input{chapters/1/features-of-written-language}
-\input{chapters/1/objects-of-representation}
+\section{What are words?}
+\authorquote{To many people the most obvious feature of a language is that it consists of words}{\textcite{halliday-2004-lexicology}}
+\noindent
+The `Word' workshop, held at the international research centre for linguistic typology 12-16 August 2000 consisted of 16 presentations discussing the answer to this question. Ten of those were published in the book \citetitle{dixon02-word}\smartcite{dixon02-word}. The difficulty of the question is summarised in the book's conclusion as follows:
+
+\authorquote{The problem of the word has worried general linguists for the best part of a century. In investigating any language, one can hardly fail to make divisions between units that are word-like by at least some of the relevant criteria. But these units may be simple or both long and complex, and other criteria may establish other units. It is therefore natural to ask if ‘words’ are universal, or what properties might define them as such.}{P.H. Matthews}
+
+Consider \emph{so called} filler-words like ``uh'' or ``um'', or compound forms like ``rock 'n' roll'' and ``New York''. These are examples of language elements that are sometimes treated as words and sometimes not; it is not clear where the boundary should be drawn. Even agreed upon boundaries change with time; the word ``tomorrow'', listed in Johnson's 1755 dictionary of the English language as two distinct components ``to'', and ``morrow'' yet these parts have merged and are considered a single indivisible word. \textcite{halliday-2004-lexicology} asks ``How do we decide about sequences like lunchtime (lunch-time, lunch time), dinner-time, breakfast time? How many words in isn't, pick-me-up, CD?''.
+
+The understanding of `word' formed within the English language cannot simply be applied beyond that scope either, \cite{dixon02-word} notes ``The idea of ‘word’ as a unit of language was developed for the familiar languages of Europe''. Languages written without spaces, like Chinese, Japanese, and Thai present one particular example of the challenges in applying the `word' concept beyond this scope: a single sentence may be divided up into different word-like units depending on the approach taken,\textcite{chen-2017-adversarial-multi} gives the following example:
+\begin{example}
+  The sentence "Yao Ming reaches the finals" (姚明进入总决赛) May be divided up to yield either three words or five using the two segmentations methods; 'Chinese Treebank' segmentation, or 'Peking University' segmentation, respectively:
+  \begin{align*}
+    &\texttt{姚明~~~~~进入~~~~~总决赛~}\\
+    &\texttt{YaoMing~~reaches~~finals}\\
+    \\
+    &\texttt{姚~~~明~~~~进入~~~~~总~~~~~~~决赛}\\
+    &\texttt{Yao~~Ming~~reaches~~overall~~finals}
+  \end{align*}
+\end{example}
+Different languages present different difficulties -In the case of Arabic, expressions formed by adding consecutive suffixes to a single root word (like establish $\to$ establishment $\to$ establishmentarianism) are a more essential part of the language, to the extent that complete sentences can be expressed as single word-units. As a result, `words' in the sense of `things occurring between spaces' describe a unit of meaning larger and more complex than the term describes in English, meaning representations of Arabic words defined this way describe something quite different to the English analogue.
+
+The term \textbf{lexical item} describes `units' of language more broadly; in Chinese they may be individual characters or groups with a conventional meaning. in Arabic they may be the set of roots and suffixes In English they may be the words, inflections, and multi-word phrases used as single parts.
+
+\section{Features of Written Language}
+While the linguistic \& philosophical discussion of `word' informs the theory of computational linguistics, in our context the question of ``what is a word?'' is realised as a question of text-preprocessing. It is assumed that the input to the embedding process is a written text and it is the task of text preprocessing to extract `words' from that text. The implementation used is more motivated by the application requirements \& task performance than linguistic theory.
+
+Embedding algorithms are not discriminatory about what you classify as `a word' in their input (in fact they can be applied to forms of structured data other than just language, as we will discuss in the final section of this report) and the decision about how to make these divisions will depend on the task at hand. If the intended application of the embeddings is within the field of chemistry, then a compound name like $\texttt{(NH4)2SO4}$ should absolutely be treated as a word, while in other contexts it is possible that such an irregular form may be discounted without negative consequences. The input material impacts these decisions too; text in newspapers has a narrower scope of common word-like forms than a medium like tweets, and text preprocessing decisions should reflect this.
+
+The process of extracting word-units from a text is called \textbf{tokenization} and the resulting units are called \textbf{word-tokens}. Word tokens with the same form (like \emph{red} and \emph{red}) are said to be instances of same \textclass{word-class} (or word-type). For example, the sentence;
+
+\begin{quote}
+  \emph{The limits of my language means the limits of my world} - Wittgenstein, 1922
+\end{quote}
+
+Contains 11 word-tokens, and 7 word-classes (assuming the sentence is tokenized by identifying word boundaries at both ends and each blank space).
+
+A detailed discussion of tokenization \& text preprocessing in general is beyond the scope of this report but some practical considerations can be found in \autoref{practical considerations chapter}
+
+\section{Objects of Representation}
+\textbf{Lexicology} is the study of words, and \textbf{semantics} is the study of meaning. The `embedding' in `word embeddings' derives from the mathematical sense `to embed in a space' (for example, to embed a graph in a coordinate space). Word embedding algorithms are methods for embedding \emph{lexicological objects} in \emph{semantic space}, i.e., words a space where position relates to meaning somehow). This is achieved by statistical analysis of large quantities of written language (by extraction of word-tokens).
+
+The conventions of written language, called \textbf{orthography}, make word-tokens an imperfect representation of `words' in the lexicological sense. In particular, one problem is that distinct words do not always have distinct realisations in written language. Orthographic forms with this property are called \textbf{polysemus} (poly as in \emph{many} and semus as in \emph{meaning}, from the same root as semantics). Alternatively, the distinct words sharing this same form are referred to as \textbf{homonyms} (having the same name). The words \emph{bank} as in money holding organisation and \emph{bank} as in riverside are often used to illustrate this property. Indeed, some words, like \emph{frequent} as in often, and \emph{frequent} as in attend are examples of words distinct in spoken language despite being identical in written language; such words are said to be \textbf{homographs} (same orthography, different names).
+
+\begin{figure}[h]
+ \centering
+ \includesvg[width=0.9 \columnwidth]{figures/inkscape/lexicology-orthography-embedding-PATHS.svg}
+ \caption{The \emph{problem of polysemy} illustrated}
+\end{figure}
+
+Embedding algorithms which generate their representations without taking this \emph{problem of polysemy} into account produce representations which conflate the multiple meanings of a word-form into a single point in the embedding space.
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../main"
+%%% End:
