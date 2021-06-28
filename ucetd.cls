@@ -51,7 +51,9 @@
 % UC ETD title page format
 \newcommand{\etdTitlePage} {
   \begin{titlepage}
+    {\centering
     \begin{minipage}{\textwidth}
+      \vspace{-2em}
       {\centering
         {\scshape\LARGE \@institution \par}
         \vspace{0.3cm}
@@ -68,8 +70,10 @@
       \noindent\raisebox{.5ex}{\rule{\linewidth}{.4pt}}\par
       \@abstract\par
       \noindent\raisebox{.5ex}{\rule{\linewidth}{.4pt}}\par
-      {\centering \today\par}
+      \vfill
+      {\centering \large\today\par}
     \end{minipage}  
+    }
   \end{titlepage}
 }
 
