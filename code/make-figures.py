@@ -44,17 +44,17 @@ def rgb_to_hex(arr):
 blue_red_grad = new_color_grad([0, 0, 1], [1, 1, 1], [1, 0, 0], 3)
 green_red_grad = new_color_grad([0, 1, 0], [0.95, 0.95, 0.95], [1, 0, 0], 3)
 
-height = 15
+height = 24
 width = 10
 
 fig1 = svgwrite.Drawing('figures/python/wiki_vecs.svg', profile='tiny')
 
-words = ["king", "queen", "boy", "girl", "man", "woman", "purple",
-         "orange", "green", "red", "monday", "tuesday", "wednesday", "tomorrow"]
+words = ["red", "orange", "monday", "tuesday", "bicycle",
+         "bike", "boy", "girl"]
 
 for j, word in enumerate(words):
     for i, elem in enumerate(wiki_model[word]):
-        fig1.add(fig1.text(word, insert=(0, height + j * height)))
-        fig1.add(fig1.rect((90 + i * width, j * height), (width, height),
+        fig1.add(fig1.text(word, insert=(0, (height - 2) + j * height)))
+        fig1.add(fig1.rect((90 + i * width, (j * height)), (width, height),
                            fill=rgb_to_hex(blue_red_grad(elem))))
 fig1.save()
