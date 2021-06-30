@@ -17,17 +17,20 @@
 \usepackage{caption}
 \usepackage{float}
 \usepackage[
-  top=0.9in,
-  bottom=0.8in,
-  includeheadfoot,
   left=1.35in,
   textwidth=5.9in,
-  headheight=17pt]{geometry}% http://ctan.org/pkg/geometry
+  includeheadfoot,
+  voffset=0.5em,
+  headsep=1.0em,
+  headheight=1.5em,
+  textheight=635pt,
+  footskip=3.0em
+  ]{geometry}% http://ctan.org/pkg/geometry
 \setlength{\intextsep}{1.5em}
-\setlength{\abovedisplayskip}{-1.5em}
-\setlength{\belowdisplayskip}{-1.5em}
-\setlength{\abovedisplayshortskip}{-1.0em}
-\setlength{\belowdisplayshortskip}{-1.0em}
+\setlength{\abovedisplayskip}{-1.0em}
+\setlength{\belowdisplayskip}{-1.0em}
+\setlength{\abovedisplayshortskip}{-1.5em}
+\setlength{\belowdisplayshortskip}{-1.5em}
 \setlength{\belowcaptionskip}{-0.5em}
 
 % for embedding svg figures made with inkscape
@@ -83,13 +86,13 @@ anchorcolor = black]{hyperref}
 \DeclareTextFontCommand{\textquotefont}{\normalfont\quotefont}
 \newcommand{\authorquote}[2]{
 \begin{center}\begin{quote}
-\parbox{0.4cm}{\Large{``}}{\small{\textquotefont{{#1}}}}$\ $\parbox{0.4cm}{\Large{''}} \vspace{-0.8em}\flushright{#2}
+\parbox{0.3cm}{\Large{``}}{\small{\textquotefont{{#1}}}}$\ $\parbox{0.3cm}{\Large{''}} \vspace{-0.8em}\flushright{#2}
 \end{quote}\end{center}
 \vspace{-0.4em}
 }
 \newcommand{\basicquote}[1]{
 \begin{center}\begin{quote}
-\parbox{0.4cm}{\Large{``}}{\small{\textquotefont{{#1}}}}$\ $\parbox{0.4cm}{\Large{''}}
+\parbox{0.3cm}{\Large{``}}{\small{\textquotefont{{#1}}}}$\ $\parbox{0.3cm}{\Large{''}}
 \end{quote}\end{center}
 }
 
@@ -147,7 +150,7 @@ refname={example,examples},
 Refname={Example,Examples}]{example}
 \declaretheorem[name=Example,
 style=example,
-numbered=yes,
+numberwithin=chapter,
 refname={example,examples},
 Refname={Example,Examples}]{example*}
 \definecolor{mygrey}{rgb}{0.15, 0.15, 0.15}
