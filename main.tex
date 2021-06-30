@@ -25,54 +25,54 @@ In this report we attempt to provide a complete introduction to the core theorie
 \markright{INTRODUCTION}
 \section*{What are word embeddings?}
 \addcontentsline{toc}{section}{What are word embeddings?}
-Word embeddings are numerical representations of words which are derived from the patterns of word usage observed in a body of example text. These representations take the form of position vectors within a \textit{Word Space}. \textcite{shutze-1993-word-space} summarises the key properties of the resulting \textit{Word Space Model} as follows:
+Word embeddings are numerical representations of words which are derived from the observed patterns of word usage in a body of example text. These representations take the form of position vectors within a \textit{Word Space}. \textcite{shutze-1993-word-space} summarises the key properties of the resulting \textit{Word Space Model} as follows:
 
 \basicquote{\noindent
-  [The Word Space Model] uses feature vectors to represent words, but the features cannot be interpreted on their own. Vector similarity is the only information present in Word Space: semantically related words are close, unrelated words are distant.}{}
-\begin{example*}[Illustrative Word Space]\label{ex:2d-word-space}
-\noindent
-The word space in \autoref{fig:2d-wvs} illustrates both components of this definition; first that related words are closer in space than less related words (the words \textit{apple} and \textit{orange} are closer in space than \textit{apple} and \textit{bicycle}), and second that the individual axis of variation are not meaningful if considered in isolation from one another (there is no trait like `size'  which the $x$ or $y$ value for a word is a description of).
-\begin{figure}[H]
-  \centering
-  \begin{minipage}[t]{.4\textwidth}
+  [The Word Space Model] uses feature vectors to represent words, but the features cannot be interpreted on their own. Vector similarity is the only information present in Word Space: semantically related words are close, unrelated words are distant.}
+\begin{example*}[Two Dimensional Word Space]\label{ex:2d-word-space}
+  \noindent
+  The word space in \autoref{fig:2d-wvs} illustrates both components of the above definition: first that related words are closer in space than less related words (the words \textit{apple} and \textit{orange} are closer in space than \textit{apple} and \textit{bicycle}), and second that the individual axis of variation are not meaningful if considered in isolation from one another (there is no trait like `size'  which the $x$ or $y$ value for a word is descriptive of).
+  \begin{figure}[H]
     \centering
-    \vspace{0.4em}
-  \begin{tikzpicture}[scale=1.4]
-    \draw[<->, very thick] (-2,0) -- (2,0);
-    \draw[<->, very thick] (0,-2) -- (0,2);
-    %%\draw[steps=.25cm,gray,very thin] (-4,-4) grid (4,4);
-    \node at (-1.55,0.35) {apple};
-    \node at (-1.13,-0.30) {orange};
-    \node at (0.63,1.50) {frog};
-    \node at (1.3,1.25) {newt};
-    \node at (0.7,-0.75) {bicycle};
-  \end{tikzpicture}
-  \caption{A two dimensional word space encoding semantic information about the five words; \emph{apple, orange, frog, newt \& bicycle}}\label{fig:2d-wvs}
-  \end{minipage}\hspace{4em}
-  \begin{minipage}[t]{.4\textwidth}
-    \centering
-    \vspace{0.5em}
-    \begin{tabular}{c r r}
-      \toprule
-      \multicolumn{1}{c}{\raisebox{-9pt}[0pt][0pt]{word}\phantom{\quad}} & \multicolumn{2}{c}{features} \\
-      \cmidrule(lr){2-3}
-      \quad\quad & $x$ & $y$ \\
-      \midrule
-      apple   & -1.55 &  0.35 \\
-      orange  & -1.13 & -0.3  \\
-      bicycle &  0.7  & -0.75 \\
-      frog    &  0.63 &  1.5  \\
-      newt    &  1.3  &  1.25 \\
-      \bottomrule
-    \end{tabular}
-    \vspace{0.5em}
-    \captionof{table}{Feature vectors representing the words in \autoref{fig:2d-wvs}}\label{tab:2d-wvs}
-  \end{minipage}
-\end{figure}
-\vspace{0.0em}
+    \begin{minipage}[t]{.4\textwidth}
+      \centering
+      \vspace{0.4em}
+      \begin{tikzpicture}[scale=1.4]
+        \draw[<->, very thick] (-2,0) -- (2,0);
+        \draw[<->, very thick] (0,-2) -- (0,2);
+        %% \draw[steps=.25cm,gray,very thin] (-4,-4) grid (4,4);
+        \node at (-1.55 , -0.45 ) {red};
+        \node at (-1.35 , -1.00 ) {orange};
+        \node at ( 0.63 ,  1.50 ) {monday};
+        \node at ( 1.3  ,  1.10 ) {tuesday};
+        \node at ( 0.7  , -0.75 ) {bicycle};
+      \end{tikzpicture}
+      \caption{A two dimensional word space encoding semantic information about the five words; \emph{red, orange, monday, tuesday \& bicycle}}\label{fig:2d-wvs}
+    \end{minipage}\hspace{4em}
+    \begin{minipage}[t]{.4\textwidth}
+      \centering
+      \vspace{0.5em}
+      \begin{tabular}{l r r}
+        \toprule
+        \multicolumn{1}{c}{\raisebox{-9pt}[0pt][0pt]{\quad word\quad}} & \multicolumn{2}{c}{features} \\
+        \cmidrule(lr){2-3}
+        \quad\quad & $x$ & $y$ \\
+        \midrule
+        red     & -1.55 & -0.45   \\
+        orange  & -1.35 & -1.0  \\
+        monday  &  0.63 &  1.5   \\
+        tuesday &  1.3  &  1.1   \\
+        bicycle &  0.7  & -0.75  \\
+        \bottomrule
+      \end{tabular}
+      \vspace{0.42em}
+      \captionof{table}{Feature vectors representing the words in \autoref{fig:2d-wvs}}\label{tab:2d-wvs}
+    \end{minipage}
+  \end{figure}
+  \vspace{0.1em}
 \end{example*}
 
-Unlike those in \autoref{ex:2d-word-space} however, word embedding vectors are typically \emph{high-dimensional}; it is common for the dimension of a word space to be in the order of tens or hundreds. In an exemplary pre-trained word-embedding model\footnote{Provided by \textcite{pennington2014glove}. Model available for download at \href{https://nlp.stanford.edu/projects/glove/}{(GloVe project website)}}, the word orange (represented by the vector $\langle -1.55, 0.35\rangle$ in the above example) is represented by the 50-dimensional vector:
+Typical word spaces, unlike the simplified form illustrated in \autoref{ex:2d-word-space}, are \emph{high-dimensional}: it is common for the dimension of a word space to be in the order of tens, hundreds, or thousands. In a relatively low-dimensional pre-trained word embedding model (provided by \textcite{pennington2014glove}\footnote{Model available for download at \href{https://nlp.stanford.edu/projects/glove/}{(GloVe project website)}}) the word orange (which is represented in the above example by the vector $\langle -1.55, 0.35\rangle$) is embedded as the 50-dimensional vector:
 \begin{align*}
   &\text{orange}\mapsto\\
   \text{\small{$\langle$}}
@@ -81,21 +81,51 @@ Unlike those in \autoref{ex:2d-word-space} however, word embedding vectors are t
   &\texttt{\scriptsize ~-0.2391~~,~-0.58808~,~~0.56378~,~-0.062501,~-1.7429~~,~-0.88077~,~-0.27933~,~~1.4705~~,~~0.50436~,~-0.69174~,}\\
   &\texttt{\scriptsize ~~2.0018~~,~~0.26663~,~-0.85679~,~-0.18893~,~-0.021125,~-0.055118,~-0.50337~,~-0.67157~,~~0.55502~,~-0.8009~~,}\\
   &\texttt{\scriptsize ~~0.10695~,~~0.1459~~,~-0.55588~,~-0.64971~,~~0.22046~,~~0.67415~,~-0.45119~,~-1.1462~~,~~0.16348~,~-0.62946~}
-  \text{\small{$\rangle$}}
-\end{align*}\label{fig:orange-vec}
-These high-dimensional vectors produced by typical word embedding algorithms cannot be plotten on an $x,y$ graph like in \autoref{fig:2d-wvs}.
-
-\begin{figure}[!ht]
-  \captionsetup{width=.95\linewidth}
+  \text{\small{$\rangle$}}\tag{\theequation}\label{eq:orange-vec}
+\end{align*}
+High-dimensional vectors like \eqref{eq:orange-vec} cannot be plotted on an $x,y$ plane without loss of information so is not possible to visualise the arrangement of points in typical word spaces with the same approach as that used in \autoref{ex:2d-word-space}. An alternate method for visualising points in word space which still allows us to identify general patterns of similarities and differences and is applicable beyond two dimensions is to map the magnitude of vector components onto a smooth colour gradient and then compare the resulting colour-vectors in place of the original numerical vectors. We use this approach in \autoref{fig:wiki-vecs} to show how the embeddings of example words referenced previously far compare in an actual word-embedding model.
+\begin{figure}[h]
+  \captionsetup{width=.91\linewidth}
  \centering
- \includesvg[width=0.95\linewidth]{figures/python/wiki_vecs.svg}
- \caption{A visualisation of the embeddings of 14 words from a pre-trained 50-dimensional \emph{GloVe} model (trained on wikipedia articles and newswire text)}
+ \includesvg[width=0.91\linewidth]{figures/python/wiki_vecs.svg}
+ \caption{Visualising vector similarity in the pre-trained 50-dimensional \emph{GloVe} word space model which \eqref{eq:orange-vec} was taken from.}\label{fig:wiki-vecs}
  \centering
-\end{figure}\label{fig:wiki-vecs}
-The focus of this report is the description of various \emph{word embedding algorithms}: processes which take a collection of language usage examples (like the collection of all english-language wikipedia articles) and \emph{automatically} i.e., without any human supervision, produce word embeddings like those in \autoref{fig:wiki-vecs}. The key idea leveraged (with differing exact formulations) by these algorithms to produce word embeddings is that of \emph{the distributional hypthesis}, summarised by \textcite{firth-1957-a-syn-of-lin} as \emph{``You will know a word by the company it keeps''}, that words which appear in more similar contexts have more similar meanings. 
+\end{figure}
 
-\section*{What are word embeddings used for?}
-\addcontentsline{toc}{section}{What are word embeddings used for?}
+\section*{What are they used for?}
+%% document-term matricies:
+%% - document retrieval
+%% - document clustering
+%% - document classification
+%% - essay grading
+%% - question answering
+%% - call routing
+%%
+%% word-contex matricies:
+%% - word similarity
+%% - word clustering
+%% - word classification
+%% - automatic thesaurus generation
+%% - word sense disambiguation
+%% - context sensitive spelling correction
+%% - semantic role labeling
+%% - query expansion
+%% - textual advertising
+%% - information extraction
+%%
+%% pair-pattern matricies:
+%% - relational similarity
+%% - pattern similiarty
+%% - relational clustering
+%% - relational classification
+%% - relational search
+%% -
+
+\section*{How are they created?}
+\addcontentsline{toc}{section}{How are they created?}
+Word embeddings are the output of \emph{word embedding algorithms}: processes which take a collection of language usage examples (like the collection of all english-language wikipedia articles and a large collection of newswire articles, as in the case of the word embeddings in \autoref{fig:wiki-vecs}) and \emph{automatically} i.e., without any human supervision, produce vector representations of the observed words in a high-dimensional word space. The discussion of these algorithms is the focus of this report. The key idea leveraged (with differing exact formulations) by these algorithms to produce word embeddings is that of \emph{the distributional hypthesis}, summarised by \textcite{firth-1957-a-syn-of-lin} as \emph{``You will know a word by the company it keeps''} -that words which appear in more similar contexts have more similar meanings. 
+
+\addcontentsline{toc}{section}{What are they for?}
 
 
 \section*{Report Content \& Structure}
