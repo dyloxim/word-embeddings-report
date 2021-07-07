@@ -16,22 +16,16 @@ In this report we attempt to provide a complete introduction to the core theorie
 
 \maketitle
 
-\pagenumbering{roman}
-
+\mainmatter{%
 \tableofcontents
-\chapter*{Introduction}
-\addcontentsline{toc}{chapter}{Introduction}
-\sectionmark{INTRODUCTION}
-\markright{INTRODUCTION}
-\section*{What are word embeddings?}
-\addcontentsline{toc}{section}{What are word embeddings?}
-Word embeddings are numerical representations of words which are derived from the observed patterns of word usage in a body of example text. These representations take the form of position vectors within a \textit{Word Space}. \textcite{shutze-1993-word-space} summarises the key properties of the resulting \textit{Word Space Model} as follows:
-
+\chapter{Introduction}
+\section{What are word embeddings?}
+Word embeddings are numerical representations of words which are derived from the observed patterns of word usage in a body of example text. These representations take the form of position vectors within a \textit{Word Space}. The resulting \emph{Word Space Model} was first described by \textcite{shutze-1993-word-space} in the terms:
 \basicquote{\noindent
   [The Word Space Model] uses feature vectors to represent words, but the features cannot be interpreted on their own. Vector similarity is the only information present in Word Space: semantically related words are close, unrelated words are distant.}
-\begin{example*}[Two Dimensional Word Space]\label{ex:2d-word-space}
+\begin{example}[Two Dimensional Word Space]\label{ex:2d-word-space}
   \noindent
-  The word space in \autoref{fig:2d-wvs} illustrates both components of the above definition: first that related words are closer in space than less related words (the words \textit{apple} and \textit{orange} are closer in space than \textit{apple} and \textit{bicycle}), and second that the individual axis of variation are not meaningful if considered in isolation from one another (there is no trait like `size'  which the $x$ or $y$ value for a word is descriptive of).
+  The word space in \autoref{fig:2d-wvs} illustrates both components of the above definition: first that related words are closer in space than less related words (the words \textit{apple} and \textit{orange} are closer in space than \textit{apple} and \textit{bicycle}), and second that the individual axis of variation are not meaningful considered in isolation from one another (there is no trait like `size'  which the $x$ or $y$ value for a word is descriptive of).
   \begin{figure}[H]
     \centering
     \begin{minipage}[t]{.4\textwidth}
@@ -69,10 +63,45 @@ Word embeddings are numerical representations of words which are derived from th
       \captionof{table}{Feature vectors representing the words in \autoref{fig:2d-wvs}}\label{tab:2d-wvs}
     \end{minipage}
   \end{figure}
-  \vspace{0.1em}
-\end{example*}
-
-Typical word spaces, unlike the simplified form illustrated in \autoref{ex:2d-word-space}, are \emph{high-dimensional}: it is common for the dimension of a word space to be in the order of tens, hundreds, or thousands. In a relatively low-dimensional pre-trained word embedding model (provided by \textcite{pennington2014glove}\footnote{Model available for download at \href{https://nlp.stanford.edu/projects/glove/}{(GloVe project website)}}) the word orange (which is represented in the above example by the vector $\langle -1.55, 0.35\rangle$) is embedded as the 50-dimensional vector:
+  \vspace{-0.5em}
+\end{example}
+More recent research has suggested that word spaces can in fact arrange word-representations with more order than \citeauthor{shutze-1993-word-space}'s early description of these spaces accounted for. Notably, \parencite{mikolov-etal-2013-linguistic} demonstrated their \emph{potential} for geometrically encoding semantic relationships between words (the direction in which one vector is distant from another can capture semantic information, not only the distance). \autoref{fig:word-space-geometry} illustrates the idea of geometrically encoded semantic information. Modern methodologies for assessing the quality of a word space consider the extent to which \emph{multifaceted} linguistic information about the vocabulary (not just semantic, but; phonetic, morphological, and syntactic information about the encoded words) is recoverable by the embeddings \parencite{yaghoobzadeh-schutze-2016-intrinsic, wang-2019-evaluating}.
+\begin{figure}[H]
+  \captionsetup{width=.91\linewidth}
+  \centering
+  \begin{minipage}[t]{.40\textwidth}
+    \centering
+    \begin{tikzpicture}[framed,scale=1.15]
+      \node at ( -2  , 0) {man};
+      \node at (  0  , 2) {woman};
+      \draw[->, very thick, blue] (-2+0.3, 0+0.3) -- (0-0.3, 2-0.3);
+      \node at (-2 , 1.5) {uncle};
+      \node at ( 0 , 3.5) {aunt};
+      \draw[->, very thick, blue] (-2+0.3, 1.5+0.3) -- (0-0.3, 3.5-0.3);
+      \node at (-4.5 , 2 ) {king};
+      \node at (-2.5 , 4 ) {queen};
+      \draw[->, very thick, blue] (-4.5+0.3, 2+0.3) -- (-2.5-0.3, 4-0.3);
+    \end{tikzpicture}
+  \end{minipage}\hspace{3.5em}
+  \begin{minipage}[t]{.40\textwidth}
+    \centering
+    \begin{tikzpicture}[framed,scale=1.15]
+      \node at ( -2  , 0) {man};
+      \node at (  0  , 2) {woman};
+      \draw[->, very thick, blue] (-2+0.3, 0+0.3) -- (0-0.3, 2-0.3);
+      \node at (-4.5 , 2 ) {king};
+      \node at (-2.5 , 4 ) {queen};
+      \draw[->, very thick, blue] (-4.5+0.3, 2+0.3) -- (-2.5-0.3, 4-0.3);
+      % man -> king
+      \draw[->, very thick, red] (-2-0.38, 0+0.30) -- (-4.5+0.38, 2-0.30);
+      % woman -> queen
+      \draw[->, very thick, red] ( 0-0.38, 2+0.30) -- (-2.5+0.38, 4-0.30);
+    \end{tikzpicture}
+  \end{minipage}
+  \caption{An idealised illustration of how semantic \& syntactic information could be geometrically encoded by embeddings in a word space\footnotemark.}\label{fig:word-space-geometry}
+\end{figure}}%
+\footnotetext{We use the term \emph{idealised} here because although this figure is a reproduction of that which accompanies the famous $\overrightarrow{\text{king}}-\overrightarrow{\text{man}}+\overrightarrow{\text{woman}}=\overrightarrow{\text{queen}}$ example from~\parencite{mikolov-etal-2013-linguistic}, more recent investigations \parencite{linzen-2016-issues, rogers-etal-2017-many} have concluded that these analogical relationships are not the robust features of word space geometry which these examples suggest. Nevertheless, investigations into the geometry of word space have found some notable structure \parencite{liu-2018-visual-explor}.}\noindent
+Typical word spaces, unlike the simplified form illustrated in \autoref{ex:2d-word-space}, are \emph{high-dimensional}: it is common for the dimension of a word space to be in the order of tens, hundreds, or thousands. In a relatively low-dimensional pre-trained word embedding model\footnote{Model provided by \textcite{pennington2014glove}. Available for download at \href{https://nlp.stanford.edu/projects/glove/}{(GloVe project website)}} the word orange (which is represented in the above example by the vector $\langle -1.55, 0.35\rangle$) is embedded as the 50-dimensional vector: \vspace{-1.0em}
 \begin{align*}
   &\text{orange}\mapsto\\
   \text{\small{$\langle$}}
@@ -81,75 +110,111 @@ Typical word spaces, unlike the simplified form illustrated in \autoref{ex:2d-wo
   &\texttt{\scriptsize ~-0.2391~~,~-0.58808~,~~0.56378~,~-0.062501,~-1.7429~~,~-0.88077~,~-0.27933~,~~1.4705~~,~~0.50436~,~-0.69174~,}\\
   &\texttt{\scriptsize ~~2.0018~~,~~0.26663~,~-0.85679~,~-0.18893~,~-0.021125,~-0.055118,~-0.50337~,~-0.67157~,~~0.55502~,~-0.8009~~,}\\
   &\texttt{\scriptsize ~~0.10695~,~~0.1459~~,~-0.55588~,~-0.64971~,~~0.22046~,~~0.67415~,~-0.45119~,~-1.1462~~,~~0.16348~,~-0.62946~}
-  \text{\small{$\rangle$}}\tag{\theequation}\label{eq:orange-vec}
+  \text{\small{$\rangle$}}\tag{\theequation}\label{eq:orange-vec}\vspace{-1.0em}
 \end{align*}
-High-dimensional vectors like \eqref{eq:orange-vec} cannot be plotted on an $x,y$ plane without loss of information so is not possible to visualise the arrangement of points in typical word spaces with the same approach as that used in \autoref{ex:2d-word-space}. An alternate method for visualising points in word space which still allows us to identify general patterns of similarities and differences and is applicable beyond two dimensions is to map the magnitude of vector components onto a smooth colour gradient and then compare the resulting colour-vectors in place of the original numerical vectors. We use this approach in \autoref{fig:wiki-vecs} to show how the embeddings of example words referenced previously far compare in an actual word-embedding model.
-\begin{figure}[h]
+High-dimensional vectors like \eqref{eq:orange-vec} cannot be plotted on an $x,y$ plane without loss of information, so we can't visualise points in a typical word space with the same approach as we used in \autoref{ex:2d-word-space}. An alternate method for visualising points in word space which still allows us to judge the similarity of vectors by their appearance, and is applicable higher dimensional vectors, is to map the magnitude of vector components onto a smooth colour gradient and then to compare the resulting colour-vectors, rather than the original numerical forms.
+\begin{example}[50 dimensional Word Space]\label{ex:glove-word-space}
+\autoref{fig:glove-word-space} applies the principle described above to visualise word vector outputs from a real word embedding model.
+\begin{figure}[H]
   \captionsetup{width=.91\linewidth}
  \centering
  \includesvg[width=0.91\linewidth]{figures/python/wiki_vecs.svg}
- \caption{Visualising vector similarity in the pre-trained 50-dimensional \emph{GloVe} word space model which \eqref{eq:orange-vec} was taken from.}\label{fig:wiki-vecs}
+ \caption{A selection of embeddings from the same pre-trained 50-dimensional \emph{GloVe} word space model which \eqref{eq:orange-vec} was taken from.}\label{fig:glove-word-space}
  \centering
 \end{figure}
+\end{example}
 
-\section*{What are they used for?}
-%% document-term matricies:
-%% - document retrieval
-%% - document clustering
-%% - document classification
-%% - essay grading
-%% - question answering
-%% - call routing
-%%
-%% word-contex matricies:
-%% - word similarity
-%% - word clustering
-%% - word classification
-%% - automatic thesaurus generation
-%% - word sense disambiguation
-%% - context sensitive spelling correction
-%% - semantic role labeling
-%% - query expansion
-%% - textual advertising
-%% - information extraction
-%%
-%% pair-pattern matricies:
-%% - relational similarity
-%% - pattern similiarty
-%% - relational clustering
-%% - relational classification
-%% - relational search
-%% -
-
-\section*{How are they created?}
-\addcontentsline{toc}{section}{How are they created?}
-Word embeddings are the output of \emph{word embedding algorithms}: processes which take a collection of language usage examples (like the collection of all english-language wikipedia articles and a large collection of newswire articles, as in the case of the word embeddings in \autoref{fig:wiki-vecs}) and \emph{automatically} i.e., without any human supervision, produce vector representations of the observed words in a high-dimensional word space. The discussion of these algorithms is the focus of this report. The key idea leveraged (with differing exact formulations) by these algorithms to produce word embeddings is that of \emph{the distributional hypthesis}, summarised by \textcite{firth-1957-a-syn-of-lin} as \emph{``You will know a word by the company it keeps''} -that words which appear in more similar contexts have more similar meanings. 
-
-\addcontentsline{toc}{section}{What are they for?}
-
-
-\section*{Report Content \& Structure}
-\addcontentsline{toc}{section}{Report Structure}
+\section{How are they created?}
+Word embeddings are the output of \emph{word embedding algorithms}: Processes which take as their input large body of example language-usage and \emph{automatically produce} (i.e., without need for directions given by the practitioner regarding the processing of the data) representations of the observed words \emph{which encode a means of quantifying the semantic-relatedness of those words}.
+\authorquote{What makes the word-space model unique in comparison with other geometrical models of meaning is that the space is constructed with no human intervention, and with no a priori knowledge or constraints about meaning similarities. In the word-space model, the similarities between words are automatically extracted from language data by looking at empirical evidence of real language use.}{\textcite{sahlgreen-2006-the-word-space-model}}
+How exactly is this information automatically extracted from a corpora of ``real language usage'' though? \citeauthor{sahlgreen-2006-the-word-space-model} continues:
+\basicquote{As data, the word-space model uses statistics about the distributional properties of words. The idea is to put words with similar distributional properties in similar regions of the word space, so that proximity reflects distributional similarity. The fundamental idea behind the use of distributional information is the so-called distributional hypothesis.}
+\begin{definition}[The Distributional Hypothesis]
+There are many variations of the statement of the distributional hypothesis; \citeauthor{sahlgreen-2006-the-word-space-model} opts for the more general phrasing \emph{``words with similar distributional properties have similar meanings''}, but with reference to its application in creating word spaces cites the more concrete \emph{``words with similar meanings will occur with similar neighbours if enough text material is available''} of \textcite{schutze-1995-information-retrieval} and the concise \hll{\emph{``words which are similar in meaning occur in similar contexts''}} of \textcite{rubenstein-1965-contextual-correlates}. \textcite{firth-1957-a-syn-of-lin} notably captured the essence of this hypothesis with the much quoted statement \emph{``You will know a word by the company it keeps''}.
+\end{definition}\label{def:distrib-hyp}
+\begin{example}[The distributional hypothesis]
+  In the figure from~\autoref{ex:glove-word-space}, the vector representations of the words ``Monday'' and ``Tuesday'' are almost identical to one another. These representations were generated by analysing the contexts each word occurred in, so implied by this result is that the words ``Monday'' and ``Tuesday'' occur in very similar contexts. Consider these partial quotations\footnote{These quotations were found by searching for quotes containing the word ``Monday'' (in the case of~\eqref{eq:distrib-hyp-1} and~\eqref{eq:distrib-hyp-2}) or ``Tuesday'' (in the case of~\eqref{eq:-dstrib-hyp-3} and~\eqref{eq:distrib-hyp-4}) on the \href{https://www.goodreads.com}{goodreads} website}:
+  \begin{align}
+    &\text{``I'd be quite happy if I spent from Saturday night until \underline{~~~~~~~~~~} morning\dots''}\label{eq:distrib-hyp-1}\\
+    &\text{``It was a \underline{~~~~~~~~~~} and they walked on a tightrope to the sun.''}\label{eq:distrib-hyp-2}\\
+    &\text{``I will love you at 4:15 pm next \underline{~~~~~~~~~~}.''}\label{eq:distrib-hyp-3}\\
+    &\text{``\dots the kind that blindside you at 4 pm on some idle \underline{~~~~~~~~~~}.''}\label{eq:distrib-hyp-4}
+  \end{align}
+  In each of these contexts it is clear that the \emph{type} of word which is missing is likely to be a day of the week but it is difficult to guess with confidence any more specifically; the words ``Monday'' and ``Tuesday'' seem to be almost equally probable guesses -\emph{their similarity of meaning is reflected in the similarity of their contexts}.
+\end{example}
+This approach to linguistics (distributional linguistics) was widespread in the 1950s \parencite{jurafsky21-speec}, with key contributions to the theory made by \textcite{joos-1950-description-of-language, harris-1954-distrib-struct, firth-1957-a-syn-of-lin}, and is related \citeauthor{wittgenstein53-philos}'s \parencite*{wittgenstein53-philos} ideas about `family resembelance' from the same period \parencite{turney10-from-frequen-to-meanin}.
+The question of how word embeddings are created then can instead be phrased \emph{How exactly is the distributional hypothesis employed by these (word embedding) algorithms?}. Below we paraphrase the descriptions of seven categories identified by \textcite{wang-2019-evaluating} into which word embedding methods fall:
+\begin{infobox}{Word Embedding Method Categorisation}
+  \paragraph{*Co-occurrence Matrix} In this context we refer to either \emph{word-document} or the \emph{word-word} co-occurence matrices, though other formulations exist (\textcite{turney10-from-frequen-to-meanin} provides a good overview of approaches). The co-occurence matrix $X$ is such that the $(i, j)$ entry, $X_{ij}$ counts the number of times the word $i$ occurred in the context $j$, where $j$ could be the context of a document or the context of a near-by word.
+  \paragraph{*Continuous-Bag-of-Words and skip-gram} Two \emph{iteration-based} methods proposed in the \texttt{word2vec} paper \parencite{mikolov13-effic-estim-word-repres-vector-space} and widely used thereafter. The first model (CBOW) predicts the center word from its surrounding context and the second (SG) predicts the surrounding context words given a center word.
+  \paragraph{Neural Network Language Model} The NNLM~\parencite{bengio-2003-a-neural-prob-lang-model} \emph{jointly learns a word vector representation and a statistical language model}, and is \emph{very computationally complex}.
+  \paragraph{FastText} This method exists to address issues with other approaches which produce poor estimations for rarely used words. \emph{FastText uses subword information explicitly so embedding for rare words can still be represented well}. It is based on the skip-gram model, where each word is represented as a bag of character 
+  \paragraph{$N$-gram Model} $n$-grams are multi-word elements with $n$ parts (for example ``a man'' is a 2-gram). $n$-gram models are methods which operate on $n$-grams in addition to, or in place of words. \textcite{zhao-etal-2017-ngram2vec} incorporates the n-gram model in various baseline embedding models such as \texttt{word2vec}, GloVe, PPMI, and SVD.
+  \paragraph{Dictionary Model} Dictionary models learn word representations from dictionary entries as well as large unlabelled corpus, both sources of information are incorporated into one representation. \parencite{tissier-etal-2017-dict2vec} implements this method as \texttt{dict2vec}.
+  \paragraph{Deep Contextualised Model} \parencite{peters18-deep-contex-word-repres} introduced a model for \emph{deep contextualised word representations which represent complex characteristics of words and word usage across different linguistic contexts}. An Embeddings from Language Models (ElMo) representation is generated with a function that takes an entire sentence as the input.
+\end{infobox}
+In this report we describe algorithms for generating embeddings from the \emph{co-occurrence matrix} category (which we refer to as the ``count models''), and the \emph{continuous-bag-of-words / skip-gram} category (which we will refer to as the ``predict models'').
+\section{What are they for?}
+\authorquote{The task of representing words and documents is part and parcel of most, if not all, Natural Language Processing (NLP) tasks. In general, it has been found to be useful to represent them as vectors, which have an appealing, intuitive interpretation, can be the subject of useful operations (e.g. addition, subtraction, distance measures, etc) and lend themselves well to be used in many Machine Learning (ML) algorithms and strategies.}{\textcite{almeida19-word-embed}}
+Although there are a variety of different word embedding algorithms, each being suited to a different niche of application, they are all united by the following traits:
+\begin{infobox}{Shared Characteristics of Word Embedding Algorithms}
+\paragraph{Semantic Comprehension} They provide a means of quantitatively assessing the semantic-relatedness of words;
+\paragraph{Convenient Form} The semantic information is encoded by vector representations of vocabulary words;
+\paragraph{Automatic Generation Process} The semantic information is \emph{``automatically extracted from language data by looking at empirical evidence of real language use''}.
+\end{infobox}
+The \emph{semantic comprehension} quality makes them appropriate for many tasks in natural language processing, and their \emph{convenient form} (like \citeauthor{almeida19-word-embed} notes above) in particular makes them work well as inputs to machine learning pipelines -\textcite{shutze-1993-word-space} notes: \emph{``Neural networks perform best when similarity of targets corresponds to similarity of inputs; traditional symbolic representations do not have this property''}. Finally, their \emph{automatic generation process} makes them preferable to alternative means of assessing word-relatedness which depend on extensive manual knowledge-input, like the structured lexical database: \texttt{wordnet} \parencite{miller-1990-intro-to-wordnet}.
+\begin{example}[Word Clustering Using Embeddings]\label{ex:glove-word-clusters}
+  \autoref{fig:glove-word-clusters} shows the result of using a point-clustering algorithm on the embeddings from \autoref{ex:glove-word-space} to identify groups of related words. The resulting clusters, identified entirely computationally, correspond with the groupings an English speaker would naturally select given the same word choices.
+\end{example}
+\par
+\begin{figurewrap}[10]{r}{0.5\textwidth}
+  \vspace{-3.5em}
+  \captionsetup{width=.4\textwidth}
+  \centering
+  \includesvg[width=.5\textwidth]{figures/python/wiki_vecs_dendogram.svg}
+  \caption{Word clusters identified by analysis of word vectors featured in \autoref{fig:glove-word-space}}\label{fig:glove-word-clusters}
+\end{figurewrap}
+\par
+\textcite{turney10-from-frequen-to-meanin} include a thorough discussion of applications of \emph{Vector Space Models} (the class of embedding algorithms referred to as \emph{count models} in this report), listing the following examples of uses: word clustering, word classification, automatic thesaurus generation, word sense disambiguation, context sensitive spelling correction, semantic role labelling, query expansion, textual advertising \& information extraction. \autoref{ex:glove-word-clusters} illustrates the use of the embeddings from \autoref{ex:glove-word-space} to perform the first task from this list of examples: word clustering.
+%% todo: list novel applications (detecting dementia etc.)
+\section{Beyond word embeddings}
+Word embedding algorithms extract semantic information about language without any prior knowledge of underlying linguistic rules or significance. To these algorithms, language is just lists of discrete elements with underlying patterns to be identified. Due to this generality, word embedding algorithms can be used to encode the semantics of other types of ordered data.
+Many novel applications of the embedding process to capture semantic associations outside of the written language domain have been explored. Below we list some notable embedding applications we have come across in researching for this report:
+\par
+\begin{infobox}{Novel Applications of the Embedding Process}
+  \paragraph{Graph Embeddings} \textcite{grohe20-word2-node2} presents an overview of techniques which generalise the word embedding process to embed structured data -graphs (possibly labelled or weighted), or more generally relational structures, nodes of a large graph, or tuples appearing in a relational structure.
+  \paragraph{Recommendation Systems} \textcite{grbovic-2018-real-time-personalization} demonstrate the use of user and listing embeddings to improve real-time personalisation and similar listing recommendations at Airbnb, and \textcite{wang-2018-billion-scale-commodity-embedding} employ item-graph embeddings generated from users' behaviour history to improve recommendation systems at Alibaba.
+  \paragraph{Music Embeddings} \textcite{chuan-2018-from-context-to} model functional chord relationships and harmonic associations by embedding slices of music from a large corpus music across eight genres.
+  \paragraph{Customer Lifetime Value Prediction} \textcite{chamberlain17-custom-lifet-value-predic-using-embed} propose a method to generate embeddings of customers which provide daily estimates of the future value of every customer, employed by the ASOS fashion retailer.
+\end{infobox}
+\section{Report Content \& Structure}
 %% TODO: state key references (turney.. mikolov etc.)
-In \autoref{chap:words} we discuss the key linguistic concepts which inform embedding-algorithm design: how we define `word', what is meant by `semantic relatedness' \& core concepts from distributional semantics. In \autoref{chap:generating} we discuss the particulars of generating embeddings from a training corpus -first looking at `count models' then `predict models'. Finally, in \autoref{chap:practical} we address practial considerations for the application of these methods: text preprocessing, model tuning \& consideration of bias.
-
+In \autoref{chap:preliminaries} we discuss key linguistic concepts informing embedding-algorithm design: how we define `word', what is meant by `semantic relatedness' \& core concepts from distributional semantics, and finally present a formal description of data these algorithms operate on, to be used in the following chapters. In \autoref{chap:count-models} we discuss the generation of word embeddings using the vector-space-model methods following the framework laid out by \textcite{turney10-from-frequen-to-meanin}. In \autoref{chap:predict-models} we discuss the two embedding algorithms packaged by the \texttt{word2vec} software, described by \textcite{mikolov13-distr-repres-words-phras-their-compos}, and compare these methods to those already discussed. In the last chapter, \autoref{chap:practical-considerations} we address practical considerations for the application of these methods: text preprocessing, model tuning \& consideration of bias, before finally summarising observations made through the course of this research in the conclusion.
 %% -------------------------- %%
 %%        MAIN MATTER         %%
 %% -------------------------- %%
-
-\mainmatter{
-
-\include{chapters/1-words}
-\include{chapters/2-generating}
-\include{chapters/3-practical}
-
-\chapter*{Conclusion}
+\include{chapters/preliminaries}
+% ++ words: what are they?
+% ++ semantic relatedness (syntagmatic.. paradigmatic .. etc.)
+% ++ distributive properties??
+% ++++ zipfs law
+% ++++ bayes? whatever
+% ++ measures of similarity
+% ++ terminology/definitions
+\include{chapters/count-models}
+% ++ types of cooccurrence matrix
+% ++ smoothing
+% ++ dimension reduction
+% ++ computation
+\include{chapters/predict-models}
+% ++ skip gram
+% ++ cbow
+% ++ hyper-parameters
+% ++ comparison to count models
+\include{chapters/practical-considerations}
+% ++ preprocessing
+% ++ bias
+\chapter*{Conclusion}\label{chap:conclusion}
 \addcontentsline{toc}{chapter}{Conclusion}
-
-\chapter*{Further Reading}
-\addcontentsline{toc}{chapter}{Further Reading}
-}
-
 \makebibliography
-
 \end{document}

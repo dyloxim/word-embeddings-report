@@ -1,6 +1,9 @@
-import numpy as np
-
 import svgwrite
+import csv
+import pandas as pd
+from matplotlib import pyplot as plt
+from scipy.cluster.hierarchy import dendrogram, linkage
+import numpy as np
 
 # ====================== #
 # | internal functions | #
@@ -20,11 +23,6 @@ def loadGloveModel(File):
     return gloveModel
 
 
-wiki_model = loadGloveModel("./../resources/glove.6B/glove.6B.50d.txt")
-# twitter_model = loadGloveModel(
-#     "./../resources/glove.twitter.27B/glove.twitter.27B.25d.txt")
-
-
 def new_color_grad(lower, mid, upper, bounds):
     def grad_get_color(val):
         output = [0, 0, 0]
@@ -41,20 +39,38 @@ def rgb_to_hex(arr):
     return '#{:02x}{:02x}{:02x}'.format(*arr)
 
 
-blue_red_grad = new_color_grad([0, 0, 1], [1, 1, 1], [1, 0, 0], 3)
-green_red_grad = new_color_grad([0, 1, 0], [0.95, 0.95, 0.95], [1, 0, 0], 3)
+def make_fig__wiki_vecs():
+    wiki_model = loadGloveModel("./../resources/glove.6B/glove.6B.50d.txt")
+    # twitter_model = loadGloveModel(
+    #     "./../resources/glove.twitter.27B/glove.twitter.27B.25d.txt")
+    blue_red_grad = new_color_grad(
+        [0, 0, 1], [1, 1, 1], [1, 0, 0], 3)
+    green_red_grad = new_color_grad(
+        [0, 1, 0], [0.95, 0.95, 0.95], [1, 0, 0], 3)
 
-height = 24
-width = 10
+    height = 24
+    width = 12
 
-fig1 = svgwrite.Drawing('figures/python/wiki_vecs.svg', profile='tiny')
+    fig1 = svgwrite.Drawing('figures/python/wiki_vecs.svg', profile='tiny')
+    words = ["red", "orange", "monday", "tuesday", "bicycle",
+             "scooter", "boy", "girl", "if", "then", "while"]
+    for j, word in enumerate(words):
+        for i, elem in enumerate(wiki_model[word]):
+            fig1.add(fig1.text(word, insert=(0, (height - 2) + j * height)))
+            fig1.add(fig1.rect((90 + i * width, (j * height)), (width, height),
+                               fill=rgb_to_hex(blue_red_grad(elem))))
+    fig1.save()
 
-words = ["red", "orange", "monday", "tuesday", "bicycle",
-         "bike", "boy", "girl"]
+    # create csv of values
+    frame = pd.DataFrame(np.array([wiki_model[word]
+                         for word in words]), index=words)
+    Z = linkage(frame, method='complete', metric='seuclidean')
+    # Plot with Custom leaves
+    fig, ax = plt.subplots()
+    dendrogram(Z, leaf_rotation=30, leaf_font_size=12, labels=frame.index)
+    # Show the graph
+    ax.set_ylabel('nearness', fontsize=12)
+    fig.savefig("figures/python/wiki_vecs_dendogram.svg", format='svg')
 
-for j, word in enumerate(words):
-    for i, elem in enumerate(wiki_model[word]):
-        fig1.add(fig1.text(word, insert=(0, (height - 2) + j * height)))
-        fig1.add(fig1.rect((90 + i * width, (j * height)), (width, height),
-                           fill=rgb_to_hex(blue_red_grad(elem))))
-fig1.save()
+
+make_fig__wiki_vecs()

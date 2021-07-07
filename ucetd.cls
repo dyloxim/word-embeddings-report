@@ -261,14 +261,6 @@
   {-3.25ex\@plus -1ex \@minus -.2ex}%
   {1.5ex \@plus .2ex}%
   {\normalfont\large\itshape\centering}}
-\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
-  {3.25ex \@plus1ex \@minus.2ex}%
-  {-1em}%
-  {\normalfont\large\itshape\centering}}
-\renewcommand\subparagraph{\@startsection{subparagraph}{5}{\parindent}%
-  {3.25ex \@plus1ex \@minus .2ex}%
-  {-1em}%
-  {\normalfont\normalsize\itshape}}
 
 \renewcommand*\l@part[2]{%
   \ifnum \c@tocdepth >\m@ne
