@@ -88,6 +88,11 @@
 \fancyhead[L]{\rightmark}
 \fancyhead[R]{\thepage}
 \renewcommand{\headrulewidth}{0pt}
+\renewcommand{\subsectionmark}[1]{%
+  \markright{\MakeUppercase{\thesubsection\ \ \ \sectiontitle\ ·\ }{\itshape #1}}}%
+}
+\newcommand{\sectiontitle}{}
+\newcommand{\newsection}[1]{\renewcommand{\sectiontitle}{#1}\section{#1}}
 
 %% subsubsections
 \setcounter{secnumdepth}{3} % how many sectioning levels to assign numbers to
@@ -100,6 +105,7 @@ linkcolor = black,%
 urlcolor  = black,%
 citecolor = black,%
 anchorcolor = black]{hyperref}
+\usepackage{nameref}
 \usepackage{cleveref}
 
 % Bibliography
@@ -171,7 +177,7 @@ preheadhook=\begin{leftbar},%
 % theorem environments
 \declaretheorem[name=Definition,
 style=customDefinition,
-numberwithi=chapter,
+numberwithin=chapter,
 refname={definition,definitions},
 Refname={Definition,Definitions}]{definition}
 \declaretheorem[name=Note,

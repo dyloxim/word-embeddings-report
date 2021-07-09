@@ -1,0 +1,97 @@
+\chapter{Words}\label{chap:preliminaries}
+\newsection{What are words?}
+\authorquote{To many people the most obvious feature of a language is that it consists of words}{\textcite{halliday-2004-lexicology}}
+\authorquote{There have been many definitions of the word, and if any had been successful I would have given it long ago, instead of dodging the issue until now}{\textcite{matthews-1991-morph}}
+\noindent
+The `Word' workshop, held at the international research centre for linguistic typology 12-16 August 2000 consisted of 16 presentations discussing the answer to this question. Ten of those were published in the book \citetitle{dixon02-word}. The difficulty of the question is summarised in the book's conclusion as follows:
+\authorquote{The problem of the word has worried general linguists for the best part of a century. In investigating any language, one can hardly fail to make divisions between units that are word-like by at least some of the relevant criteria. But these units may be simple or both long and complex, and other criteria may establish other units. It is therefore natural to ask if ‘words’ are universal, or what properties might define them as such.}{P.H. Matthews, \parencite{dixon02-word}}
+\noindent
+Some definitions of 'word' (like \citeauthor{bloomfield-1926-a-set-of}'s \parencite*{bloomfield-1926-a-set-of} \emph{`A minimum free form is a word'}) are sufficient but not necessary, wheras others (like \citeauthor{lyons-1968-introduction}'s \parencite*{lyons-1968-introduction} \emph{`a word may be defined as the unit of a particular meaning with a particular complex of sounds capable of a particular grammatical employment'}) is a potentially necessary, but certainly not sufficient \parencite{dixon02-word}. Is it possible to conceive a watertight definition?
+
+Our intuition about words is also often inscrutible -consider \emph{so called} filler-words like ``uh'' or ``um'', or compound forms like ``rock `n' roll'' and ``New York'', used always as whole unbroken units, what makes these \emph{not} words? Consider that the words we agree on now are subject to ever changing convention; the word ``tomorrow'' is listed in Johnson's 1755 dictionary of the English language as two distinct components ``to'', and ``morrow'' despite being indisputably considered a word \emph{to-day}. \textcite{halliday-2004-lexicology} ask ``How do we decide about sequences like lunchtime (lunch-time, lunch time), dinner-time, breakfast time? How many words in isn't, pick-me-up, CD?''.
+
+An understanding of `word' formed within the English language cannot blindly be applied beyond that scope either, \textcite{dixon02-word} notes ``The idea of `word' as a unit of language was developed for the familiar languages of Europe''. Languages which are written without spaces, (like Chinese, Japanese, and Thai) present one particular example of the challenges in applying a local conception of `word' beyond this scope: ambiguous sentence segmentation. 
+\begin{example}[Chinese Sentence Segmentation]
+  \textcite{chen-2017-adversarial-multi} gives the following example of the difficulty in agreeing on `word' boundaries in Chinese: The sentence "Yao Ming reaches the finals" (姚明进入总决赛) May be divided up to yield either three words or five using the two segmentations methods; `Chinese Treebank' segmentation, or `Peking University' segmentation, respectively:
+  \begin{align*}
+    &\texttt{姚明~~~~~进入~~~~~总决赛~}\\\tag{Chinese Treebank}
+    &\texttt{YaoMing~~reaches~~finals}\\
+    \\
+    &\texttt{姚~~~明~~~~进入~~~~~总~~~~~~~决赛}\\\tag{Peking University}
+    &\texttt{Yao~~Ming~~reaches~~overall~~finals}
+  \end{align*}
+\end{example}
+Different languages present different difficulties -In the case of Arabic, expressions formed by adding consecutive suffixes to a single root word (like the sequence \emph{establish $\to$ establishment $\to$ establishmentarianism} in English) are a more essential part of the language, such that complete sentences can be expressed as unbroken `word' units. As a result a `word' unit, which is identified by unbroken character sequences occuring between spaces, in Arabic will represent larger more complex chunks of meaning than same framework would identify for comparable sentences in English. What is the `correct' amount of information that our word-units should encode?
+\section{A `word' framework}
+\authorquote{There is a general concept underlying all this diversity; that is the \textbf{lexical item}. Every language has a \textbf{vocabulary}, or 'lexicon', which forms one part of its grammar —or, to use a more accurate term, one part of its lexicogrammar}{\textcite{halliday-2004-lexicology}}
+To clarify what is meant by `word' beyond just a description of convetion requires a new vocabulary: we need terms which allow us to describe the various commonalities of form and function which unify of these elements of everyday language. We present a framework due to \textcite{dixon02-word} to assist us toward this end:
+\begin{infobox}{Distinguishing between uses of the term \emph{word} \parencite{dixon02-word}}
+  The word `word' is used in many ways in everyday speech, and in much linguistic discourse. It is important to make certain fundamental distinctions:
+  \begin{enumerate}[label=\protect\circled{\small{\arabic*}}]
+    \item Between a lexeme and its varying forms;
+    \item Between an orthographic word (something written between two spaces) and other types of word;
+    \item Between a unit primarily defined on grammatical criteria and one primarily defined on phonological criteria.
+  \end{enumerate}
+\end{infobox}
+Let us briefly clarify what is meant by these terms before discussing their relevance to word embeddings:
+\begin{definition}[Lexemes and inflected forms]
+  Lexemes are distinct \emph{root forms} which make up the \emph{lexicon} of a language (they are the elements of which dictionaries generally constitute), and serve to group so-called \emph{inflected forms} which have a meaning related to their root. Lexemes are the object being referred to as `word' in statements like ``look, looks, looked and looking are forms of the same word''. The same sentiment could be phrased: ``the lexeme \emph{look} is realised as the word-forms: \emph{look, looks, looked \& looking}''.
+\end{definition}
+\begin{example}[Lexemes and inflected forms]\label{ex:lexemes}
+  The example given above of contrasting the lexeme ``look'' to its inflected forms is presented here in a table:
+  \begin{table}[H]
+    \centering
+    \begin{tabular}{l l l l}
+      \toprule
+      root or underlying form & inflected forms & grammatical function\\
+      \midrule
+      look                    & look            & present, non-3sg subject\\
+                              & looks           & present, 3sg subject\\
+                              & looked          & past\\
+                              & looking         & participle\\
+      \bottomrule
+    \end{tabular}
+    \caption{An comparison between the lexeme for the English verb \emph{look} and its inflected word-form realisations}
+  \end{table}
+\end{example}
+\vspace{1em}
+\begin{definition}[Orthographic words]
+  Orthographic words are distinct elements of \emph{orthography} (written language), most often defined as \textbf{something written between two spaces}.
+\end{definition}
+\begin{example}[Orthographic words]\label{ex:orthographic-words}
+  Orthographic words entirely reflect conventions of writing, so the form ``cannot'' is one orthographic word wheras the form ``must not'' (despite having the same apparent grammatical properties) is two orthographic words.
+\end{example}
+\begin{definition}[Grammatical and phonological words]
+  This term describes the language-parts which result from applying a grammatical framework to recognise regular word-like elements in obsereved language. A gramatical framework is one concerned with the rules governing the arrangement of \emph{morphemes} (the smallest distinct units of meaning)
+  \textcite{dixon02-word} provides the following criterea for identifying grammatical words:
+  A \textbf{grammatical word} consists of a number of gramatical elements which;
+  \begin{enumerate}[label=(\alph*)]
+  \item always occur together, rather than scattered through the clause (the critereon of cohesiveness);
+  \item occur in a fixed order
+  \item have a conventionalised coherence and meaning
+  \end{enumerate}
+  \citeauthor{dixon02-word} also provide a definition of \emph{phonological word} in the same vein which we omit here since phonological words are less directly related to the embedding problem\footnotemark.
+\end{definition}
+\footnotetext{ Whereas grammatical words are concerned with elements of a grammatical structure with a regular form, phonological words are concrened with elements of a phonological structure (consisting of phonemes: the smallest distinct units of vocalised language) with a regular form. Since word embeddings deal with written language the vocal realisation of language is of less significance.}
+
+\begin{example}[Grammatical words]
+  Grammatical words conform less to our conventional notion of `word' but are more well behaved as they derive from a static criterea; The inflected forms of the lexeme \emph{look} in \autoref{ex:lexemes} (\emph{look, looks, looked, looking}) are all examples of grammatical words, but so are the forms ``New York'', ``Rock `n' Roll'', ``dinner-time'', ``breakfast time'', ``isn't'', ``pick-me-up'', and ``CD'' (which we wondered about the proper place of at the start of this chapter). Since the criterea for identifying grammatical words takes meaning into account, different words with the same word-form (like river \emph{bank} and financial \emph{bank}) are also considered distinct grammatical words.
+\end{example}
+We highlight these distinctions because without this terminology it is easy to overlook an implicit \emph{word}$=$\emph{orthographic word} assumption made when working with word embeddings. This assumption is not uncommon, as \citeauthor{dixon02-word} notes:
+\basicquote{In many language communities a word is thought of as having (semantic, grammatical and phonological) unity and, in writing, words are conventionally separated by spaces}
+\par
+\begin{figurewrap}[13]{r}{0.6\textwidth}
+  \vspace{-2.5em}
+  \captionsetup{width=.55\textwidth}
+  \centering
+  \includesvg[width=.60\textwidth]{figures/inkscape/polysemy-figure.svg}
+  \caption{The \emph{problem of polysemy} illustrated: Which sense of the orthographic words ``bank'' or ``rock'' should their embeddings encode? and what about the embedding of the grammatical word ``rock `n' roll'' not present in the orthographic words?}\label{fig:polysemy}
+\end{figurewrap}
+\par
+but it is worth discussing explicitly since our assumptions will be encoded by our embedding algorithms. The issues relating most to the generation of word embeddings regard \emph{semantic} unity -if a word does not have semantic unity (i.e., orthographic word and semantic meaning are not one-to-one) then it is said to be \emph{polysemic} (\emph{poly} [many] \emph{semus$\rightarrow$semantic} [meanings]) and the resulting problem w.r.t. word embeddings is called \emph{the problem of polysemy}. A related problem is that of representing grammatical words which consist of multiple orthographic-word parts -these are considered as separate parts and not as a whole.
+Ideally word embeddings algorithms would describe a bijective map between grammatical words and points in word space. Since word embedding algorithms operate on orthographic words, the idiosyncrasies of the map between grammatical words and orthographic words (illustrated in \autoref{fig:polysemy} is inhereted by the resulting representations. The surjectivity of this map creates the problem of polysemy and the one-to-many nature of the map means multi-part grammatical words are misrepresented too.
+\citeauthor{halliday-2004-lexicology} discuss some of the pitfalls of seeking \emph{fixed, representative} meanings of words in natural lanugage in the following excerpt:
+\basicquote{As users of language we know that someone's mention of a recent television programme about big cats in Africa implies a different meaning of cat from a reference to the number of stray cats in the city of New York. And if someone talks about 'letting the cat out of the bag' or 'setting the cat among the pigeons', we know that the meaning has to be taken from the whole expression, not from a word-by-word reading of Felis catus jumping out of a bag or chasing Columbidae. Any good dictionary recognises this by such strategies as listing different senses of a word, giving examples of usage, and treating certain combinations of words (such as idioms) as lexical units. But it is important to recognise that this contextualisation of meaning is in the very nature of language and not some unfortunate deviation from an ideal situation in which every word of the language always makes exactly the same semantic contribution to any utterance or discourse. \textbf{For reasons such as these, we should be cautious about the view that words have a basic or core meaning, surrounded by peripheral or subsidiary meaning(s)}}
+Clearly these qualities of language, particularly in its written form, present some difficulties for embedding algorithms. Despite this however, even the earliest embedding methods, which did not take measures to address these concerns, reported that the semantic information they \emph{did} capture was useful and interesting \parencite{deerwester-1990-indexing-by-lsa}.
+
+The embedding methods we present in this report (co-occurence models and \texttt{word2vec} models) do not address the problem of polysemy or the many-to-one problem of multi-part grammatical words, but with the information presented here the reader should: {\small\circled{1}} know the comprimises made by models not accounting for these factors, and {\small\circled{2}} have the context and prerequisites upon finishing this report to understand methods which \emph{do} address the issues. In particular the \nameref{deep-contextualised-model} addresses polysemy concerns, and embeddings operating on n-grams (\nameref{n-gram-model}) address the many-to-one problem.

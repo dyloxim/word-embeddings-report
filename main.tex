@@ -113,9 +113,9 @@ Typical word spaces, unlike the simplified form illustrated in \autoref{ex:2d-wo
   \text{\small{$\rangle$}}\tag{\theequation}\label{eq:orange-vec}\vspace{-1.0em}
 \end{align*}
 High-dimensional vectors like \eqref{eq:orange-vec} cannot be plotted on an $x,y$ plane without loss of information, so we can't visualise points in a typical word space with the same approach as we used in \autoref{ex:2d-word-space}. An alternate method for visualising points in word space which still allows us to judge the similarity of vectors by their appearance, and is applicable higher dimensional vectors, is to map the magnitude of vector components onto a smooth colour gradient and then to compare the resulting colour-vectors, rather than the original numerical forms.
-\begin{example}[50 dimensional Word Space]\label{ex:glove-word-space}
+\begin{example}[50 dimensional Word Space]\label{ex:glove-word-space}%% todo: expand on this description
 \autoref{fig:glove-word-space} applies the principle described above to visualise word vector outputs from a real word embedding model.
-\begin{figure}[H]
+\begin{figure}[H]%% add key to figure
   \captionsetup{width=.91\linewidth}
  \centering
  \includesvg[width=0.91\linewidth]{figures/python/wiki_vecs.svg}
@@ -145,13 +145,13 @@ There are many variations of the statement of the distributional hypothesis; \ci
 This approach to linguistics (distributional linguistics) was widespread in the 1950s \parencite{jurafsky21-speec}, with key contributions to the theory made by \textcite{joos-1950-description-of-language, harris-1954-distrib-struct, firth-1957-a-syn-of-lin}, and is related \citeauthor{wittgenstein53-philos}'s \parencite*{wittgenstein53-philos} ideas about `family resembelance' from the same period \parencite{turney10-from-frequen-to-meanin}.
 The question of how word embeddings are created then can instead be phrased \emph{How exactly is the distributional hypothesis employed by these (word embedding) algorithms?}. Below we paraphrase the descriptions of seven categories identified by \textcite{wang-2019-evaluating} into which word embedding methods fall:
 \begin{infobox}{Word Embedding Method Categorisation}
-  \paragraph{*Co-occurrence Matrix} In this context we refer to either \emph{word-document} or the \emph{word-word} co-occurence matrices, though other formulations exist (\textcite{turney10-from-frequen-to-meanin} provides a good overview of approaches). The co-occurence matrix $X$ is such that the $(i, j)$ entry, $X_{ij}$ counts the number of times the word $i$ occurred in the context $j$, where $j$ could be the context of a document or the context of a near-by word.
-  \paragraph{*Continuous-Bag-of-Words and skip-gram} Two \emph{iteration-based} methods proposed in the \texttt{word2vec} paper \parencite{mikolov13-effic-estim-word-repres-vector-space} and widely used thereafter. The first model (CBOW) predicts the center word from its surrounding context and the second (SG) predicts the surrounding context words given a center word.
-  \paragraph{Neural Network Language Model} The NNLM~\parencite{bengio-2003-a-neural-prob-lang-model} \emph{jointly learns a word vector representation and a statistical language model}, and is \emph{very computationally complex}.
-  \paragraph{FastText} This method exists to address issues with other approaches which produce poor estimations for rarely used words. \emph{FastText uses subword information explicitly so embedding for rare words can still be represented well}. It is based on the skip-gram model, where each word is represented as a bag of character 
-  \paragraph{$N$-gram Model} $n$-grams are multi-word elements with $n$ parts (for example ``a man'' is a 2-gram). $n$-gram models are methods which operate on $n$-grams in addition to, or in place of words. \textcite{zhao-etal-2017-ngram2vec} incorporates the n-gram model in various baseline embedding models such as \texttt{word2vec}, GloVe, PPMI, and SVD.
-  \paragraph{Dictionary Model} Dictionary models learn word representations from dictionary entries as well as large unlabelled corpus, both sources of information are incorporated into one representation. \parencite{tissier-etal-2017-dict2vec} implements this method as \texttt{dict2vec}.
-  \paragraph{Deep Contextualised Model} \parencite{peters18-deep-contex-word-repres} introduced a model for \emph{deep contextualised word representations which represent complex characteristics of words and word usage across different linguistic contexts}. An Embeddings from Language Models (ElMo) representation is generated with a function that takes an entire sentence as the input.
+  \paragraph{*Co-occurrence Matrix}\label{cooccurrence-matrix-models} In this context we refer to either \emph{word-document} or the \emph{word-word} co-occurence matrices, though other formulations exist (\textcite{turney10-from-frequen-to-meanin} provides a good overview of approaches). The co-occurence matrix $X$ is such that the $(i, j)$ entry, $X_{ij}$ counts the number of times the word $i$ occurred in the context $j$, where $j$ could be the context of a document or the context of a near-by word.
+  \paragraph{*Continuous-Bag-of-Words and skip-gram}\label{word2vec-models} Two \emph{iteration-based} methods proposed in the \texttt{word2vec} paper \parencite{mikolov13-effic-estim-word-repres-vector-space} and widely used thereafter. The first model (CBOW) predicts the center word from its surrounding context and the second (SG) predicts the surrounding context words given a center word.
+  \paragraph{Neural Network Language Model}\label{nnl-model} The NNLM~\parencite{bengio-2003-a-neural-prob-lang-model} \emph{jointly learns a word vector representation and a statistical language model}, and is \emph{very computationally complex}.
+  \paragraph{FastText}\label{fasttext} This method exists to address issues with other approaches which produce poor estimations for rarely used words. \emph{FastText uses subword information explicitly so embedding for rare words can still be represented well}. It is based on the skip-gram model, where each word is represented as a bag of character 
+  \paragraph{$N$-gram Model}\label{n-gram-model} $n$-grams are multi-word elements with $n$ parts (for example ``a man'' is a 2-gram). $n$-gram models are methods which operate on $n$-grams in addition to, or in place of words. \textcite{zhao-etal-2017-ngram2vec} incorporates the n-gram model in various baseline embedding models such as \texttt{word2vec}, GloVe, PPMI, and SVD.
+  \paragraph{Dictionary Model}\label{dictionary-model} Dictionary models learn word representations from dictionary entries as well as large unlabelled corpus, both sources of information are incorporated into one representation. \parencite{tissier-etal-2017-dict2vec} implements this method as \texttt{dict2vec}.
+  \paragraph{Deep Contextualised Model}\label{deep-contextualised-model} \parencite{peters18-deep-contex-word-repres} introduced a model for \emph{deep contextualised word representations which represent complex characteristics of words and word usage across different linguistic contexts}. An Embeddings from Language Models (ElMo) representation is generated with a function that takes an entire sentence as the input.
 \end{infobox}
 In this report we describe algorithms for generating embeddings from the \emph{co-occurrence matrix} category (which we refer to as the ``count models''), and the \emph{continuous-bag-of-words / skip-gram} category (which we will refer to as the ``predict models'').
 \section{What are they for?}
@@ -183,18 +183,21 @@ Many novel applications of the embedding process to capture semantic association
 \par
 \begin{infobox}{Novel Applications of the Embedding Process}
   \paragraph{Graph Embeddings} \textcite{grohe20-word2-node2} presents an overview of techniques which generalise the word embedding process to embed structured data -graphs (possibly labelled or weighted), or more generally relational structures, nodes of a large graph, or tuples appearing in a relational structure.
-  \paragraph{Recommendation Systems} \textcite{grbovic-2018-real-time-personalization} demonstrate the use of user and listing embeddings to improve real-time personalisation and similar listing recommendations at Airbnb, and \textcite{wang-2018-billion-scale-commodity-embedding} employ item-graph embeddings generated from users' behaviour history to improve recommendation systems at Alibaba.
+  \paragraph{Recommendation Systems} \textcite{grbovic-2018-real-time-personalization} demonstrate the use of user and listing embeddings to improve real-time personalisation and similar listing recommendations at Airbnb, and \textcite{wang-2018-billion-scale-commodity-embedding} employ item-graph embeddings generated from users' behaviour history to improve recommendation systems at the global e-commerce platform Alibaba.
   \paragraph{Music Embeddings} \textcite{chuan-2018-from-context-to} model functional chord relationships and harmonic associations by embedding slices of music from a large corpus music across eight genres.
   \paragraph{Customer Lifetime Value Prediction} \textcite{chamberlain17-custom-lifet-value-predic-using-embed} propose a method to generate embeddings of customers which provide daily estimates of the future value of every customer, employed by the ASOS fashion retailer.
 \end{infobox}
+While the focus of this document is on the use of embeddings to process language, it is our intention to present the theory of word embeddings in such a way that the underlying techniques \emph{not specific to language processing} can be understood in their own right. We intend that novel applications like those mentioned above, falling outside of the field of NLP, can be approached with confidence following this primer.
+
 \section{Report Content \& Structure}
 %% TODO: state key references (turney.. mikolov etc.)
 In \autoref{chap:preliminaries} we discuss key linguistic concepts informing embedding-algorithm design: how we define `word', what is meant by `semantic relatedness' \& core concepts from distributional semantics, and finally present a formal description of data these algorithms operate on, to be used in the following chapters. In \autoref{chap:count-models} we discuss the generation of word embeddings using the vector-space-model methods following the framework laid out by \textcite{turney10-from-frequen-to-meanin}. In \autoref{chap:predict-models} we discuss the two embedding algorithms packaged by the \texttt{word2vec} software, described by \textcite{mikolov13-distr-repres-words-phras-their-compos}, and compare these methods to those already discussed. In the last chapter, \autoref{chap:practical-considerations} we address practical considerations for the application of these methods: text preprocessing, model tuning \& consideration of bias, before finally summarising observations made through the course of this research in the conclusion.
 %% -------------------------- %%
 %%        MAIN MATTER         %%
 %% -------------------------- %%
-\include{chapters/preliminaries}
+\include{chapters/words}
 % ++ words: what are they?
+\include{chapters/preliminaries}
 % ++ semantic relatedness (syntagmatic.. paradigmatic .. etc.)
 % ++ distributive properties??
 % ++++ zipfs law

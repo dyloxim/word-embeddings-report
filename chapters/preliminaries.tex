@@ -1,47 +1,14 @@
-\chapter{Preliminaries}\label{chap:preliminaries}
-\section{What are words?}
-\authorquote{To many people the most obvious feature of a language is that it consists of words}{\textcite{halliday-2004-lexicology}}
-\authorquote{There have been many definitions of the word, and if any had been successful I would have given it long ago, instead of dodging the issue until now}{\textcite{matthews-1991-morph}}
-\noindent
-The `Word' workshop, held at the international research centre for linguistic typology 12-16 August 2000 consisted of 16 presentations discussing the answer to this question. Ten of those were published in the book \citetitle{dixon02-word}. The difficulty of the question is summarised in the book's conclusion as follows:
-\authorquote{The problem of the word has worried general linguists for the best part of a century. In investigating any language, one can hardly fail to make divisions between units that are word-like by at least some of the relevant criteria. But these units may be simple or both long and complex, and other criteria may establish other units. It is therefore natural to ask if ‘words’ are universal, or what properties might define them as such.}{P.H. Matthews, \parencite{dixon02-word}}
-
-Some definitions of 'word' (like \citeauthor{bloomfield-1926-a-set-of}'s \parencite*{bloomfield-1926-a-set-of} \emph{`A minimum free form is a word'}) are sufficient but not necessary, wheras others (like \citeauthor{lyons-1968-introduction}'s \parencite*{lyons-1968-introduction} \emph{`a word may be defined as the unit of a particular meaning with a particular complex of sounds capable of a particular grammatical employment'}) is a potentially necessary but certainly not sufficient criterea. Is it possible to present a watertight definition?
-Our word-intuition is not watertight either, consider \emph{so called} filler-words like ``uh'' or ``um'', or compound forms like ``rock 'n' roll'' and ``New York'' always used as complete units. These are examples of language elements that are sometimes treated as words and sometimes not. The boundaries we agree on now conform to ever changing conventions; the word ``tomorrow'' is listed in Johnson's 1755 dictionary of the English language as two distinct components ``to'', and ``morrow'' despite being indesputeably a word \emph{to-day}. \textcite{halliday-2004-lexicology} asks ``How do we decide about sequences like lunchtime (lunch-time, lunch time), dinner-time, breakfast time? How many words in isn't, pick-me-up, CD?''.
-An understanding of `word' formed within the English language cannot blindly be applied beyond that scope either, \cite{dixon02-word} notes ``The idea of ‘word’ as a unit of language was developed for the familiar languages of Europe''. Languages which are written without spaces, (like Chinese, Japanese, and Thai) present one particular example of the challenges in applying a local conception of `word' beyond this scope. 
-\begin{example}[Chinese Sentence Segmentation]
-  \textcite{chen-2017-adversarial-multi} gives the following example of the difficulty in agreeing on `word' boundaries in Chinese: The sentence "Yao Ming reaches the finals" (姚明进入总决赛) May be divided up to yield either three words or five using the two segmentations methods; 'Chinese Treebank' segmentation, or 'Peking University' segmentation, respectively:
-  \begin{align*}
-    &\texttt{姚明~~~~~进入~~~~~总决赛~}\\
-    &\texttt{YaoMing~~reaches~~finals}\\
-    \\
-    &\texttt{姚~~~明~~~~进入~~~~~总~~~~~~~决赛}\\
-    &\texttt{Yao~~Ming~~reaches~~overall~~finals}
-  \end{align*}
-\end{example}
-Different languages present different difficulties -In the case of Arabic, expressions formed by adding consecutive suffixes to a single root word (like the sequence \emph{establish $\to$ establishment $\to$ establishmentarianism} in English) are a more essential part of the language, such that complete sentences can be expressed as unbroken `word' units. As a result the `word' unit (identified by unbroken character sequences occuring between spaces) in Arabic will represent larger more complex chunks of meaning than same framework would identify for comparable sentences in English. What is the `correct' amount of information that our word-units should signify?
-
-\section{Tokens and Types}
-\authorquote{The limits of my language means the limits of my world}{\textcite{wittgenstein-1922-tract}}
-Contains 11 word-tokens, and 7 word-classes (assuming the sentence is tokenized by identifying word boundaries at both ends and each blank space).
-\textbf{Lexicology} is the study of words, and \textbf{semantics} is the study of meaning. The `embedding' in `word embeddings' derives from the mathematical sense `to embed in a space' (for example, to embed a graph in a coordinate space). Word embedding algorithms are methods for embedding \emph{lexicological objects} in \emph{semantic space}, i.e., words a space where position relates to meaning somehow). This is achieved by statistical analysis of large quantities of written language (by extraction of word-tokens).
-
-The conventions of written language, called \textbf{orthography}, make word-tokens an imperfect representation of `words' in the lexicological sense. In particular, one problem is that distinct words do not always have distinct realisations in written language. Orthographic forms with this property are called \textbf{polysemus} (poly as in \emph{many} and semus as in \emph{meaning}, from the same root as semantics). Alternatively, the distinct words sharing this same form are referred to as \textbf{homonyms} (having the same name). The words \emph{bank} as in money holding organisation and \emph{bank} as in riverside are often used to illustrate this property. Indeed, some words, like \emph{frequent} as in often, and \emph{frequent} as in attend are examples of words distinct in spoken language despite being identical in written language; such words are said to be \textbf{homographs} (same orthography, different names).
-
-\begin{figure}[h]
- \centering
- \includesvg[width=0.9 \columnwidth]{figures/inkscape/lexicology-orthography-embedding-PATHS.svg}
- \caption{The \emph{problem of polysemy} illustrated}
-\end{figure}
-
-Embedding algorithms which generate their representations without taking this \emph{problem of polysemy} into account produce representations which conflate the multiple meanings of a word-form into a single point in the embedding space.
-
+\chapter{Embedding Methods: Preliminaries}
+\section{Types and Tokens}
 \section{Semantic relatedness}
+
 % syntagmatic/ paradigmatic whatever
 \section{Distributional analysis}
 % zipfs law
 % bayes etc.
-\section{Terminology \& Definitions}
+\section{Preliminaries}
+\authorquote{The limits of my language means the limits of my world}{\textcite{wittgenstein-1922-tract}}
+
 We begin by defining terms already encountered in mathematical terms.
 
 \begin{definition}[Orthography]\label{def:orthography}
@@ -89,7 +56,7 @@ Note, the term `orthography' in linguistics refers to the conventions of written
 \begin{definition}[Word-Token]
   A word token $w$ has the same attributes as a document; it is a finite sequence $c_0,c_1,\dots,c_n$ ($c\in\mathscr{O}$), where $\mathscr{O}$ is an orthography. We only refer to sequences of symbols as word tokens when they are the output of a tokenizer, however.
 \end{definition}
-
+%% include tokenizer diagram
 \begin{definition}[Tokenizer]
    A tokenizer $T$ is a function that maps a document to a sequence of word tokens; $T(d)=w_1,w_2,\dots,w_n$. The output is refered to as the 'tokenized' form of the document. We use the shorthand $W_d$ to refer to the tokenized document $T(d)$ when it is clear which tokenization has been used.\footnote{Here we consider tokenization in an abstract sense essentially saying ``A tokenizer is a function that extracts tokens''. A practical discussion of tokenization and text-preprocessing is found in \autoref{sec:preprocessing}}.
 \end{definition}
