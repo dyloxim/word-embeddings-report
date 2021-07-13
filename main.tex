@@ -10,7 +10,7 @@
 \date{2021}
 \abstract{\noindent
   %% TODO: rewrite
-In this report we attempt to provide a complete introduction to the core theories of word embeddings (numerical vector representations of words as they appear in text) sufficient to enable further reading of more advanced topics. This introduction covers briefly the linguistic context, theoretical development, most impactful implementations, and practical considerations of application of word embedding methods. In the first section we discuss the nature of the words, in the second we describe the cross disciplinary events which lead to development the key mathematical techniques for producing embeddings and explain their operation, and finally we discuss practical considerations of these algorithm's applications. As the primary relevance of these methods within research is their practical application we take a broader contextual approach opposed to a purely mathematical one and focus on the developments and methods most influential in the sphere of application. We assume familiarity with core mathematics at an undergraduate level as prerequisite for our descriptions of the selected implementation methods but otherwise assume no prior knowledge of the subject.}
+In this report we attempt to provide a comprehensive primer on key topics relating to word embeddings, sufficient to enable further reading of more advanced material. The reader does not need prior experience in the domain of natural language processing (NLP), but familiarity with core mathematics at an undergraduate level is assumed. We take more of a cross-disciplinary approach than purely mathematical one to reflect the primarily applied nature the subject matter. In the first chapter we summarise the key features of word embeddings: What they are, how they are created, what they are for, and other uses the theory of word embeddings outside of NLP. In the second chapter we discuss the difficulties of defining word meaning and present a framework to help distinguish between different senses of `word'. In the third chapter we describe key concepts and definitions generally assumed by the different methods for generating word embeddings. Finally in the fourth chapter we illustrate these ideas by describing the opeartion of particular class of embedding methods: count models.}
 
 \begin{document}
 
@@ -31,7 +31,7 @@ Word embeddings are numerical representations of words which are derived from th
     \begin{minipage}[t]{.4\textwidth}
       \centering
       \vspace{0.4em}
-      \begin{tikzpicture}[scale=1.4]
+      \begin{tikzpicture}[scale=1.0]
         \draw[<->, very thick] (-2,0) -- (2,0);
         \draw[<->, very thick] (0,-2) -- (0,2);
         %% \draw[steps=.25cm,gray,very thin] (-4,-4) grid (4,4);
@@ -177,7 +177,7 @@ The \emph{semantic comprehension} quality makes them appropriate for many tasks 
 \par
 \textcite{turney10-from-frequen-to-meanin} include a thorough discussion of applications of \emph{Vector Space Models} (the class of embedding algorithms referred to as \emph{count models} in this report), listing the following examples of uses: word clustering, word classification, automatic thesaurus generation, word sense disambiguation, context sensitive spelling correction, semantic role labelling, query expansion, textual advertising \& information extraction. \autoref{ex:glove-word-clusters} illustrates the use of the embeddings from \autoref{ex:glove-word-space} to perform the first task from this list of examples: word clustering.
 %% todo: list novel applications (detecting dementia etc.)
-\section{Beyond word embeddings}
+\section{Beyond word embeddings}\label{chap:beyond-word-embeddings}
 Word embedding algorithms extract semantic information about language without any prior knowledge of underlying linguistic rules or significance. To these algorithms, language is just lists of discrete elements with underlying patterns to be identified. Due to this generality, word embedding algorithms can be used to encode the semantics of other types of ordered data.
 Many novel applications of the embedding process to capture semantic associations outside of the written language domain have been explored. Below we list some notable embedding applications we have come across in researching for this report:
 \par
@@ -209,15 +209,36 @@ In \autoref{chap:preliminaries} we discuss key linguistic concepts informing emb
 % ++ smoothing
 % ++ dimension reduction
 % ++ computation
-\include{chapters/predict-models}
-% ++ skip gram
-% ++ cbow
-% ++ hyper-parameters
-% ++ comparison to count models
-\include{chapters/practical-considerations}
+% ++ comparison with other models
+\chapter{Further Reading}\label{chap:further-reading}
+\addcontentsline{toc}{chapter}{Further Reading}
+In this section we briefly discuss practical considerations for the application of embedding algorithms and supply suggested resources for reference in each case.
+
+\begin{infobox}{Selected topics and references}{\small
+  \paragraph{Key references} These resources have been invaluable in writing this report:\hspace{1.4em}
+  \begin{enumerate}
+    \item On words: \emph{\citetitle{halliday-2004-lexicology, dixon02-word}} \parencite{halliday-2004-lexicology, dixon02-word},\vspace{-0.5em}
+    \item On Count models: \emph{\citetitle{turney10-from-frequen-to-meanin, sahlgreen-2006-the-word-space-model}} \parencite{turney10-from-frequen-to-meanin, sahlgreen-2006-the-word-space-model},\vspace{-0.5em}, 
+    \item An overview of embedding methods: \emph{\citetitle{wang-2019-evaluating}} \parencite{wang-2019-evaluating}
+    \end{enumerate}
+  \paragraph{Pre-processing}
+  Although we discussed tokenization in this report we did not discuss the more general problem of text pre-processing. Purposes of pre-processing can be lemmatization (replacing words with their ``lemma'' form i.e., looks$\rightarrow$look and running$\rightarrow$run), lowercasing, stop-word removal, multiword grouping (identifying multi-part grammatical words as single tokens). Suggested reading:
+  \begin{enumerate}
+    \item \emph{\citetitle{uysal-2014-the-impact-of-preprocessing}} \parencite{uysal-2014-the-impact-of-preprocessing},\vspace{-0.5em}
+    \item \emph{\citetitle{camacho-collados17-role-text-prepr-neural-networ-archit}} \parencite{camacho-collados17-role-text-prepr-neural-networ-archit}.
+  \end{enumerate}
+  \paragraph{Bias}\label{para:bias}
+  Since embedding algorithms do not understand language, they just identify statistical regularities in corpora, if that training data contains bias then that bias will be represented (or even amplified) in the embedding output. Suggested reading:
+  \begin{enumerate}
+    \item \emph{\citetitle{caliskan-2017-semantics-derived}} \parencite{caliskan-2017-semantics-derived},\vspace{-0.5em}
+    \item \emph{\citetitle{bolukbasi16-man-is-to-comput-progr}} \parencite{bolukbasi16-man-is-to-comput-progr}.
+  \end{enumerate}
+}\end{infobox}
 % ++ preprocessing
 % ++ bias
 \chapter*{Conclusion}\label{chap:conclusion}
 \addcontentsline{toc}{chapter}{Conclusion}
+Word embeddings are an essential tool in the NLP toolbox -they are ``a standard component of most state-of-the-art NLP architectures'' \parencite{peters18-deep-contex-word-repres}. They enable many systems which have to interact with language in some capacity do so more `intellegently'. In this report we have tried to describe the problems which make the creation of \emph{truly} intellegent word embeddings more difficult. Engineering better methods for representing language requires understanding what written language \emph{is} and how it performs its function. Cutting edge methods like that of \textcite{devlin-etal-2019-bert}, which incorporate an element of language modelling, will likely become the standard for this reason. Despite this, it is remarkable how much semantic information is encoded by even the most simple models, applicable to any type of sequenced data because of their \emph{lack} of assumptions. The core idea behind word embeddings, \emph{the distributional hypthesis}, is a powerful one. Finally, for practitioners of these methods the \nameref{para:bias} aspect is essential to consider: embedded representations say nothing `objective' about the concepts they represent, they are only a reflection of their training data. This is not a shortcoming of the methods used, it should just inform their manner of application -a good use of this bias-capturing nature of embeddings is for studying bias itself, see \parencite{garg-2018-word-embeddings-quantify} for such an investigation.
+
 \makebibliography
 \end{document}

@@ -53,7 +53,7 @@
   \begin{titlepage}
     {\centering
     \begin{minipage}{\textwidth}
-      \vspace{-2em}
+      \vspace{1em}
       {\centering
         {\scshape\LARGE \@institution \par}
         \vspace{0.3cm}

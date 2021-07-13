@@ -15,20 +15,22 @@
  }
  {\endwrapfloat}
 \usepackage{graphicx}
-\usepackage{tikz,pgf}
+\usepackage{tikz}
+\usepackage{pgf}
+\usepackage{collcell}
 \usetikzlibrary{backgrounds}
 \usepackage{booktabs}
 \usepackage{wasysym}
 \usepackage{multicol}
-\usepackage[linesnumbered,lined,boxed,commentsnumbered]{algorithm2e}
 \usepackage{capt-of}
 \usepackage{caption}
 \usepackage{float}
-\usepackage[dvipsnames]{xcolor}
+\usepackage[table]{xcolor}
 \usepackage{soul}
 \usepackage{empheq}
 \usepackage{enumitem}
 \usepackage[many]{tcolorbox}
+\usepackage{hhline,colortbl}
 \usepackage[
   left=1.35in,
   textwidth=5.9in,
@@ -107,6 +109,9 @@ citecolor = black,%
 anchorcolor = black]{hyperref}
 \usepackage{nameref}
 \usepackage{cleveref}
+\usepackage[linesnumbered,lined,boxed,commentsnumbered]{algorithm2e}
+\newcommand\mycommfont[1]{\small\ttfamily\textcolor{gray}{#1}}
+\SetCommentSty{mycommfont}
 
 % Bibliography
 \usepackage[
@@ -127,13 +132,13 @@ anchorcolor = black]{hyperref}
 \DeclareTextFontCommand{\textquotefont}{\normalfont\quotefont}
 \newcommand{\authorquote}[2]{
 \begin{center}\begin{quote}
-\parbox{0.25cm}{\Large{``}}{\small{\textquotefont{{#1}}}}$\,$\parbox{0.25cm}{\Large{''}} \vspace{-1.30em}\flushright{\small{\textquotefont{{#2}}}}
+\parbox{0.27cm}{\Large{``}}{\small{\textquotefont{{#1}}}}$\,$\parbox{0.25cm}{\Large{''}} \vspace{-1.30em}\flushright{\small{\textquotefont{{#2}}}}
 \end{quote}\end{center}
 \vspace{-0.60em}
 }
 \newcommand{\basicquote}[1]{
 \begin{center}\begin{quote}
-\parbox{0.25cm}{\Large{``}}{\small{\textquotefont{{#1}}}}$\,$\parbox{0.25cm}{\Large{''}}
+\parbox{0.27cm}{\Large{``}}{\small{\textquotefont{{#1}}}}$\,$\parbox{0.25cm}{\Large{''}}
 \end{quote}\end{center}
 }
 
@@ -177,22 +182,22 @@ preheadhook=\begin{leftbar},%
 % theorem environments
 \declaretheorem[name=Definition,
 style=customDefinition,
-numberwithin=chapter,
+numberwithin=section,
 refname={definition,definitions},
 Refname={Definition,Definitions}]{definition}
 \declaretheorem[name=Note,
 style=definition,
-numberwithin=chapter,
+numberwithin=section,
 refname={note,notes},
 Refname={Note,Notes}]{note}
 \declaretheorem[name=Example,
 style=example,
-numberwithin=chapter,
+numberwithin=section,
 refname={example,examples},
 Refname={Example,Examples}]{example}
 \declaretheorem[name=Example,
 style=example,
-numberwithin=chapter,
+numberwithin=section,
 refname={example,examples},
 Refname={Example,Examples}]{example*}
 \definecolor{mygrey}{rgb}{0.92, 0.92, 0.92}
@@ -246,3 +251,16 @@ splittopskip=1.5em,%
   \def\FrameCommand{{\vrule width 3pt} \hspace{10pt}}%
   \MakeFramed {\advance\hsize-\width \FrameRestore}}%
 {\endMakeFramed}
+
+\usepackage{colortbl}
+% This selects the amount of color to use
+\newcommand*{\MinNumber}{0}%
+\newcommand*{\MaxNumber}{0.5}%
+\newcommand{\ApplyGradient}[1]{%
+  \pgfmathsetmacro{\PercentColor}{100.0*(#1-\MinNumber)/(\MaxNumber-\MinNumber)}%
+  %\textcolor{black!\PercentColor}{#1}
+  \edef\x{\noexpand\cellcolor{black!\PercentColor}}\x\textcolor{black}{#1}%
+}
+\newcolumntype{R}{>{\collectcell\ApplyGradient}{r}<{\endcollectcell}}
+
+\newcommand{\mycirc}[1][black]{\,\tikz\draw[#1,fill=#1] (0,0) circle (.8ex);}
