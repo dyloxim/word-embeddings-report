@@ -1,20 +1,24 @@
-\chapter{Count Models}\label{chap:count-models}
-So-called \emph{count models} were the first methods investigated for creating word embeddings. They emerged from work in the field of information retrieval (IR). In particular, influential contributions \parencite{dublin-2004-the-most-influential} were made by \citeauthor{salton-1975-a-vector-space-model}'s \parencite*{salton-1975-a-vector-space-model} work on the SMART information retrieval system which ``pionered many of the concepts that are used in modern search engines'' \parencite{turney10-from-frequen-to-meanin}. Initally word-similarity was not the focus of the developed models, but instead \emph{document similarity} was (for matching search queries to relevant/related material), however \textcite{deerwester-1990-indexing-by-lsa} observed that by looking at row vectors rather than column vectors in a document-term matrix the objects described were \emph{word vectors}.
+\chapter{Case Study: Count Models}\label{chap:count-models}
+So-called \emph{count models} were the first methods investigated for creating word embeddings. They emerged from work in the field of information retrieval (IR). In particular, influential contributions \parencite{dublin-2004-the-most-influential} were made by \citeauthor{salton-1975-a-vector-space-model}'s \parencite*{salton-1975-a-vector-space-model} work on the SMART information retrieval system which ``pioneered many of the concepts that are used in modern search engines'' \parencite{turney10-from-frequen-to-meanin}. Initially word-similarity was not the focus of the developed models, but instead \emph{document similarity} was (for matching search queries to relevant/related material), however \textcite{deerwester-1990-indexing-by-lsa} observed that by looking at row vectors rather than column vectors in a document-term matrix the objects described were instead \emph{word vectors}.
 
+Co-occurrence matrices, the heart of \emph{count models} do what they say: they count instances of co-occurrence. They can be thought of like big tally tables.
 
-Co-occurrence matricies, the heart of \emph{count models} do what they say: they count instances of co-occurrence. They can be thought of like big tally tables.
+We use the framework described by \textcite{turney10-from-frequen-to-meanin} to group ``count models'' according to the structure (choice of rows and columns) of the co-occurrence matrix they create. In the case of document-term matrices which we discuss first, the rows represent documents and the columns represent terms in the vocabulary of the document corpus. In the case of word-context matrices the rows represent target words (occurring at the centre of a context-window), and the columns represent context words (occurring in a target word's context-window).
 
-We use the framework described by \textcite{turney10-from-frequen-to-meanin} to group ``count models'' according to the structure (choice of rows and columns) of the co-occurence matrix they create. In the case of document-term matricies which we discuss first, the rows represent documents and the columns represent terms in the vocabulary of the document corpus. In the case of word-context matricies the rows represent target words (occuring at the center of a context-window), and the columns represent context words (occuring in a target word's context-window).
+In the following sections we define these terms concretely.
 
-\section{Document-term Matricies}
+\section{Document-term Matrices}
 \begin{definition}[Document-term co-occurrence count]
-  In the context of document-term matricies, the function $f(w,W_d)$ indicates the number of times the token $w$ appears in a tokenized document $W_d$.
+  In the context of document-term matrices, the function $f(w,W_d)$ indicates the number of times the token $w$ appears in a tokenized document $W_d$.
+  \begin{equation}
+    f(w,W_d)= \#\{t\in W_d\;\mid\;t=w\}
+  \end{equation}
 \end{definition}
 
-\begin{definition}[Document-term matricies]
-  Given a corpus of documents $C=d_1,d_2,\dots,d_n$, and a tokenizer $T$, a term document matrix $\bf{X}$ is given by:
+\begin{definition}[Document-term matrices]
+  Given a corpus of documents $C=d_1,d_2,\dots,d_n$, and a tokenizer $T$, a document-term matrix $\bm{X}$ is given by:
   \begin{equation}
-    \bf{X}=
+    \bm{X}=
   \begin{bmatrix}
     f(w_1, W_{d_1}) & f(w_1, W_{d_2}) & \dots  & f(w_1, W_{d_n}) \\
     f(w_2, W_{d_1}) & f(w_2, W_{d_2}) & \dots  & f(w_2, W_{d_n}) \\
@@ -23,9 +27,9 @@ We use the framework described by \textcite{turney10-from-frequen-to-meanin} to 
   \end{bmatrix}
   \end{equation}
   where the $w_i$ terms are from the vocabulary of $C$, $V(C)=w_1,w_2,\dots,w_m$.
-  The number of times the $i^{\text{th}}$ word appears in the $j^{\text{th}}$ document then, is given by $\bf{X}_{ij}$.
+  The number of times the $i^{\text{th}}$ word appears in the $j^{\text{th}}$ document then, is given by $\bm{X}_{ij}$.
 \end{definition}
-
+\vspace{3em}
 \begin{example}[Plato Document Vectors]
   A document-term co-occurrence matrix has document-vectors for columns and word-vectors for rows. Here we present a section of a document-term matrix for the tokenized Plato corpus, and show in \autoref{fig:plato-docs} how these counts can be used to position document-vectors in a term-space.
   \begin{center}
@@ -57,25 +61,28 @@ We use the framework described by \textcite{turney10-from-frequen-to-meanin} to 
 \end{example}
 \par
 \begin{figure}[H]
-\begin{center}
-\begin{tikzpicture}[scale=0.45]
-  \draw[->, very thick] (0,0) -- (14,0);
-  \node at (7,-1) {\large{\emph{Socrates}}};
-  \draw[->, very thick] (0,0) -- (0,14);
-  \node at (-1,7) [rotate=90]{\large{\emph{God}}};
-  \draw[->, very thick] (0,0) -- (0 , 11.9) node[above right]{\large{\texttt{laws}}};
-  \draw[->, very thick] (0,0) -- (6.8 , 5.9) node[above right]{\large{\texttt{republic}}};
-  \draw[->, very thick] (0,0) -- (6.5 , 2.2) node[above right]{\large{\texttt{cratylus}}};
-  \draw[->, very thick] (0,0) -- (5.7 ,  0.3) node[above right]{\large{\texttt{meno}}};
-  \draw[->, very thick] (0,0) -- (1.8 , 2.5) node[above right]{\large{\texttt{apology}}};
-  \draw[->, very thick] (0,0) -- (2.8 ,  0.1) node[above right]{\large{\texttt{crito}}};
-\end{tikzpicture}
-\caption{Works of Plato arranged in a two dimensional term-space according to the number of times the terms ``God'' and ``Socrates'' occured in their tokenized forms.}\label{fig:plato-docs}
-\end{center}
+  \captionsetup{width=.91\linewidth}
+  \begin{center}
+    \begin{tikzpicture}[scale=0.35]
+      \draw[->, very thick] (0,0) -- (14,0);
+      \node at (7,-1) {\large{\emph{Socrates}}};
+      \draw[->, very thick] (0,0) -- (0,14);
+      \node at (-1,7) [rotate=90]{\large{\emph{God}}};
+      \draw[->, very thick] (0,0) -- (0 , 11.9) node[above right]{\large{\texttt{laws}}};
+      \draw[->, very thick] (0,0) -- (6.8 , 5.9) node[above right]{\large{\texttt{republic}}};
+      \draw[->, very thick] (0,0) -- (6.5 , 2.2) node[above right]{\large{\texttt{cratylus}}};
+      \draw[->, very thick] (0,0) -- (5.7 ,  0.3) node[above right]{\large{\texttt{meno}}};
+      \draw[->, very thick] (0,0) -- (1.8 , 2.5) node[above right]{\large{\texttt{apology}}};
+      \draw[->, very thick] (0,0) -- (2.8 ,  0.1) node[above right]{\large{\texttt{crito}}};
+    \end{tikzpicture}
+    \caption{Works of Plato arranged in a two dimensional term-space according to the number of times the terms ``God'' and ``Socrates'' occurred in their tokenized forms.}\label{fig:plato-docs}
+  \end{center}
 \end{figure}
-The original purpose of these document-term matricies was to help relating the content of a document to queries about certain information. So, using our table above, if a query about Plato's writings contained the word ``God'' it would be more readily linked to \texttt{laws} and \texttt{apology}, wheras if the query contained ``Socrates'' the link would be with \texttt{crito} and \texttt{meno} instead.
+\vspace{-1.8em}
+\noindent
+The original purpose of these document-term matrices was to help relating the content of a document to a document-query. So, using our table above, if a query about Plato's writings contained the word ``God'' it would be more readily linked to \texttt{laws} and \texttt{apology}, whereas if the query contained ``Socrates'' the link would be with \texttt{crito} and \texttt{meno} instead.
 
-\textcite{deerwester-1990-indexing-by-lsa} observed that this same procedure could be used to measure word-similarity, however ``a document is not necessarily the optimal length of text for measuring word similarity''. So the concept of a \emph{word-context} matrix is concieved.
+\textcite{deerwester-1990-indexing-by-lsa} observed that this same procedure could be used to measure word-similarity, however ``a document is not necessarily the optimal length of text for measuring word similarity''. So the concept of a \emph{word-context} matrix is conceived.
 
 \begin{definition}[Context window]
   given a token $w_i$ from a tokenized document $W_d$, the function $\operatorname{context}(w, b)$ returns a sequence containing the following and preceding $b$ tokens from $W_d$ not including $w_i$ itself. The variable $b$ is called the window size.
@@ -98,22 +105,22 @@ The original purpose of these document-term matricies was to help relating the c
 \end{example}
 
 \begin{definition}[Word-context co-occurrence count]
-  Given a tokenized document $W_d$, we denote the number of times a token $c$ appears in the context of another token $w^*$: $\#_c\;\operatorname{context}(w^*)$. Then, we denote the total number of times $c$ appears in the context of any instance of the $w^*$ token throught the document $W_d$ by
+  Given a tokenized document $W_d$, we denote the number of times a token $c$ appears in the context of another token $w$: $\#_c\;\operatorname{context}(w)$. Then, we denote the total number of times $c$ appears in the context of any instance of the $w$ token throughout the document $W_d$ by
   \begin{equation}
-    f(w^*,c,W_d)=\sum_{\{w\in d\;\mid\; w=w^*\}}\#_c\;\operatorname{context}(w)
+    f(w,c,W_d)=\sum_{\{t\in W_d\;\mid\; t=w\}}\#_c\;\operatorname{context}(t)
   \end{equation}
   and, given a corpus of documents $C$ we denote the sum of all these co-occurrence counts over all the documents in the corpus:
   \begin{equation}
-    F(w^*,c)=\sum_{d\in C}f(w^*,c)
+    F(w,c)=\sum_{d\in C}f(w,c,d)
   \end{equation}
 \end{definition}
 
 From here it is straightforward to define the word-context co-occurrence matrix:
 
 \begin{definition}[Word-context co-occurrence matrix]
-  Given a corpus of documents $C=d_1,d_2,\dots,d_n$, and a tokenizer $T$, a term document matrix $\bf{X}$ is given by:
+  Given a corpus of documents $C=d_1,d_2,\dots,d_n$, and a tokenizer $T$, a term document matrix $\bm{X}$ is given by:
   \begin{equation}
-    \bf{X}=
+    \bm{X}=
   \begin{bmatrix}
     F(w_1,c_1) & F(w_1,c_2) & \dots  & F(w_1,c_m) \\
     F(w_2,c_1) & F(w_2,c_2) & \dots  & F(w_2,c_m) \\
@@ -121,12 +128,12 @@ From here it is straightforward to define the word-context co-occurrence matrix:
     F(w_m,c_1) & F(w_m,c_2) & \dots  & F(w_m,c_m) \\
   \end{bmatrix}
   \end{equation}
-  where the $w_i$ and $c_i$ terms are are both from the vocabulary of $C$, $V(C)=w_1,w_2,\dots,w_m=c_1,c_2,\dots,\c_m$.
-  The number of times the $i^{\text{th}}$ word appears in a context window with the $j^{\text{th}}$ context word is then given by $\bf{X}_{ij}$.
+  where the $w_i$ and $c_i$ terms are both from the vocabulary of $C$, $V(C)=w_1,w_2,\dots,w_m=c_1,c_2,\dots,\c_m$.
+  The number of times the $i^{\text{th}}$ word appears in a context window with the $j^{\text{th}}$ context word is then given by $\bm{X}_{ij}$.
 \end{definition}
 
 \begin{example}[Meno's answer]
-  A word-context co-occurrence matrix generated using this procedure with a window size of 10, using the works of Plato as its corpus identified these words as the ten \emph{most similar} (using the cosine measeure of similarity) to ``virtue'':
+  A word-context co-occurrence matrix generated using this procedure with a window size of 10, using the works of Plato as its corpus identified these words as the ten \emph{most similar} (using the cosine measure of similarity) to ``virtue'':
   \begin{center}{\footnotesize
       \captionsetup{width=.91\linewidth}
       \begin{tabular}{c r r r r r r r r r r}
@@ -138,17 +145,17 @@ From here it is straightforward to define the word-context co-occurrence matrix:
       \end{tabular}
       \captionof{table}{The most similar words to ``virtue'' according to a word-context matrix trained on the works of Plato.}\label{tab:plato-doc-term}
     }\end{center}
-  clearly stopwords like ``a'' and ``this'' have been included because of their high frequency in all contexts -this problem is discussed in \autoref{sec:weighting}.
+  clearly stopwords like ``a'' and ``this'' have been included because of their high frequency in all contexts -this problem is discussed in \autoref{sec:weighting}, however we see that some element of Plato's conception of virtue \emph{has} been captured by the proximity of words \emph{wisdom, justice, courage, and knowledge}.
 \end{example}
 
-The consequence of using a particular one these two main co-occurrence matrix types (with documents as the basis elements or with context words as basis elements) corresponds the difference in semantic relatedness discussed in \autoref{sec:semantic-relatedness}. Words that notably co-occur in the context of a document are likely to be \emph{paradigmatic paralells}, whereas words which co-occur in the context of a window around a target word are likely to be \emph{semantically similar}. \textcite{sahlgreen-2006-the-word-space-model} explores this connection in more depth in his thesis.
+The consequence of using a particular one these two main co-occurrence matrix types (with documents as the basis elements or with context words as basis elements) corresponds the difference in semantic relatedness discussed in \autoref{sec:semantic-relatedness}. Words that notably co-occur in the context of a document are likely to be \emph{paradigmatic parallels}, whereas words which co-occur in the context of a window around a target word are likely to be \emph{semantically similar}. \textcite{sahlgreen-2006-the-word-space-model} explores this connection in more depth in his thesis.
 
 \section{Weighting}\label{sec:weighting}
-The problem with raw co-occurrence counts is, like we see in \autoref{tab:plato-doc-term}, that ``stop words'' like \emph{the}, which tell us very little about the meaning of a given passage, are the highest weighted elements wheras domain specific terms which are the most informative only occur infrequently so contribute less to the overall position of a count-based vector.
+The problem with raw co-occurrence counts is, like we see in \autoref{tab:plato-doc-term}, that ``stop words'' like \emph{the}, which tell us very little about the meaning of a given passage, are the highest weighted elements whereas domain specific terms which are the most informative only occur infrequently so contribute less to the overall position of a count-based vector.
 
-We remedy this by applying a weighting function to the elements of $\bf{X}$. ``The idea of weighting is to give more weight to surprising events and less weight to expected events'' \parencite{turney10-from-frequen-to-meanin}.
+We remedy this by applying a weighting function to the elements of $\bm{X}$. \emph{``The idea of weighting is to give more weight to surprising events and less weight to expected events''} \parencite{turney10-from-frequen-to-meanin}.
 
-For document-term matricies the most commonly used weighting method is the ``term frequency $\times$ inverse document frequency'' approach. The idea is that a term's weight sould be high if it was frequent in that document, but rare in other documents. This formulation has two parts: the term frequency and the inverse document frequency. Both of these parts have a variety of forms, often justified heuristically but (\textcite{robertson-2004-understanding-idf} includes a good discussion of justifications for the method -concluding that the theory of relevance weights \parencite{robertson-1976-relevance-weighting} makes the strongest cast) nevertheless these methods ``have proved extraudinarily robust and ddifficult to beat, even by much more carefully worked out models and theories'' \parencite{robertson-2004-understanding-idf}.
+For document-term matrices the most commonly used weighting method is the ``term frequency $\times$ inverse document frequency'' approach. The idea is that a term's weight should be high if it was frequent in that document but rare in other documents. This formulation has two parts: the term frequency and the inverse document frequency. Both of these parts have a variety of forms, often justified heuristically (\textcite{robertson-2004-understanding-idf} includes a good discussion of justifications for the method, concluding that the theory of relevance weights \parencite{robertson-1976-relevance-weighting} makes the strongest theoretical foundation) but nevertheless these methods ``have proved extraordinarily robust and difficult to beat, even by much more carefully worked out models and theories'' \parencite{robertson-2004-understanding-idf}.
 
 \begin{definition}[Term frequency]
   The term frequency should be higher if the term is very frequent in the document and lower otherwise.
@@ -165,7 +172,7 @@ For document-term matricies the most commonly used weighting method is the ``ter
   \begin{equation}
     \operatorname{df}_{t,d}=\frac{\#\{d\in C\;\mid\;t\in W_d\}}{\#C}
   \end{equation}
-  The ``inverse document frequency'' $\operatorname{idf}$ is then given by: $\operatorname{idf}_t=\frac{1}{\operatorname{df}_t}$. This raw frequency is commonly scaled with a $\log$ function. The heuristic justification for this is because the significance of a term does not increase in proportion to its frequency -we want to emphasise the less frequent and ``squash'' the weights of the more frequent. Finally this gives us:
+  The ``inverse document frequency'' $\operatorname{idf}$ is then given by $\frac{1}{\operatorname{df}_t}$, however, this raw frequency is commonly scaled with a $\log$ function. The heuristic justification for this is because the significance of a term does not increase in proportion to its frequency -we want to emphasise the less frequent and ``squash'' the weights of the more frequent. Finally this gives us:
   \begin{equation}
     \operatorname{idf}_t=\log\frac{1}{\operatorname{df}}
   \end{equation}
@@ -178,9 +185,9 @@ For document-term matricies the most commonly used weighting method is the ``ter
   \end{equation}
 \end{definition}
 
-For word-context matricies the most common approach is to use a pointwise-mutual-information weighting (PMI).
+For word-context matrices the most common approach is to use a pointwise-mutual-information weighting (PMI).
 
-The concept of pointwise mutual information (PMI) is defined in terms two jointly distributed random variables $X$ and $Y$. In the case of word-context matricies we are interested in the joint distribution of two tokens throughout the text corpus, $ww$, and $c$. We apply the concept of pointwise mutual information by approximating the joint distribution probabilites of $w$ and $c$.
+The concept of pointwise mutual information (PMI) is defined in terms two jointly distributed random variables $X$ and $Y$. In the case of word-context matrices we are interested in the joint distribution of two tokens throughout the text corpus, $ww$, and $c$. We apply the concept of pointwise mutual information by approximating the joint distribution probabilities of $w$ and $c$.
 
 \begin{definition}[PMI weighting]
   Recall that the formula for PMI is:
@@ -195,31 +202,67 @@ The concept of pointwise mutual information (PMI) is defined in terms two jointl
   \end{align}
   Then the PMI weight is defined:
   \begin{equation}
-    \operatorname{pmi} (w, c)=\log\frac{1 + p_{w,c}}{p_w p_c}
+    \operatorname{pmi} (w, c)=\log\left(1+\frac{p_{w,c}}{p_w p_c}\right)
   \end{equation}
-  The $+1$ within the logarithm is to avoid evaluating the undefined $\log 0$ since often the numerator $(p_{w,c})$ is equal to zero because the tokens $w$ and $c$ never co-occurred.
+  The $+1$ within the logarithm is to avoid evaluating the undefined $\log 0$ since the numerator $(p_{w,c})$ is often equal to zero because the tokens $w$ and $c$ never co-occurred.
 \end{definition}
 
 \section{Dimensionality Reduction}
-One main issue with the word spaces produced by count models is they are inconveniently high dimensional (as many dimensions as there are word-types in the vocabulary), and that they are \emph{sparse}: a large number of the entries are zero.
+One issue with the word spaces produced by count models is they are inconveniently high dimensional (as many dimensions as there are word-types in the vocabulary), and that they are \emph{sparse}: a large number of the entries are zero.
 
-One common approach to tackle this problem is to factor the sparse matrix into smaller dense matricies using a technique called \emph{singular value decomposition} (SVD) \parencite{dumais-1988-using-lsa-to-improve}. Another approach is \emph{feature selection} where only those terms considered informative beyond a certain threshold are included in the co-occurrence matrix and the rest are discarded.
+One common approach to tackle this problem is to factor the sparse matrix into smaller dense matrices using a technique called \emph{singular value decomposition} (SVD), a method first employed by \textcite{dumais-1988-using-lsa-to-improve}. Another approach is \emph{feature selection} where only those terms considered informative beyond a certain threshold are included in the co-occurrence matrix and the rest are discarded.
+
+We describe the basic operation of SVD here:
+
+\begin{definition}[Singular value decomposition \parencite{meyer-2000-matrix}]
+  For each $\bm{A}\in\Re^{m\times n}$ of rank $r$ there are orthogonal matrices $U_{m\times n}, V_{n\times n}$ and a diagonal matrix $D_{r\times r}=\operatorname{diag}(\sigma_1,\sigma_2,\dots,\sigma_r)$ such that:
+  \begin{equation}
+    \bm{A}=\bm{U}\begin{pmatrix}\bm{D} & 0 \\ 0 & 0\end{pmatrix}\underset{m\times n}{\bm{V^T}}\quad\text{with}\quad\sigma_1\geq\sigma_2\geq\cdots\geq\sigma_r>0
+  \end{equation}
+  The $\sigma_i$s are called the nonzero \emph{singular values} of $\bm{A}$.
+\end{definition}
+The product $\bm{A}=\bm{U\Sigma V^T}$ can be written:
+
+\begin{equation}
+  \bm{A}=\sum_{i=1}^{r}\sigma_i u_i v_i^T
+\end{equation}
+
+The key property that makes the SVD useful is that the product of \emph{truncated} matrices $U_k,\Sigma_k, V_k^T$ (only the first $k$ columns of $U$, only the top left $k\times k$ of $\Sigma_k$ and only the top $k$ rows of $V^T$) yields lower dimensional approximation of $A$: $A_k$:
+
+\begin{equation}
+  \bm{A}\approx A_k=\sum_{i=1}^{k}\sigma_i u_i v_i^T=\bm{U}_k\bm{\Sigma}_k \bm{V}_k^T}
+\end{equation}
+
+\Cref{fig:svd} illustrates this principle.
 
 \begin{figure}[H]
   \centering
-  \captionsetup{width=.91\linewidth}
-  \includegraphics[scale=0.35]{figures/reduced-svd.png}
-  \caption{Chart from \textcite{albright-2004-taming}. SVD decomposes $\bf{X}$ into three matricies: $\bf{U\sigma V}^T$. $\bf{U}$ and $\bf{V}$ are in column orthogonal form, and $\bf{\sigma}$ is a diagonal matrix of singular values. \parencite{golub13_matrix, turney10-from-frequen-to-meanin}}\label{fig:svd}
+  \hspace{-5em}
+  \begin{minipage}[t]{.4\textwidth}
+    \centering
+    \vspace{0pt}
+    \captionsetup{width=.91\linewidth}
+    \includegraphics[scale=0.30]{figures/reduced-svd.png}
+  \end{minipage}
+  \hspace{4em}
+  \begin{minipage}[t]{.4\textwidth}
+    \centering
+    \vspace{0pt}
+    \captionsetup{width=.91\linewidth}
+    \includegraphics[scale=0.35]{figures/reduced-svd-approx.png}
+  \end{minipage}
+  \caption{The creation of a more dense, lower-dimensional approximation $\bm{A}_k$ of a matrix $\bm{A}$ using singular value decomposition \parencite{albright-2004-taming}}\label{fig:svd}
 \end{figure}
-
+\vspace{-2.8em}
 \section{Comparison with other models}
-Count models were the dominant approach to word embedding until \textcite{mikolov13-effic-estim-word-repres-vector-space} described a method for \emph{efficiently} generating embeddings using techniques from machine learning. Embeddings methods using machine learning techniques, called \emph{predict} models, initially developed somewhat independently. The first occurrence of this approach was in \parencite{bengio-2003-a-neural-prob-lang-model}, which described a machine-learning language model which produced word embeddings as a by-product of its primary function. Other predict models were concieved, improving upon this inital concept \parencite{morin-2005-hierarchical-probabilistic, mnih-2007-three-new-graphical-models, collobert-2008-a-unified-architecture} but this embedding paradigm remained less well known until until the success of \citeauthor{mikolov13-effic-estim-word-repres-vector-space}'s \parencite*{mikolov13-effic-estim-word-repres-vector-space} \texttt{word2vec} models encouraged direct comparisons and cross-paradigm research \parencite{baroni-etal-2014-dont, levy-2014-neural-WE-as}.
+\vspace{-1em}
+Count models were the dominant approach to word embedding until \textcite{mikolov13-effic-estim-word-repres-vector-space} described a method for \emph{efficiently} generating embeddings using techniques from machine learning. Embeddings methods using machine learning techniques, called \emph{predict} models, initially developed somewhat independently. The first occurrence of this approach was in \parencite{bengio-2003-a-neural-prob-lang-model}, which described a machine-learning language model which produced word embeddings as a by-product of its primary function. Other predict models were concieved, improving upon this initial concept \parencite{morin-2005-hierarchical-probabilistic, mnih-2007-three-new-graphical-models, collobert-2008-a-unified-architecture} but this embedding paradigm remained less well known until the success of \citeauthor{mikolov13-effic-estim-word-repres-vector-space}'s \parencite*{mikolov13-effic-estim-word-repres-vector-space} \texttt{word2vec} models encouraged direct comparisons and cross-paradigm research \parencite{baroni-etal-2014-dont, levy-2014-neural-WE-as}.
 
-Although the methods seem quite different on the surface, \textcite{levy-2014-neural-WE-as} found that it is possible to view the operation of these predict models as \emph{implicitly} factoring a co-occurrence matrix -so theoretically the same information is being used by both models.
+Although the methods seem quite different on the surface, \textcite{levy-2014-neural-WE-as} found that it is possible to view the operation of these predict models as \emph{implicitly} factoring a co-occurrence matrix -so a similarly underlying principle is present in both.
 
-The methods we have presented here (document-term matricies and context-word matricies) are the foundation of the theory of count models but these particular models can vary greatly. Most notably, \citeauthor{pennington2014glove}'s \parencite*{pennington2014glove} GloVe model reports better results than other count-based models and prediction based models of the \texttt{word2vec} software package in the tasks of word-analogy and named entity recognition.
+The methods we have presented here (document-term matrices and context-word matrices) are the foundation of the theory of count models but particular models can vary greatly. Most notably, \citeauthor{pennington2014glove}'s \parencite*{pennington2014glove} GloVe model reports better results than other count-based models and prediction based models of the \texttt{word2vec} software package in the tasks of word-analogy and named entity recognition.
 
-The cutting edge of embedding methods, at the time of writing is the ``deep contextualised model'' of \textcite{peters18-deep-contex-word-repres} which incorporates sentence-level information and leverages a language model to capture context-dependent aspects of word meaning. This is one particularly successful approach to tackling the difficulties endemic to word-meaning inference discussed in \nameref{chap:words} and \nameref{sec:semantic-relatedness}
+The cutting edge of embedding methods, at the time of writing is the ``deep contextualised model'' of \textcite{peters18-deep-contex-word-repres} which incorporates sentence-level information and leverages a language model to capture context-dependent aspects of word meaning. This is one particularly successful approach to tackling the difficulties endemic to word-meaning inference discussed in \nameref{chap:words} and \nameref{sec:semantic-relatedness}.
 
 %%% Local Variables:
 %%% mode: latex

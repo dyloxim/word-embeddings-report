@@ -12,9 +12,9 @@ Consider the following example:
 \authorquote{The limits of my language means the limits of my world}{\textcite{wittgenstein-1922-tract}}
 This sentence contains $11$ word-tokens, but only $7$ word-types because the four words ``\emph{the limits of my}'' are each repeated once.
 \end{example}
-As \textcite{kaplan-1990-words} notes, this type/token distinction is very much an \emph{orthographic} construction -this is most straightforwardly apparent in the case of identical tokens which represent separate ``grammatical words'' (like the different grammatical words `rock (music)' and `rock (stone)' both represented by the same orthographic word `rock' in \autoref{fig:polysemy}). \citeauthor{kaplan-1990-words} discusses the shortcomings of this type/token model as a tool for understanding language in depth, asserting ``The criterion of word identity is not resembelance'' -however, whether this distinction has \emph{explanatory power} regarding language or otherwise, it inarguably has \emph{utility} when processing language.
+This distinction is very useful when processing language, however, as \textcite{kaplan-1990-words} notes, this type/token distinction is very much an \emph{orthographic} construction -this is most straightforwardly apparent in the case of identical tokens which represent separate ``grammatical words'' (like the different grammatical words `rock (music)' and `rock (stone)' both represented by the same orthographic word `rock' in \autoref{fig:polysemy}). \citeauthor{kaplan-1990-words} discusses the shortcomings of this type/token model as a tool for \emph{understanding} language in depth, asserting ``The criterion of word identity is not resemblance'' -however, whether this distinction has \emph{explanatory power} regarding language or otherwise, it inarguably has \emph{utility} when processing language.
 
-\section{Distributional Similarity \& Semantic relatedness}\autoref{sec:semantic-relatedness}
+\section{Distributional Similarity \& Semantic relatedness}\label{sec:semantic-relatedness}
 Up until this point we have used the terms ``semantic relatedness'' and ``word similarity'' interchangeably without clarifying what we are referring to in either case. We have said that word embedding algorithms use observed \emph{distributional similarity} to infer underlying \emph{semantic relatedness/word similarity}, but not discussed the specifics of this inference. In this section we first define a variety of ways in which words can be semantically related, then we discuss types of distributional similarity which can reveal semantic relations, and finally we discuss the limits of this methodology.
 
 We reference \citeauthor{turney10-from-frequen-to-meanin}'s \parencite*{turney10-from-frequen-to-meanin} framework for distinguishing between types of semantic relatedness. First, they describe the general concept of semantic relatedness as follows:
@@ -37,16 +37,16 @@ This link between semantic relation and distributional is justified by the obser
 The inference we can make based on distributional conditions then, is this:
 \begin{align}
   \text{\fbox{\emph{syntagmatic associates}}}&\implies\text{\fbox{\emph{\vphantom{g}semantic associates}}}\\
-  \text{\fbox{\emph{pardigmatic parallels}}}&\implies\text{\fbox{\emph{taxonomically similar}}}
+  \text{\fbox{\emph{paradigmatic parallels}}}&\implies\text{\fbox{\emph{taxonomically similar}}}
 \end{align}
 \noindent
-We will discuss in the following chapters how co-occurence matrix based embedding methods and \texttt{word2vec} algorithms can be used to generate word spaces reflecting more \emph{syntagmatic association} or \emph{paradigmatic parallel} type distributional relationships. As you will see, however, the ability to target specific semantic relationships with these algorithms is quite coarse-grained -even if these two categories of semantic relation (semantic association and paradigmatic parallelism) could be captured with some precision, what about the more specific types of relation mentioned by \citeauthor{turney10-from-frequen-to-meanin} (synonymy, meronymy \& antonymy) at the start of this section, or other relations?
+We will discuss in the following chapters how co-occurrence matrix based embedding methods algorithms can be used to generate word spaces reflecting more \emph{syntagmatic association} or \emph{paradigmatic parallel} type distributional relationships. As you will see, however, the ability to target specific semantic relationships with these algorithms is quite coarse-grained -even if these two categories of semantic relation (semantic association and paradigmatic parallelism) could be captured with some precision, what about the more specific types of relation mentioned by \citeauthor{turney10-from-frequen-to-meanin} (synonymy, meronymy \& antonymy) at the start of this section, or other relations?
 
 \authorquote{A commonly raised criticism for both types of semantic space models (i.e., word-based and syntax-based)\footnotemark  concerns the notion of semantic similarity. Proximity between two words in the semantic space cannot indicate the nature of the lexical relations between them. Distributionally similar words can be antonyms, synonyms, hyponyms or in some cases semantically unrelated. This limits the application of semantic space models for NLP tasks which require distinguishing between lexical relations}{\textcite{pado-lapata-2003-constructing}}
-\footnotetext{The term ``syntax based'' used in contrast to ``word based'' refers to models which make use of an a-priori encoded conception of word-order relationships like{\small SUBJECT-OBJECT}. The models discussed in this report are of the ``word based'' kind in that they have only a concept of ``word'' but not of any order known ahead-of-time.}
+\footnotetext{The term ``syntax based'' used in contrast to ``word based'' refers to models which make use of an a-priori encoded conception of word-order relationships like {\small SUBJECT-OBJECT}.}
 \noindent
-This ``limit'' of word space models (referred to as \emph{semantic space models} by \citeauthor{pado-lapata-2003-constructing} above) is essential to their construction. The semantic relatedness they model is of a more general nature. This is not necessarily a shortcoming of the models however. \textcite{sahlgreen-2006-the-word-space-model} writes in his thesis:
-\basicquote{This criticism is arguably valid from a prescriptive perspective where these relations are a priorily given as part of the linguistic ontology. From a descriptive perspective, however, these relations are not axiomatic, and the broad notion of semantic similarity seems perfectly plausible. There are studies that demonstrate the psychological reality of the concept of semantic similarity. For example, \textcite{miller-1991-contextual-correlates} [\dots]; people appear to instinctively understand what semantic similarity is, [\dots]. Several researchers report high inter-subject agreement when asking a number of test subjects to provide semantic similarity ratings for a given number of word pairs \parencite{rubenstein-1965-contextual-correlates, henley-1969-a-psychological, miller-1991-contextual-correlates}}
+This limit of word space models (referred to as \emph{semantic space models} by \citeauthor{pado-lapata-2003-constructing} above) is in fact essential to their construction. The semantic relatedness they model is of a more general nature. This is not necessarily a shortcoming of the models however. \textcite{sahlgreen-2006-the-word-space-model} writes in his thesis:
+\basicquote{This criticism is arguably valid from a prescriptive perspective where these relations are a priorily given as part of the linguistic ontology. From a descriptive perspective, however, these relations are not axiomatic, and the broad notion of semantic similarity seems perfectly plausible. There are studies that demonstrate the psychological reality of the concept of semantic similarity. For example, \textcite{miller-1991-contextual-correlates} [\dots]; people appear to instinctively understand what semantic similarity is [\dots]. Several researchers report high inter-subject agreement when asking a number of test subjects to provide semantic similarity ratings for a given number of word pairs \parencite{rubenstein-1965-contextual-correlates, henley-1969-a-psychological, miller-1991-contextual-correlates}}
 Indeed, it is not clear how these more particular semantic relationships \emph{could} be captured by the arrangements of points in a word space -\citeauthor{sahlgreen-2006-the-word-space-model} continues:
 \basicquote{the nature of the similarities in the word-space model is a consequence of using the distributional methodology as discovery procedure, and the geometric metaphor of meaning as representational basis. [...] If we want to claim that we extract and represent some particular type of semantic relation in the word-space model, we need to modify either the distributional hypothesis or the geometric metaphor.}
 
@@ -102,10 +102,10 @@ Indeed, it is not clear how these more particular semantic relationships \emph{c
 %% \end{figure}
 %% As \textcite{montemurro-2001-beyond-the-zipf} note regarding the above figure, the relationship does not hold absolutely for lower frequency words. In their paper \parencite{montemurro-2001-beyond-the-zipf} they present a more detailed model capturing this variation. Their improved model is beyond the scope of this report but is illustrative of the difficulties of processing low-frequency words in particular, an issue we come across again later in this report.
 %% 
-The next concept is from the field of information theory and measures the amount of information revealed about a system when its outcome is partly decided.
+The next concept is from the field of information theory and measures the amount of information revealed about a system when its outcome is partly decided. It is useful in embedding processes for quantifying how novel it is for two words to have co-occurred together (very frequent words like ``the'' are less novel partners to co-occur with than more domain-specific terms).
 
 \begin{definition}[Pointwise Mutual Information]
-  Given two discrete random variables with a joint distribution $P:X\times Y\to [0,1]$, such that the probability of $x$ and $y$ co-occuring is given by $P(x,y)$, the \emph{pointwise mutual information} of $x$ and $y$ is given by:
+  Given two discrete random variables with a joint distribution $P:X\times Y\to [0,1]$, such that the probability of $x$ and $y$ co-occurring is given by $P(x,y)$, the \emph{pointwise mutual information} of $x$ and $y$ is given by:
   \begin{equation}
     I(x,y)=\log\frac{P(x,y)}{P(x)P(y)}\label{eq:pmi}
   \end{equation}
@@ -113,17 +113,18 @@ The next concept is from the field of information theory and measures the amount
 
 Pointwise mutual information is a measure of how much information about one random variable's value is gained, given that the value taken by the other is already known. For this reason it is natural to describe it in terms of conditional probabilities:
 \begin{equation}
-  I(x_i,y_j)=\log\frac{P(x_i\mid y_j)}{P(x_i)}
+  I(x,y)=\log\frac{P(x\mid y)}{P(x)}
 \end{equation}
-This value happens to be symmetric with respect to $x_i$ and $y_j$:
+This value happens to be symmetric with respect to $x$ and $y$:
 \begin{equation}
-  I(x_i,y_j)= \log\frac{P(x_i\mid y_j)P(y_j)}{P(x_i)P(Y_j)}\ =\ \log\frac{P(y_j\mid x_i)P(x_i)}{P(y_j)P(x_i)}=\log\frac{P(x_i, y_j)}{P(x_i)P(y_j)}
+  I(x,y)= \log\frac{P(x\mid y)P(y)}{P(x)P(Y)}\ =\ \log\frac{P(y\mid x)P(x)}{P(y)P(x)}=\log\frac{P(x, y)}{P(x)P(y)}
 \end{equation}
 which is why it is called the pointwise \emph{mutual} information.
 
 If all outcomes in a joint distribution are equally likely, then learning the value of one of the variables does not give you any new information about the probability that the remaining variable takes any particular value. If the two are highly dependent on one another however, the outcome of one can be very informative about the probable outcomes for the other. This is the intuition which pointwise mutual information formalises.
-\begin{example}[Pointwise mutual information] Given the definition, we expect that for the two joint distributions, $P_1$, $P_2$, on $X$ and $Y$ shown in \autoref{tab:pmi1} and \autoref{tab:pmi2} that in the first case the pointwise mutual information for particular values (we choose $x_3$ and $y_3$) would be none, and in the second case would be positive. We calculate both below, referring to the first value $I_1$ and the second $I_2$.
+\begin{example}[Pointwise mutual information] Given the definition we expect that for the two joint distributions ($P_1$, $P_2$, on $X$ and $Y$ shown in \autoref{tab:pmi1} and \autoref{tab:pmi2}), in the first case the pointwise mutual information for particular values (we choose $x_3$ and $y_3$) would be none, and in the second case would be positive. We calculate both below, referring to the first value $I_1$ and the second $I_2$.
   \phantom{para}\\\vspace{-3em}\par\hfill\allowbreak{}\\
+  \hspace{-1.5em}
   \begin{minipage}{.5\textwidth}
   \vspace{0pt}
     \begin{center}\begin{tabular}{c R R !{\color{red}\vrule width 0.5pt} R !{\color{red}\vrule width 0.5pt} R r}
@@ -161,7 +162,7 @@ If all outcomes in a joint distribution are equally likely, then learning the va
 \end{example}
 
 \section{Tokenizing}
-In this section we present a formal description of \emph{tokens} as derived from a corpora in mathematical language. We did not find a formal description of the elements which embedding algorithms operate on like this in the literature -it is often assumed that a tokenized corpus is already prepared and understood- so we present our own.
+In this section we present a formal description of \emph{tokens}, the core unit upon which embedding algorithms operate on, in mathematical language. We did not find a formal description of tokens as mathematical elements like this in the literature -it is often assumed that a tokenized corpus is already prepared and understood- so we briefly present our own.
 
 Since one of our aims in this report is to highlight the fact that many key ideas used to generate word spaces do not \emph{assume} that the objects being operated on are actually words (discussed in \nameref{chap:beyond-word-embeddings}), we thought a formal description of type of input generally expected by these algorithms would be a useful detail to specify.
 \begin{definition}[Orthography]\label{def:orthography}
@@ -198,7 +199,7 @@ Since one of our aims in this report is to highlight the fact that many key idea
 \end{example}
 
 \begin{example}[Plato Documents]\label{ex:doc-plato}
-    Plain text versions of the complete works of Plato (English translations) are available at the \href{https://www.gutenberg.org/ebooks/author/93}{Project Gutenberg} website. These are examples of documents using keyboard orthography \ref{eq:orth-keyboard} referenced above.
+    Plain text versions of the complete works of Plato (English translations) are available at the \href{https://www.gutenberg.org/ebooks/author/93}{Project Gutenberg} website. These are examples of documents using keyboard orthography \ref{eq:keyboard-orthography} referenced above.
 \end{example}
 
 \begin{definition}[Word-Token]
@@ -206,19 +207,20 @@ Since one of our aims in this report is to highlight the fact that many key idea
 \end{definition}
 
 \begin{definition}[Tokenizer]
-   A tokenizer $T$ is a function that maps a document to a sequence of word tokens; $T(d)=w_1,w_2,\dots,w_n$. The output is refered to as the 'tokenized' form of the document. We use the shorthand $W_d$ to refer to the tokenized document $T(d)$ when it is clear which tokenization has been used.\footnote{Here we consider tokenization in an abstract sense essentially saying ``A tokenizer is a function that extracts tokens''. A practical discussion of tokenization and text-preprocessing is found in \autoref{sec:preprocessing}}.
+   A tokenizer $T$ is a function that maps a document to a sequence of word tokens; $T(d)=w_1,w_2,\dots,w_n$. The output is referred to as the 'tokenized' form of the document. We use the shorthand $W_d$ to refer to the tokenized document $T(d)$ when it is clear which tokenization has been used.\footnotemark.
 \end{definition}
+\footnotetext{Here we consider tokenization in an abstract sense essentially saying ``A tokenizer is a function that extracts tokens''. For a practical look at pre-processing see \nameref{chap:further-reading}.}
 
 \begin{example}[Dots Document Tokenized]\label{ex:doc-plato}
-  Using the tokenizing proceduce: \emph{treat blue dots as token-deliminators}, the tokenization of document \eqref{eq:dots-document} yields:
+  Using the tokenizing procedure: \emph{treat blue dots as token-deliminators}, the tokenization of document \eqref{eq:dots-document} yields:
   \begin{align}
-    T(d_1)&=\fbox{\mycirc[red] \mycirc[green]}, \fbox{\mycirc[red]}, \fbox{\mycirc[red] \mycirc[green]}, \fbox{\mycirc[green]}\label{eq:dots-tokens}\\
+    T(d_1)&=\fbox{\mycirc[red] \mycirc[green]}, \fbox{\mycirc[red]}, \fbox{\mycirc[red] \mycirc[green]}, \fbox{\mycirc[green]}\label{eq:dots-tokenized}\\
     &=W_{d_1}\nonumber
   \end{align}
 \end{example}
 
 \begin{example}[Simple Text Tokenizer]\label{ex:simple-tokenizer}
-  In \autoref{alg:tokenizer1} we present a simple algorithm for tokenizing text which ignores a predefined list of special symbols, and identifies token-boundaries using predefined deliminator symbols.
+  In \autoref{alg:simple-tokenizer} we present a simple algorithm for tokenizing text which ignores a predefined list of special symbols, and identifies token-boundaries using predefined deliminator symbols.
 
   Setting {\sffamily ignore}$=("!", ".", ",", ";", ":", "'")$, and {\sffamily deliminators}$=("~")$, the following document:
   \begin{equation*}
@@ -229,14 +231,14 @@ Since one of our aims in this report is to highlight the fact that many key idea
     T(d_2)&=\text{\fbox{Predicting}}, \text{\fbox{is\vphantom{gt}}}, \text{\fbox{difficult\vphantom{gt}}}, \text{\fbox{-especially\vphantom{gt}}}, \text{\fbox{about\vphantom{gt}}}, \text{\fbox{the\vphantom{gt}}}, \text{\fbox{future\vphantom{gt}}}\label{eq:sentence-tokens}\\
     &=W_{d_2}\nonumber
   \end{align}
-  Clearly the token \fbox{-especially} is not in the form an English speaker would transcribe if tasked with tokenzing the sentence by hand -but we use this example to highlight the difficulty of tokenizing: with this approach hyphenated expressions like ``brother-in-law'' will be correctly tokenized as single units, but in cases like \eqref{eq:sentence-tokens} mistakes are made. It is not possible to handle both cases correctly with our simple algorithm.
+  Clearly the token \fbox{-especially} is not in the form an English speaker would transcribe if tasked with tokenizing the sentence by hand -but we use this example to highlight the difficulty of tokenizing: with this approach hyphenated expressions like ``brother-in-law'' will be correctly tokenized as single units, but in cases like \eqref{eq:sentence-tokens} mistakes are made. It is not possible to handle both cases correctly with our simple algorithm.
 \end{example}
 
 \begin{figure}[H]
   \centering
   \captionsetup{width=.91\linewidth}
   \includegraphics[scale=0.70]{figures/affinity-designer/tokens.png}
-  \caption{Tokens identified by two different tokenizations, (b) \& (c), performed on the same document (a) (using the orthography~\eqref{eq:dots-orthography}). The tokenizer used in the case of (b) identifies tokens as sequences of red and green dots deliminated by blue dots, and for (c) the tokenizer identified tokens as sequences of consecutive repeated symbols which followed by any (positive) number of blue dots.}\label{fig:dot-tokenizers}
+  \caption{Tokens identified by two different tokenizations, (b) \& (c), performed on the same document (a) (using the orthography~\eqref{eq:dots-orthography}). The tokenizer used in the case of (b) identifies tokens as sequences of red and green dots delimited by blue dots, and for (c) the tokenizer identified tokens as sequences of consecutive repeated symbols which are terminated by any number of blue dots.}\label{fig:dot-tokenizers}
 \end{figure}
 \par
 \begin{algorithm}
@@ -264,8 +266,8 @@ Since one of our aims in this report is to highlight the fact that many key idea
   \NextToken $\leftarrow$ \List{}\;
   \tcc{Go through the document one symbol at a time, skipping special characters, and adding \NextToken to \Tokens when a deliminator is reached}
   \For{\Symb in \Doc}{
-    \uIf{\Syb is in \Delim}{
-      \tcc{Add \NextToken to \Tokens if \NextToken is not empty}
+    \uIf{\Symb is in \Delim}{
+      \tcc{Add \NextToken to \Tokens if \NextToken only if it contains symbols}
       \uIf{\NextToken is not empty}{
         \Tokens$\leftarrow$ \Append{\NextToken, \Tokens}\;
         \NextToken$\leftarrow$ \List{}\;
@@ -286,14 +288,14 @@ Since one of our aims in this report is to highlight the fact that many key idea
   }
 \end{algorithm}
 \par
-We have described tokenization for letter-based documents and dot-based documents but there are many other possibilities, like for example tokenizing musical notation by deliminating tokens at bar-boundaries.
+We have described tokenization for orthographies of letter-based and dot-based documents but of course there are many other possibilities, for example tokenizing musical notation by delimiting tokens at bar-boundaries.
 
 \begin{definition}[Corpus]
   A corpus $C$ is a finite set of documents $\{d_1, d_2,\dots,d_n\}$, $n\in\mathbb{N}$.
 \end{definition}
 
 \begin{example}[Plato Corpus]\label{ex:corp-plato}
-  The complete works of plato in plain-text form, referenced in \autoref{ex:doc-plato} is an example of a corpus.
+  The complete works of Plato in plain-text form, referenced in \autoref{ex:doc-plato} is an example of a corpus.
 \end{example}
 
 \begin{definition}[Vocabulary]
@@ -314,7 +316,7 @@ We have described tokenization for letter-based documents and dot-based document
 \end{example}
 
 \begin{example}[Plato Document Sizes]
-  Word token counts and vocabulary sizes for a selection Plato documents from~\ref{ex:doc-plato}, tokenized using a variation of the simple tokenizer described by \autoref{alg:simple-tokenizer}\footnotemark, are listed here:\\[-1em]
+  Word token counts and vocabulary sizes for a selection Plato documents from~\ref{ex:doc-plato}, tokenized using a variation of the simple tokenizer\footnotemark described by \autoref{alg:simple-tokenizer}, are listed here:\\[-1em]
   \begin{center}
   \captionsetup{width=.91\linewidth}
     \begin{tabular}{c r r r r r r}
@@ -338,16 +340,16 @@ We have described tokenization for letter-based documents and dot-based document
     \captionof{table}{Number of Word Tokens \& Vocabulary Sizes of a selection of Documents in the Plato Corpus (\autoref{ex:corp-plato})}
     \end{center}
 \end{example}
-\footnotetext{the code used to create these examples and others examples on the same corpus is available in the appendix}
+\footnotetext{The code used to produce this table, and other examples using this data set, is available on \href{https://github.com/joelstrouts/degree-project}{Github}.}
 
 \begin{example}[Plato Corpus Size]
   The complete Plato corpus (\ref{ex:corp-plato}) consists of 25 documents and, each tokenized the same way as before, has the word count $\sum_{d\in C_P}\#W_d=670,936$ and the vocabulary size $\#V(C_P)=19,432$.
 \end{example}
-
-These are the essential mathematical objects used to construct co-occurence matricies as we describe in the following chapter.
+\noindent
+These are the essential mathematical objects which are used to construct co-occurrence matrices as we describe in the following chapter.
 
 \section{Similarity Measure}
-There are many possible measures of similarity for comparing two vectors, but in the word embedding domain by far the most prevelant is the cosine similarity. We present only this method, but see \parencite{bullinaria-2007-extracting-semantic} for a comparison of other distance measuring approaches.
+There are many possible measures of similarity for comparing two vectors, but in the word embedding domain by far the most prevalent is the cosine similarity. We present only this method, but suggest reading \textcite{bullinaria-2007-extracting-semantic} for a discussion and comparison of other distance measuring approaches.
 
 \begin{definition}[Cosine Similarity]
   Give two non-zero vectors $\bf{x}$ and $\bf{y}$, the cosine similarity between these two vectors is given by:

@@ -9,7 +9,6 @@
 \usepackage{wrapfig}
 \newenvironment{figurewrap}
  {%
-%  \setlength{\intextsep}{0pt}% <--- Wrong!
   \setlength{\columnsep}{15pt}%
   \wrapfloat{figure}%
  }
@@ -20,6 +19,7 @@
 \usepackage{collcell}
 \usetikzlibrary{backgrounds}
 \usepackage{booktabs}
+\usepackage{bm}
 \usepackage{wasysym}
 \usepackage{multicol}
 \usepackage{capt-of}
@@ -134,7 +134,7 @@ anchorcolor = black]{hyperref}
 \begin{center}\begin{quote}
 \parbox{0.27cm}{\Large{``}}{\small{\textquotefont{{#1}}}}$\,$\parbox{0.25cm}{\Large{''}} \vspace{-1.30em}\flushright{\small{\textquotefont{{#2}}}}
 \end{quote}\end{center}
-\vspace{-0.60em}
+\vspace{-0.40em}
 }
 \newcommand{\basicquote}[1]{
 \begin{center}\begin{quote}
@@ -263,4 +263,4 @@ splittopskip=1.5em,%
 }
 \newcolumntype{R}{>{\collectcell\ApplyGradient}{r}<{\endcollectcell}}
 
-\newcommand{\mycirc}[1][black]{\,\tikz\draw[#1,fill=#1] (0,0) circle (.8ex);}
+\newcommand{\mycirc}[1][black]{\,\tikz\draw[#1,fill=#1] (0,0) circle (.7ex);}
