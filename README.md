@@ -1,6 +1,5 @@
 # maths final project
 
-## Key files
 + [output pdf](https://github.com/joelstrouts/degree-project/blob/main/main.pdf)
 + [build script](https://github.com/joelstrouts/project/blob/main/scripts/build)
 + [references](https://github.com/joelstrouts/project/blob/main/refs.bib)
