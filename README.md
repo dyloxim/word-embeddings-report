@@ -1,4 +1,4 @@
-# UoY Mathematics Bsc Final Project
+# maths final project
 
 ## Key files
 + [output pdf](https://github.com/joelstrouts/degree-project/blob/main/main.pdf)
